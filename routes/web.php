@@ -16,7 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('/login', function () {
     return view('auth/login');
 });
+Route::get('/registrasi', function () {
+    return view('auth/registrasi');
+});
+//Route::get('/login', [Login::class, 'index']);
+//Route::post('/login', [Login::class, 'authenticate']);
+
