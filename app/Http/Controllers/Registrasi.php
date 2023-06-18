@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class Registrasi extends Controller
 {
     public function index()
     {
-        return view('registrasi.index');
+        return view('auth.registrasi');
     }
 
     public function store(Request $request)
@@ -16,7 +17,7 @@ class Registrasi extends Controller
         //membuat form validasi
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'level' => 'required',
+            //'level' => 'required',
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:5|max:255'
         ]);
