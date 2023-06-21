@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\Authenticate;
+// use App\Http\Middleware\Authenticate;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +18,17 @@ use App\Http\Middleware\Authenticate;
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware(Authenticate::class);
+});
 
-Route::get('/login', function () {
-    return view('auth/login');
-})->name('login');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::get('/registrasi', function () {
-    return view('auth/registrasi');
-})->name('registrasi');
-//Route::get('/login', [Login::class, 'index']);
-//Route::post('/login', [Login::class, 'authenticate']);
+// Route::get('/registrasi', function () {
+//     return view('auth/registrasi');
+// })->name('registrasi');
+
+Route::get('/registrasi', [RegisterController::class, 'index'])->name('register');
+Route::post('/registrasi', [RegisterController::class, 'store']);
+
+//Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
