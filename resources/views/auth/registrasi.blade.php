@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SPK BEASISWA | Registration Page</title>
+    <title>SPK BEASISWA | {{ $title }}</title>
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -92,7 +92,8 @@
                 <form action="/registrasi" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" name="name" class="form-control @error('name')is-invalid @enderror" placeholder="Full name">
+                        <input type="text" name="name" class="form-control @error('name')is-invalid @enderror"
+                            placeholder="Full name">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>

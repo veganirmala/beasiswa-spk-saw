@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class Registrasi extends Controller
+class RegisterController extends Controller
 {
     public function index()
     {
-        return view('auth.registrasi');
+        return view('auth.registrasi')->with('title', 'Registrasi');
     }
 
     public function store(Request $request)

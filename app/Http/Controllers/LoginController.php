@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class Login extends Controller
+class LoginController extends Controller
 {
     public function index()
     {
-        return view('auth.login', [
-            'title' => "Login",
-            'active' => "Login"
-        ]);
+        return view('auth.login')->with('title', 'Login');
     }
+
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
@@ -23,8 +22,7 @@ class Login extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            //return redirect()->intended('/registrasi');
-            return back()->with('loginSuccess', 'Login Success!');
+            return redirect()->intended('/');
         }
         // elseif(Auth::guard('admin')->attempt($credentials)) {
         //     $request->session()->regenerate();
@@ -33,12 +31,12 @@ class Login extends Controller
         // }
         return back()->with('loginError', 'Login Failed!');
     }
+
     public function logout()
     {
         Auth::logout();
 
         request()->session()->invalidate();
-
         request()->session()->regenerateToken();
 
         return redirect('/');
