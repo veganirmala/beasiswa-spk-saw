@@ -23,14 +23,9 @@ class Login extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            //return redirect()->intended('/registrasi');
-            return back()->with('loginSuccess', 'Login Success!');
+            return redirect()->intended('/registrasi');
+            //return back()->with('loginSuccess', 'Login Success!');
         }
-        // elseif(Auth::guard('admin')->attempt($credentials)) {
-        //     $request->session()->regenerate();
-
-        //     return redirect()->intended('/dashboard');
-        // }
         return back()->with('loginError', 'Login Failed!');
     }
     public function logout()

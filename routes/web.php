@@ -31,6 +31,9 @@ Route::get('/', function () {
 Route::get('/registrasi', [Registrasi::class, 'index']);
 Route::post('/registrasi', [Registrasi::class, 'store']);
 
-//Route::get('/login', [Login::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [Login::class, 'authenticate']);
 Route::post('/logout', [Login::class, 'logout']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+    });
