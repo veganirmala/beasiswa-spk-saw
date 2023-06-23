@@ -32,4 +32,6 @@ Route::post('/registrasi', [RegisterController::class, 'store']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [Dashboard::class, 'index']);
-Route::get('/user', [UserController::class, 'index']);
+
+//Route::get('/user', [UserController::class, 'index']);
+Route::resource('/user', UserController::class);

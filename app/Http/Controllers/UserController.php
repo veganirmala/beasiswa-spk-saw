@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user/create');
     }
 
     /**
@@ -28,7 +28,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //membuat form validasi
+        $validatedData = $request->validate([
+            'nama_user' => 'required|max:255',
+            'email_user' => 'required|email:dns|unique:tabel_user',
+            'jk_user' => 'required',
+            'telp_user' => 'required',
+            'alamat_user' => 'required'
+        ]);
+
+        UserModel::create($validatedData);
+        return redirect ('/user')->with('success', 'Data User Berhasil ditambahkan !');
     }
 
     /**
