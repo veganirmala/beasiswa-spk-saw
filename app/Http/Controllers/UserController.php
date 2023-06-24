@@ -50,8 +50,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Userr $userr)
+    public function show($id)
     {
+        $user = Userr::find($id);
+        return view('user/show', compact('user'));
     }
 
     /**
