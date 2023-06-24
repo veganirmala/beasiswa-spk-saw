@@ -31,9 +31,9 @@
             <div class="form-group">
                 <label for="jk">Jenis Kelamin</label>
                 <br>
-                <input type="radio" id="perempuan" name="jk">
+                <input type="radio" id="perempuan" value="Perempuan" name="jk">
                 <label>Perempuan</label>
-                <tr><input type="radio" id="laki-laki" name="jk">
+                <tr><input type="radio" id="laki-laki" value="Laki-laki" name="jk">
                     <label>Laki-laki</label>
                 </tr>
             </div>

@@ -22,7 +22,7 @@
     <!-- /.content-header -->
 
     @if (session()->has('success'))
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success col-12" role="alert">
           {{ session('success')  }}
         </div>
     @endif
@@ -51,11 +51,33 @@
                   </tr>
                   </thead>
                   <tbody>
-                       
-                        <div class="alert alert-danger" role="alert">
-                        Data user tidak berhasil ditemukan
-                        </div>
-                        
+                    <?php if (empty($users)) : ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        Data user tidak berhasil ditemukan
+                                    </div>
+                                <?php endif; ?>
+                                <?php $i = 1; ?>
+                                <?php foreach ($users as $user) : ?>
+                                    <tr>
+                                        <th scope="row"><?= $i; ?></th>
+                                        <td><?= $user['name']; ?></td>
+                                        <td><?= $user['email']; ?></td>
+                                        <td><?= $user['jk']; ?></td>
+                                        <td><?= $user['telp']; ?></td>
+                                        <td><?= $user['alamat']; ?></td>
+                                        <td>
+                                            <a href="" class="btn btn-success" title="Detail Data"><i class="fas fa-info-circle"></i></a>
+                                            <a href="" class="btn btn-danger" title="Edit Data"><i class="fas fa-edit"></i></a>
+                                            {{-- {{ $user->email }} --}}
+                                            <form action="/user/{{ $user->id }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-warning" title="Delete Data" onclick="return confirm('Apakah anda akan menghapus data ini?');"><i class="fas fa-trash-alt"></i></button>
+                                           </form>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>

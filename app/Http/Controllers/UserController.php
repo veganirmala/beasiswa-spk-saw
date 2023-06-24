@@ -12,7 +12,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user/index');
+        //mengambil semua data user diurutkan dari yg terbaru DESC
+        $users = Userr::latest()->paginate(5);
+        
+        //tampilkan halaman index
+        return view('user/index', data:compact('users'));
     }
 
     /**
@@ -46,7 +50,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UserModel $userModel)
+    public function show(Userr $userr)
     {
         //
     }
@@ -54,7 +58,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(UserModel $userModel)
+    public function edit(Userr $userr)
     {
         //
     }
@@ -62,7 +66,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UserModel $userModel)
+    public function update(Request $request, Userr $userr)
     {
         //
     }
@@ -70,8 +74,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UserModel $userModel)
+    public function destroy($id)
     {
-        //
+        $user = Userr::find($id);
+        $user->delete();
+        
+        return redirect ('/user')->with('success', 'Data User Berhasil dihapus !');
     }
 }

@@ -36,4 +36,5 @@ Route::get('/dashboard', [Dashboard::class, 'index']);
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/create', [UserController::class, 'create']);
 Route::post('/user/create', [UserController::class, 'store']);
+Route::delete('/user/{id}', [UserController::class, 'destroy']);
 //Route::resource('/user', UserController::class);
