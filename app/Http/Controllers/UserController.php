@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserModel;
+use App\Models\Userr;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -30,14 +30,16 @@ class UserController extends Controller
     {
         //membuat form validasi
         $validatedData = $request->validate([
-            'nama_user' => 'required|max:255',
-            'email_user' => 'required|email:dns|unique:tabel_user',
-            'jk_user' => 'required',
-            'telp_user' => 'required',
-            'alamat_user' => 'required'
+            'name' => 'required|max:255',
+            'email' => 'required|email:dns|unique:userrs',
+            'jk' => 'required',
+            'telp' => 'required',
+            'alamat' => 'required'
         ]);
+        //var_dump ($validatedData);
 
-        UserModel::create($validatedData);
+        Userr::create($validatedData);
+        
         return redirect ('/user')->with('success', 'Data User Berhasil ditambahkan !');
     }
 
