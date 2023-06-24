@@ -67,8 +67,7 @@
                                         <td><?= $user['alamat']; ?></td>
                                         <td>
                                             <a href="" class="btn btn-success" title="Detail Data"><i class="fas fa-info-circle"></i></a>
-                                            <a href="" class="btn btn-danger" title="Edit Data"><i class="fas fa-edit"></i></a>
-                                            {{-- {{ $user->email }} --}}
+                                            <a href="/user/{{ $user->id }}/edit" class="btn btn-danger" title="Edit Data"><i class="fas fa-edit"></i></a>
                                             <form action="/user/{{ $user->id }}" method="POST">
                                             @csrf
                                             @method('delete')

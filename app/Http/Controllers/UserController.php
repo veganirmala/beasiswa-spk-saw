@@ -52,23 +52,36 @@ class UserController extends Controller
      */
     public function show(Userr $userr)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Userr $userr)
+    public function edit($id)
     {
-        //
+        $user = Userr::find($id);
+        return view('user/update', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Userr $userr)
+    public function update(Request $request, $id)
     {
-        //
+        //membuat form validasi
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required',
+            'jk' => 'required',
+            'telp' => 'required',
+            'alamat' => 'required'
+        ]);
+        //mengambil data yg akan diupdate
+        $user = Userr::find($id);
+
+        $user->update($validatedData);
+        
+        return redirect ('/user')->with('success', 'Data User Berhasil diedit !');
     }
 
     /**
