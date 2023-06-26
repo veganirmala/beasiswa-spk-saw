@@ -9,6 +9,7 @@ use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\JenisBeasiswaController;
+use App\Http\Controllers\JenisPrestasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +60,11 @@ Route::get('/jenisbeasiswa/{id}/edit', [JenisBeasiswaController::class, 'edit'])
 Route::get('/jenisbeasiswa/{id}/show', [JenisBeasiswaController::class, 'show']);
 Route::put('/jenisbeasiswa/{id}', [JenisBeasiswaController::class, 'update']);
 Route::delete('/jenisbeasiswa/{id}', [JenisBeasiswaController::class, 'destroy']);
+
+Route::get('/jenisprestasi', [JenisPrestasiController::class, 'index']);
+Route::get('/jenisprestasi/create', [JenisPrestasiController::class, 'create']);
+Route::post('/jenisprestasi/create', [JenisPrestasiController::class, 'store']);
+Route::get('/jenisprestasi/{id}/edit', [JenisPrestasiController::class, 'edit']);
+Route::get('/jenisprestasi/{id}/show', [JenisPrestasiController::class, 'show']);
+Route::put('/jenisprestasi/{id}', [JenisPrestasiController::class, 'update']);
+Route::delete('/jenisprestasi/{id}', [JenisPrestasiController::class, 'destroy']);
