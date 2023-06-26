@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Middleware\Authenticate;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\JurusanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,11 @@ Route::get('/user/{id}/show', [UserController::class, 'show']);
 Route::put('/user/{id}', [UserController::class, 'update']);
 Route::delete('/user/{id}', [UserController::class, 'destroy']);
 //Route::resource('/user', UserController::class);
+
+Route::get('/jurusan', [JurusanController::class, 'index']);
+Route::get('/jurusan/create', [JurusanController::class, 'create']);
+Route::post('/jurusan/create', [JurusanController::class, 'store']);
+Route::get('/jurusan/{id}/edit', [JurusanController::class, 'edit']);
+Route::get('/jurusan/{id}/show', [JurusanController::class, 'show']);
+Route::put('/jurusan/{id}', [JurusanController::class, 'update']);
+Route::delete('/jurusan/{id}', [JurusanController::class, 'destroy']);
