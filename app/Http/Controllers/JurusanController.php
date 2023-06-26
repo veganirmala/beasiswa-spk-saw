@@ -12,7 +12,7 @@ class JurusanController extends Controller
      */
     public function index()
     {
-         //mengambil semua data user diurutkan dari yg terbaru DESC
+         //mengambil semua data diurutkan dari yg terbaru DESC
          $jurusan = Jurusan::latest()->paginate(5);
         
          //tampilkan halaman index
@@ -54,7 +54,7 @@ class JurusanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $jurusan = Jurusan::find($id);
         return view('jurusan/update', compact('jurusan'));

@@ -36,7 +36,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href="/jenisbeasiswa" class="nav-link">
               <i class="nav-icon far fa fa-book"></i>
               <p>
                 Data Jenis Beasiswa

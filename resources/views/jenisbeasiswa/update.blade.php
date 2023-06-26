@@ -7,14 +7,14 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-        <h3>Edit Data Jurusan</h3>
-        <form action="/jurusan/{{ $jurusan->id }}" method="POST">
+        <h3>Edit Data Jenis Beasiswa</h3>
+        <form action="/jenisbeasiswa/{{ $jenisbeasiswa->id }}" method="POST">
             @method('put')
             @csrf
             <div class="form-group">
-                <label for="namajurusan">Nama Jurusan<span style="color:red;">*</span></label>
-                <input type="text" name="namajurusan" class="form-control @error ('namajurusan') is-invalid @enderror" id="namajurusan" placeholder="Nama Jurusan" required value="{{ old('namajurusan', $jurusan->namajurusan) }}">   
-                @error ('namajurusan') 
+                <label for="jenisbeasiswa">Jenis Beasiswa<span style="color:red;">*</span></label>
+                <input type="text" name="jenisbeasiswa" class="form-control @error ('jenisbeasiswa') is-invalid @enderror" id="jenisbeasiswa" placeholder="Jenis Beasiswa" required value="{{ old('jenisbeasiswa', $jenisbeasiswa->jenisbeasiswa) }}">   
+                @error ('jenisbeasiswa') 
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>

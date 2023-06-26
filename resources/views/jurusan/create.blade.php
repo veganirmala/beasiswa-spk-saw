@@ -12,7 +12,7 @@
             @csrf
             <div class="form-group">
                 <label for="namajurusan">Nama Jurusan<span style="color:red;">*</span></label>
-                <input type="text" name="namajurusan" class="form-control @error ('namajurusan') is-invalid @enderror" id="namajurusan" placeholder="Nama Lengkap" required autofocus value="{{ old('namajurusan') }}">   
+                <input type="text" name="namajurusan" class="form-control @error ('namajurusan') is-invalid @enderror" id="namajurusan" placeholder="Nama Jurusan" required autofocus value="{{ old('namajurusan') }}">   
                 @error ('namajurusan') 
                 <div class="invalid-feedback">
                     {{ $message }}

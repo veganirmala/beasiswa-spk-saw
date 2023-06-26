@@ -8,6 +8,7 @@ use App\Http\Middleware\Authenticate;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\JenisBeasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +51,11 @@ Route::get('/jurusan/{id}/edit', [JurusanController::class, 'edit']);
 Route::get('/jurusan/{id}/show', [JurusanController::class, 'show']);
 Route::put('/jurusan/{id}', [JurusanController::class, 'update']);
 Route::delete('/jurusan/{id}', [JurusanController::class, 'destroy']);
+
+Route::get('/jenisbeasiswa', [JenisBeasiswaController::class, 'index']);
+Route::get('/jenisbeasiswa/create', [JenisBeasiswaController::class, 'create']);
+Route::post('/jenisbeasiswa/create', [JenisBeasiswaController::class, 'store']);
+Route::get('/jenisbeasiswa/{id}/edit', [JenisBeasiswaController::class, 'edit']);
+Route::get('/jenisbeasiswa/{id}/show', [JenisBeasiswaController::class, 'show']);
+Route::put('/jenisbeasiswa/{id}', [JenisBeasiswaController::class, 'update']);
+Route::delete('/jenisbeasiswa/{id}', [JenisBeasiswaController::class, 'destroy']);
