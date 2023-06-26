@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\JenisBeasiswaController;
 use App\Http\Controllers\JenisPrestasiController;
+use App\Http\Controllers\ProdiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,11 @@ Route::get('/jenisprestasi/{id}/edit', [JenisPrestasiController::class, 'edit'])
 Route::get('/jenisprestasi/{id}/show', [JenisPrestasiController::class, 'show']);
 Route::put('/jenisprestasi/{id}', [JenisPrestasiController::class, 'update']);
 Route::delete('/jenisprestasi/{id}', [JenisPrestasiController::class, 'destroy']);
+
+Route::get('/prodi', [ProdiController::class, 'index']);
+Route::get('/prodi/create', [ProdiController::class, 'create']);
+Route::post('/prodi/create', [ProdiController::class, 'store']);
+Route::get('/prodi/{id}/edit', [ProdiController::class, 'edit']);
+Route::get('/prodi/{id}/show', [ProdiController::class, 'show']);
+Route::put('/prodi/{id}', [ProdiController::class, 'update']);
+Route::delete('/prodi/{id}', [ProdiController::class, 'destroy']);
