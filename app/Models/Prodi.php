@@ -9,5 +9,10 @@ class Prodi extends Model
 {
     use HasFactory;
 
+    protected $table = "prodi";
     protected $guarded = ['id'];
+
+    public function jurusan(){
+        return $this->belongsTo(Jurusan::class);
+    }
 }

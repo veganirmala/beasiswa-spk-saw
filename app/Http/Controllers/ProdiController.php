@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prodi;
+use App\Models\Jurusan;
 use Illuminate\Http\Request;
 
 class ProdiController extends Controller
@@ -12,8 +13,8 @@ class ProdiController extends Controller
      */
     public function index()
     {
-         //mengambil semua data diurutkan dari yg terbaru DESC
-         $prodi = Prodi::latest()->paginate(5);
+         //mengambil semua data dan direlasikan ke tabel jurusan
+         $prodi = Prodi::with('jurusan')->latest()->paginate(5);
         
          //tampilkan halaman index
          return view('prodi/index', data:compact('prodi'));
@@ -24,7 +25,8 @@ class ProdiController extends Controller
      */
     public function create()
     {
-        return view('prodi/create');
+        $jur = Jurusan::all();
+        return view('prodi/create', compact('jur'));
     }
 
     /**
@@ -36,7 +38,7 @@ class ProdiController extends Controller
         $validatedData = $request->validate([
             'namaprodi' => 'required',
             'jenjang' => 'required',
-            'namajurusan' => 'required'
+            'idjurusan' => 'required'
         ]);
 
         Prodi::create($validatedData);
@@ -59,7 +61,8 @@ class ProdiController extends Controller
     public function edit($id)
     {
         $prodi = Prodi::find($id);
-        return view('prodi/update', compact('prodi'));
+        $jur = Jurusan::all();
+        return view('prodi/update', compact('prodi', 'jur'));
     }
 
     /**
@@ -71,7 +74,7 @@ class ProdiController extends Controller
         $validatedData = $request->validate([
             'namaprodi' => 'required',
             'jenjang' => 'required',
-            'namajurusan' => 'required'
+            'idjurusan' => 'required'
         ]);
 
         //mengambil data yg akan diupdate

@@ -58,9 +58,9 @@
                 <?php foreach ($prodi as $prodii) : ?>
                     <tr>
                         <th scope="row"><?= $i; ?></th>
-                        <td><?= $prodii['namaprodi']; ?></td>
-                        <td><?= $prodii['jenjang']; ?></td>
-                        <td><?= $prodii['namajurusan']; ?></td>
+                        <td>{{ $prodii->namaprodi }}</td>
+                        <td>{{ $prodii->jenjang }}</td>
+                        <td>{{ $prodii->idjurusan }}</td>
                         <td>
                             <a href="/prodi/{{ $prodii->id }}/show" class="btn btn-success" title="Detail Data"><i class="fas fa-info-circle"></i></a>
                             <a href="/prodi/{{ $prodii->id }}/edit" class="btn btn-danger" title="Edit Data"><i class="fas fa-edit"></i></a>

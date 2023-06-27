@@ -34,13 +34,14 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="namajurusan">Nama Jurusan<span style="color:red;">*</span></label>
-                <select class="form-control @error ('namajurusan') is-invalid @enderror" tabindex="-1" aria-hidden="true" name="namajurusan" id="namajurusan" value="{{ old('namajurusan')}}">
-                    <option value="<?= $prodi['namajurusan']; ?>"><?= $prodi['namajurusan']; ?></option>
-                    <option value="Teknik Elektro">Teknik Elektro</option>
-                    <option value="Teknik Mesin">Teknik Mesin</option>
+                <label for="idjurusan">Nama Jurusan<span style="color:red;">*</span></label>
+                <select class="form-control @error ('idjurusan') is-invalid @enderror" tabindex="-1" aria-hidden="true" name="idjurusan" id="idjurusan" value="{{ old('idjurusan')}}">
+                    <option value="{{ $prodi->id }}">{{ $prodi->jurusan }}</option>
+                    @foreach ($jur as $jurusann)
+                    <option value="{{ $jurusann->id }}">{{ $jurusann->namajurusan }}</option>
+                    @endforeach
                 </select>
-                @error ('namajurusan') 
+                @error ('idjurusan') 
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
