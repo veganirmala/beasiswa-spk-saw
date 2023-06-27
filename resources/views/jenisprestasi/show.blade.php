@@ -15,14 +15,15 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h4 class="card-title">ID Jenis Prestasi</h4>
-                            <p class="card-text"><?Peringkat</h4>
-                            <p class="card-text"><?= $jenisprestasi['peringkat']; ?></p>
+                            <p class="card-text">{{ $jenisprestasi->id }}</p>
+                            <h4 class="card-title">Peringkat</h4>
+                            <p class="card-text">{{ $jenisprestasi->peringkat }}</p>
                             <h4 class="card-title">Jenis Prestasi</h4>
-                            <p class="card-text"><?= $jenisprestasi['jenisprestasi']; ?></p>
+                            <p class="card-text">{{ $jenisprestasi->jenisprestasi }}</p>
                             <h4 class="card-title">Tingkat</h4>
-                            <p class="card-text"><?= $jenisprestasi['tingkat']; ?></p>
+                            <p class="card-text">{{ $jenisprestasi->tingkat }}</p>
                             <h4 class="card-title">Nilai</h4>
-                            <p class="card-text"><?= $jenisprestasi['nilai']; ?></p>
+                            <p class="card-text">{{ $jenisprestasi->nilai }}</p>
                         </div>
                     </div>
                 </div>

@@ -59,10 +59,10 @@
                 <?php foreach ($jenisprestasi as $jenisprestasii) : ?>
                     <tr>
                         <th scope="row"><?= $i; ?></th>
-                        <td><?= $jenisprestasii['peringkat']; ?></td>
-                        <td><?= $jenisprestasii['jenisprestasi']; ?></td>
-                        <td><?= $jenisprestasii['tingkat']; ?></td>
-                        <td><?= $jenisprestasii['nilai']; ?></td>
+                        <td>{{ $jenisprestasii->peringkat }}</td>
+                        <td>{{ $jenisprestasii->jenisprestasi }}</td>
+                        <td>{{ $jenisprestasii->tingkat }}</td>
+                        <td>{{ $jenisprestasii->nilai }}</td>
                         <td>
                             <a href="/jenisprestasi/{{ $jenisprestasii->id }}/show" class="btn btn-success" title="Detail Data"><i class="fas fa-info-circle"></i></a>
                             <a href="/jenisprestasi/{{ $jenisprestasii->id }}/edit" class="btn btn-danger" title="Edit Data"><i class="fas fa-edit"></i></a>

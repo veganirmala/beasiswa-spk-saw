@@ -14,7 +14,7 @@
             <div class="form-group">
                 <label for="peringkat">Peringkat<span style="color:red;">*</span></label>
                 <select class="form-control @error ('peringkat') is-invalid @enderror" tabindex="-1" aria-hidden="true" name="peringkat" id="peringkat" value="{{ old('peringkat') }}">
-                    <option value="<?= $jenisprestasi['peringkat']; ?>"><?= $jenisprestasi['peringkat']; ?></option>
+                    <option value="{{ $jenisprestasi->peringkat }}">{{ $jenisprestasi->peringkat }}</option>
                     <option value="Juara 1">Juara 1</option>
                     <option value="Juara 2">Juara 2</option>
                     <option value="Juara 3">Juara 3</option>
@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label for="jenisprestasi">Jenis Prestasi<span style="color:red;">*</span></label>
                 <select class="form-control @error ('jenisprestasi') is-invalid @enderror" tabindex="-1" aria-hidden="true" name="jenisprestasi" id="jenisprestasi" value="{{ old('jenisprestasi') }}">
-                    <option value="<?= $jenisprestasi['jenisprestasi']; ?>"><?= $jenisprestasi['jenisprestasi']; ?></option>
+                    <option value="{{ $jenisprestasi->jenisprestasi }}">{{ $jenisprestasi->jenisprestasi }}</option>
                     <option value="Akademik">Akademik</option>
                     <option value="Non Akademik">Non Akademik</option>
                     <option value="Lainnya">Lainnya</option>

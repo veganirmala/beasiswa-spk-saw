@@ -56,7 +56,7 @@
                 <?php foreach ($jurusan as $jurusann) : ?>
                     <tr>
                         <th scope="row"><?= $i; ?></th>
-                        <td><?= $jurusann['namajurusan']; ?></td>
+                        <td>{{ $jurusann->namajurusan }}</td>
                         <td>
                             <a href="/jurusan/{{ $jurusann->id }}/show" class="btn btn-success" title="Detail Data"><i class="fas fa-info-circle"></i></a>
                             <a href="/jurusan/{{ $jurusann->id }}/edit" class="btn btn-danger" title="Edit Data"><i class="fas fa-edit"></i></a>

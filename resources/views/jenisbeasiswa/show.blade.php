@@ -15,9 +15,9 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h4 class="card-title">ID Jenis Beasiswa</h4>
-                            <p class="card-text"><?= $jenisbeasiswa['id']; ?></p>
+                            <p class="card-text">{{ $jenisbeasiswa->id }}</p>
                             <h4 class="card-title">Nama Jenis Beasiswa</h4>
-                            <p class="card-text"><?= $jenisbeasiswa['jenisbeasiswa']; ?></p>
+                            <p class="card-text">{{ $jenisbeasiswa->jenisbeasiswa }}</p>
                         </div>
                     </div>
                 </div>

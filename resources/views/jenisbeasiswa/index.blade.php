@@ -56,7 +56,7 @@
                 <?php foreach ($jenisbeasiswa as $jenisbeasiswaa) : ?>
                     <tr>
                         <th scope="row"><?= $i; ?></th>
-                        <td><?= $jenisbeasiswaa['jenisbeasiswa']; ?></td>
+                        <td>{{ $jenisbeasiswaa->jenisbeasiswa }}</td>
                         <td>
                             <a href="/jenisbeasiswa/{{ $jenisbeasiswaa->id }}/show" class="btn btn-success" title="Detail Data"><i class="fas fa-info-circle"></i></a>
                             <a href="/jenisbeasiswa/{{ $jenisbeasiswaa->id }}/edit" class="btn btn-danger" title="Edit Data"><i class="fas fa-edit"></i></a>

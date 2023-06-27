@@ -15,17 +15,17 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h4 class="card-title">ID User</h4>
-                            <p class="card-text"><?= $user['id']; ?></p>
+                            <p class="card-text">{{ $user->id }}</p>
                             <h4 class="card-title">Nama User</h4>
-                            <p class="card-text"><?= $user['name']; ?></p>
+                            <p class="card-text">{{ $user->name }}</p>
                             <h4 class="card-title">E-mail User</h4>
-                            <p class="card-text"><?= $user['email']; ?></p>
+                            <p class="card-text">{{ $user->email }}</p>
                             <h4 class="card-title">Jenis Kelamin</h4>
-                            <p class="card-text"><?= $user['jk']; ?></p>
+                            <p class="card-text">{{ $user->jk }}</p>
                             <h4 class="card-title">Telepon</h4>
-                            <p class="card-text"><?= $user['telp']; ?></p>
+                            <p class="card-text">{{ $user->telp }}</p>
                             <h4 class="card-title">Alamat</h4>
-                            <p class="card-text"><?= $user['alamat']; ?></p>
+                            <p class="card-text">{{ $user->alamat }}</p>
                         </div>
                     </div>
                 </div>

@@ -15,9 +15,9 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h4 class="card-title">ID Jurusan</h4>
-                            <p class="card-text"><?= $jurusan['id']; ?></p>
+                            <p class="card-text">{{ $jurusan->id }}</p>
                             <h4 class="card-title">Nama Jurusan</h4>
-                            <p class="card-text"><?= $jurusan['namajurusan']; ?></p>
+                            <p class="card-text">{{ $jurusan->namajurusan }}</p>
                         </div>
                     </div>
                 </div>
