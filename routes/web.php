@@ -11,6 +11,7 @@ use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\JenisBeasiswaController;
 use App\Http\Controllers\JenisPrestasiController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\TahunUsulanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,3 +78,11 @@ Route::get('/prodi/{id}/edit', [ProdiController::class, 'edit']);
 Route::get('/prodi/{id}/show', [ProdiController::class, 'show']);
 Route::put('/prodi/{id}', [ProdiController::class, 'update']);
 Route::delete('/prodi/{id}', [ProdiController::class, 'destroy']);
+
+Route::get('/tahunusulan', [TahunUsulanController::class, 'index']);
+Route::get('/tahunusulan/create', [TahunUsulanController::class, 'create']);
+Route::post('/tahunusulan/create', [TahunUsulanController::class, 'store']);
+Route::get('/tahunusulan/{id}/edit', [TahunUsulanController::class, 'edit']);
+Route::get('/tahunusulan/{id}/show', [TahunUsulanController::class, 'show']);
+Route::put('/tahunusulan/{id}', [TahunUsulanController::class, 'update']);
+Route::delete('/tahunusulan/{id}', [TahunUsulanController::class, 'destroy']);
