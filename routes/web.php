@@ -12,6 +12,7 @@ use App\Http\Controllers\JenisBeasiswaController;
 use App\Http\Controllers\JenisPrestasiController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\TahunUsulanController;
+use App\Http\Controllers\BobotKriteriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,3 +87,11 @@ Route::get('/tahunusulan/{id}/edit', [TahunUsulanController::class, 'edit']);
 Route::get('/tahunusulan/{id}/show', [TahunUsulanController::class, 'show']);
 Route::put('/tahunusulan/{id}', [TahunUsulanController::class, 'update']);
 Route::delete('/tahunusulan/{id}', [TahunUsulanController::class, 'destroy']);
+
+Route::get('/bobotkriteria', [BobotKriteriaController::class, 'index']);
+Route::get('/bobotkriteria/create', [BobotKriteriaController::class, 'create']);
+Route::post('/bobotkriteria/create', [BobotKriteriaController::class, 'store']);
+Route::get('/bobotkriteria/{id}/edit', [BobotKriteriaController::class, 'edit']);
+Route::get('/bobotkriteria/{id}/show', [BobotKriteriaController::class, 'show']);
+Route::put('/bobotkriteria/{id}', [BobotKriteriaController::class, 'update']);
+Route::delete('/bobotkriteria/{id}', [BobotKriteriaController::class, 'destroy']);

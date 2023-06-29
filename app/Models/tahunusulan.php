@@ -16,4 +16,8 @@ class tahunusulan extends Model
     public function jenisbeasiswa(){
         return $this->belongsTo(Jenisbeasiswa::class);
     }
+
+    public function bobotkriteria(){
+        return $this->hasMany(Bobotkriteria::class);
+    }
 }

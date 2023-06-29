@@ -60,7 +60,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href="/bobotkriteria" class="nav-link">
               <i class="nav-icon far fa fa-clipboard-list"></i>
               <p>
                 Data Bobot Kriteria
