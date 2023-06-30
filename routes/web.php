@@ -13,6 +13,7 @@ use App\Http\Controllers\JenisPrestasiController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\TahunUsulanController;
 use App\Http\Controllers\BobotKriteriaController;
+use App\Http\Controllers\MahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,3 +96,11 @@ Route::get('/bobotkriteria/{id}/edit', [BobotKriteriaController::class, 'edit'])
 Route::get('/bobotkriteria/{id}/show', [BobotKriteriaController::class, 'show']);
 Route::put('/bobotkriteria/{id}', [BobotKriteriaController::class, 'update']);
 Route::delete('/bobotkriteria/{id}', [BobotKriteriaController::class, 'destroy']);
+
+Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
+Route::get('/mahasiswa/create', [MahasiswaController::class, 'create']);
+Route::post('/mahasiswa/create', [MahasiswaController::class, 'store']);
+Route::get('/mahasiswa/{id}/edit', [MahasiswaController::class, 'edit']);
+Route::get('/mahasiswa/{id}/show', [MahasiswaController::class, 'show']);
+Route::put('/mahasiswa/{id}', [MahasiswaController::class, 'update']);
+Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy']);

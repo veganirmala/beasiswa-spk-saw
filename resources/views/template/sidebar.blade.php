@@ -77,7 +77,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/mailbox/mailbox.html" class="nav-link">
+                <a href="/mahasiswa" class="nav-link">
                   <i class="far fa fa-users nav-icon"></i>
                   <p>Data Mahasiswa</p>
                 </a>

@@ -20,4 +20,8 @@ class tahunusulan extends Model
     public function bobotkriteria(){
         return $this->hasMany(Bobotkriteria::class);
     }
+
+    public function tahunusulan(){
+        return $this->hasMany(tahunusulan::class);
+    }
 }
