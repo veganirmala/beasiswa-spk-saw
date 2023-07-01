@@ -9,5 +9,10 @@ class Jenisprestasi extends Model
 {
     use HasFactory;
 
+    protected $table = "jenisprestasi";
     protected $guarded = ['id'];
+
+    public function nilaiprestasi(){
+        return $this->hasMany(nilaiprestasi::class);
+    }
 }

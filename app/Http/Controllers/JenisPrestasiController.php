@@ -13,10 +13,10 @@ class JenisPrestasiController extends Controller
     public function index()
     {
         //mengambil semua data diurutkan dari yg terbaru DESC
-        $jenisprestasi = Jenisprestasi::latest()->paginate(5);
+        $jenis = Jenisprestasi::latest()->paginate(5);
         
         //tampilkan halaman index
-        return view('jenisprestasi/index', data:compact('jenisprestasi'));
+        return view('jenisprestasi/index', data:compact('jenis'));
     }
 
     /**

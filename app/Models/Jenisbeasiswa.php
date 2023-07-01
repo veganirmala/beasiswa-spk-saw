@@ -9,7 +9,7 @@ class Jenisbeasiswa extends Model
 {
     use HasFactory;
 
-    protected $table = "jenisbeasiswas";
+    protected $table = "jenisbeasiswa";
     protected $guarded = ['id'];
 
     public function tahunusulan(){
@@ -18,5 +18,9 @@ class Jenisbeasiswa extends Model
 
     public function bobotkriteria(){
         return $this->hasMany(Bobotkriteria::class);
+    }
+
+    public function jenisbeasiswa(){
+        return $this->hasMany(jenisbeasiswa::class);
     }
 }

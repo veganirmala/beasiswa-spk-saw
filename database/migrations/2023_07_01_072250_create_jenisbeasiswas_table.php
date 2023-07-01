@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bobotkriterias', function (Blueprint $table) {
+        Schema::create('jenisbeasiswa', function (Blueprint $table) {
             $table->id();
-            $table->string('idtahunusulan');
-            $table->string('idjenisbeasiswa');
-            $table->string('bobotkriteriaipk');
-            $table->string('bobotkriteriaprestasi');
-            $table->string('bobotkriteriapenghasilan');
+            $table->string('jenisbeasiswa');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bobotkriterias');
+        Schema::dropIfExists('jenisbeasiswa');
     }
 };
