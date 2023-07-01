@@ -14,9 +14,9 @@ class UserController extends Controller
     {
         //mengambil semua data user diurutkan dari yg terbaru DESC
         $users = Userr::latest()->paginate(5);
-        
+
         //tampilkan halaman index
-        return view('user/index', data:compact('users'));
+        return view('user/index', data: compact('users'));
     }
 
     /**
@@ -43,8 +43,8 @@ class UserController extends Controller
         //var_dump ($validatedData);
 
         Userr::create($validatedData);
-        
-        return redirect ('/user')->with('success', 'Data User Berhasil ditambahkan !');
+
+        return redirect('/user')->with('success', 'Data User Berhasil ditambahkan !');
     }
 
     /**
@@ -82,8 +82,8 @@ class UserController extends Controller
         $user = Userr::find($id);
 
         $user->update($validatedData);
-        
-        return redirect ('/user')->with('success', 'Data User Berhasil diedit !');
+
+        return redirect('/user')->with('success', 'Data User Berhasil diedit !');
     }
 
     /**
@@ -93,7 +93,7 @@ class UserController extends Controller
     {
         $user = Userr::find($id);
         $user->delete();
-        
-        return redirect ('/user')->with('success', 'Data User Berhasil dihapus !');
+
+        return redirect('/user')->with('success', 'Data User Berhasil dihapus !');
     }
 }

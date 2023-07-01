@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Nilaiprestasi;
+use App\Models\NilaiPrestasi;
 use App\Models\Mahasiswa;
-use App\Models\Jenisprestasi;
-use App\Models\Tahunusulan;
-use App\Models\Jenisbeasiswa;
+use App\Models\JenisPrestasi;
+use App\Models\TahunUsulan;
+use App\Models\JenisBeasiswa;
 use Illuminate\Http\Request;
 
 class NilaiprestasiController extends Controller
@@ -17,10 +17,10 @@ class NilaiprestasiController extends Controller
     public function index()
     {
         //mengambil semua data diurutkan dari yg terbaru DESC
-        $nilaiprestasi = Nilaiprestasi::latest()->paginate(5);
-        
+        $nilaiprestasi = NilaiPrestasi::latest()->paginate(5);
+
         //tampilkan halaman index
-        return view('nilaiprestasi/index', data:compact('nilaiprestasi'));
+        return view('nilaiprestasi/index', data: compact('nilaiprestasi'));
     }
 
     /**
@@ -29,10 +29,10 @@ class NilaiprestasiController extends Controller
     public function create()
     {
         $mhs = Mahasiswa::all();
-        $jenisprestasi = Jenisprestasi::all();
-        $tahunusulan = Tahunusulan::all();
-        $jenisbeasiswa = Jenisbeasiswa::all();
-        return view('nilaiprestasi/create', compact('mhs', 'jenisprestasi', 'tahunusulan','jenisbeasiswa'));
+        $jenisprestasi = JenisPrestasi::all();
+        $tahunusulan = TahunUsulan::all();
+        $jenisbeasiswa = JenisBeasiswa::all();
+        return view('nilaiprestasi/create', compact('mhs', 'jenisprestasi', 'tahunusulan', 'jenisbeasiswa'));
     }
 
     /**
@@ -50,9 +50,9 @@ class NilaiprestasiController extends Controller
             'id_jenis_beasiswa' => 'required'
         ]);
 
-        Nilaiprestasi::create($validatedData);
-        
-        return redirect ('/nilaiprestasi')->with('success', 'Data Nilai Prestasi Berhasil ditambahkan !');
+        NilaiPrestasi::create($validatedData);
+
+        return redirect('/nilaiprestasi')->with('success', 'Data Nilai Prestasi Berhasil ditambahkan !');
     }
 
     /**
@@ -60,7 +60,7 @@ class NilaiprestasiController extends Controller
      */
     public function show($id)
     {
-        $nilaiprestasi = Nilaiprestasi::find($id);
+        $nilaiprestasi = NilaiPrestasi::find($id);
         return view('nilaiprestasi/show', compact('nilaiprestasi'));
     }
 
@@ -85,9 +85,9 @@ class NilaiprestasiController extends Controller
      */
     public function destroy($id)
     {
-        $nilaiprestasi = Nilaiprestasi::find($id);
+        $nilaiprestasi = NilaiPrestasi::find($id);
         $nilaiprestasi->delete();
-        
-        return redirect ('/nilaiprestasi')->with('success', 'Data Nilai Prestasi Berhasil dihapus !');
+
+        return redirect('/nilaiprestasi')->with('success', 'Data Nilai Prestasi Berhasil dihapus !');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Jenisprestasi;
+use App\Models\JenisPrestasi;
 use Illuminate\Http\Request;
 
 class JenisPrestasiController extends Controller
@@ -13,10 +13,10 @@ class JenisPrestasiController extends Controller
     public function index()
     {
         //mengambil semua data diurutkan dari yg terbaru DESC
-        $jenis = Jenisprestasi::latest()->paginate(5);
-        
+        $jenis = JenisPrestasi::latest()->paginate(5);
+
         //tampilkan halaman index
-        return view('jenisprestasi/index', data:compact('jenis'));
+        return view('jenisprestasi/index', data: compact('jenis'));
     }
 
     /**
@@ -40,9 +40,9 @@ class JenisPrestasiController extends Controller
             'nilai' => 'required'
         ]);
 
-        Jenisprestasi::create($validatedData);
-        
-        return redirect ('/jenisprestasi')->with('success', 'Data Jenis Prestasi Berhasil ditambahkan !');
+        JenisPrestasi::create($validatedData);
+
+        return redirect('/jenisprestasi')->with('success', 'Data Jenis Prestasi Berhasil ditambahkan !');
     }
 
     /**
@@ -50,9 +50,8 @@ class JenisPrestasiController extends Controller
      */
     public function show($id)
     {
-        $jenisprestasi = Jenisprestasi::find($id);
+        $jenisprestasi = JenisPrestasi::find($id);
         return view('jenisprestasi/show', compact('jenisprestasi'));
-    
     }
 
     /**
@@ -60,7 +59,7 @@ class JenisPrestasiController extends Controller
      */
     public function edit($id)
     {
-        $jenisprestasi = Jenisprestasi::find($id);
+        $jenisprestasi = JenisPrestasi::find($id);
         return view('jenisprestasi/update', compact('jenisprestasi'));
     }
 
@@ -78,11 +77,11 @@ class JenisPrestasiController extends Controller
         ]);
 
         //mengambil data yg akan diupdate
-        $jenisprestasi = Jenisprestasi::find($id);
+        $jenisprestasi = JenisPrestasi::find($id);
 
         $jenisprestasi->update($validatedData);
-        
-        return redirect ('/jenisprestasi')->with('success', 'Data Jenis Prestasi Berhasil diedit !');
+
+        return redirect('/jenisprestasi')->with('success', 'Data Jenis Prestasi Berhasil diedit !');
     }
 
     /**
@@ -90,7 +89,7 @@ class JenisPrestasiController extends Controller
      */
     public function destroy($id)
     {
-        $jenisprestasi = Jenisprestasi::find($id);
+        $jenisprestasi = JenisPrestasi::find($id);
         $jenisprestasi->delete();
 
         return redirect('/jenisprestasi')->with('success', 'Data Jenis Prestasi Berhasil dihapus !');

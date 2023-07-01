@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ipk;
+use App\Models\Ipk;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 
@@ -14,10 +14,10 @@ class IPKController extends Controller
     public function index()
     {
         //mengambil semua data dan direlasikan ke tabel jurusan
-        $ipk = ipk::with('mahasiswa')->latest()->paginate(5);
-        
+        $ipk = Ipk::with('mahasiswa')->latest()->paginate(5);
+
         //tampilkan halaman index
-        return view('ipk/index', data:compact('ipk'));
+        return view('ipk/index', data: compact('ipk'));
     }
 
     /**
@@ -40,9 +40,9 @@ class IPKController extends Controller
             'nilaiipk' => 'required'
         ]);
 
-        IPK::create($validatedData);
-        
-        return redirect ('/ipk')->with('success', 'Data ipk Berhasil ditambahkan !');
+        Ipk::create($validatedData);
+
+        return redirect('/ipk')->with('success', 'Data ipk Berhasil ditambahkan !');
     }
 
     /**
@@ -50,7 +50,7 @@ class IPKController extends Controller
      */
     public function show($id)
     {
-        $ipk = IPK::find($id);
+        $ipk = Ipk::find($id);
         return view('ipk/show', compact('ipk'));
     }
 
@@ -60,7 +60,7 @@ class IPKController extends Controller
     public function edit($id)
     {
         $mahasiswa = mahasiswa::find($id);
-        $ipk = IPK::all();
+        $ipk = Ipk::all();
         return view('ipk/update', compact('mahasiswa', 'ipk'));
     }
 
@@ -77,9 +77,9 @@ class IPKController extends Controller
      */
     public function destroy($id)
     {
-        $ipk = IPK::find($id);
+        $ipk = Ipk::find($id);
         $ipk->delete();
-        
-        return redirect ('/ipk')->with('success', 'Data IPK Berhasil dihapus !');
+
+        return redirect('/ipk')->with('success', 'Data IPK Berhasil dihapus !');
     }
 }

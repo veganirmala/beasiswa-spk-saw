@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tahunusulan;
-use App\Models\Jenisbeasiswa;
-use App\Models\Bobotkriteria;
+use App\Models\TahunUsulan;
+use App\Models\JenisBeasiswa;
+use App\Models\BobotKriteria;
 use Illuminate\Http\Request;
 
 class BobotKriteriaController extends Controller
@@ -15,10 +15,10 @@ class BobotKriteriaController extends Controller
     public function index()
     {
         //mengambil semua data diurutkan dari yg terbaru DESC
-        $bobotkriteria = Bobotkriteria::with('tahunusulan','jenisbeasiswa')->latest()->paginate(5);
-        
+        $bobotkriteria = BobotKriteria::with('tahunusulan', 'jenisbeasiswa')->latest()->paginate(5);
+
         //tampilkan halaman index
-        return view('bobotkriteria/index', data:compact('bobotkriteria'));
+        return view('bobotkriteria/index', data: compact('bobotkriteria'));
         //return view('bobotkriteria/index');
     }
 
@@ -27,8 +27,8 @@ class BobotKriteriaController extends Controller
      */
     public function create()
     {
-        $thusulan = tahunusulan::all();
-        $jenis = jenisbeasiswa::all();
+        $thusulan = TahunUsulan::all();
+        $jenis = JenisBeasiswa::all();
         return view('bobotkriteria/create', compact('thusulan', 'jenis'));
     }
 
@@ -46,9 +46,9 @@ class BobotKriteriaController extends Controller
             'bobotkriteriapenghasilan' => 'required'
         ]);
 
-        Bobotkriteria::create($validatedData);
-        
-        return redirect ('/bobotkriteria')->with('success', 'Data Bobot Kriteria Berhasil ditambahkan !');
+        BobotKriteria::create($validatedData);
+
+        return redirect('/bobotkriteria')->with('success', 'Data Bobot Kriteria Berhasil ditambahkan !');
     }
 
     /**
@@ -56,7 +56,7 @@ class BobotKriteriaController extends Controller
      */
     public function show($id)
     {
-        $bobotkriteria = Bobotkriteria::find($id);
+        $bobotkriteria = BobotKriteria::find($id);
         return view('bobotkriteria/show', compact('bobotkriteria'));
     }
 
@@ -65,9 +65,9 @@ class BobotKriteriaController extends Controller
      */
     public function edit($id)
     {
-        $bobotkriteria = bobotkriteria::find($id);
-        $thusulan = tahunusulan::all();
-        $jenis = jenisbeasiswa::all();
+        $bobotkriteria = BobotKriteria::find($id);
+        $thusulan = TahunUsulan::all();
+        $jenis = JenisBeasiswa::all();
         return view('bobotkriteria/update', compact('bobotkriteria', 'thusulan', 'jenis'));
     }
 
@@ -87,11 +87,11 @@ class BobotKriteriaController extends Controller
 
 
         //mengambil data yg akan diupdate
-        $bobotkriteria = bobotkriteria::find($id);
+        $bobotkriteria = BobotKriteria::find($id);
 
         $bobotkriteria->update($validatedData);
-        
-        return redirect ('/bobotkriteria')->with('success', 'Data Bobot Kriteria Berhasil diedit !');
+
+        return redirect('/bobotkriteria')->with('success', 'Data Bobot Kriteria Berhasil diedit !');
     }
 
     /**
@@ -99,7 +99,7 @@ class BobotKriteriaController extends Controller
      */
     public function destroy($id)
     {
-        $bobotkriteria = bobotkriteria::find($id);
+        $bobotkriteria = BobotKriteria::find($id);
         $bobotkriteria->delete();
 
         return redirect('/bobotkriteria')->with('success', 'Data Bobot Kriteria Berhasil dihapus !');

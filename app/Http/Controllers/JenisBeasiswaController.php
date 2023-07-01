@@ -13,10 +13,10 @@ class JenisBeasiswaController extends Controller
     public function index()
     {
         //mengambil semua data diurutkan dari yg terbaru DESC
-        $jenisbeasiswa = Jenisbeasiswa::latest()->paginate(5);
-        
+        $jenisbeasiswa = JenisBeasiswa::latest()->paginate(5);
+
         //tampilkan halaman index
-        return view('jenisbeasiswa/index', data:compact('jenisbeasiswa'));
+        return view('jenisbeasiswa/index', data: compact('jenisbeasiswa'));
     }
 
     /**
@@ -37,9 +37,9 @@ class JenisBeasiswaController extends Controller
             'jenisbeasiswa' => 'required'
         ]);
 
-        Jenisbeasiswa::create($validatedData);
-        
-        return redirect ('/jenisbeasiswa')->with('success', 'Data Jenis Beasiswa Berhasil ditambahkan !');
+        JenisBeasiswa::create($validatedData);
+
+        return redirect('/jenisbeasiswa')->with('success', 'Data Jenis Beasiswa Berhasil ditambahkan !');
     }
 
     /**
@@ -47,7 +47,7 @@ class JenisBeasiswaController extends Controller
      */
     public function show($id)
     {
-        $jenisbeasiswa = Jenisbeasiswa::find($id);
+        $jenisbeasiswa = JenisBeasiswa::find($id);
         return view('jenisbeasiswa/show', compact('jenisbeasiswa'));
     }
 
@@ -56,7 +56,7 @@ class JenisBeasiswaController extends Controller
      */
     public function edit($id)
     {
-        $jenisbeasiswa = Jenisbeasiswa::find($id);
+        $jenisbeasiswa = JenisBeasiswa::find($id);
         return view('jenisbeasiswa/update', compact('jenisbeasiswa'));
     }
 
@@ -71,11 +71,11 @@ class JenisBeasiswaController extends Controller
         ]);
 
         //mengambil data yg akan diupdate
-        $jenisbeasiswa = Jenisbeasiswa::find($id);
+        $jenisbeasiswa = JenisBeasiswa::find($id);
 
         $jenisbeasiswa->update($validatedData);
-        
-        return redirect ('/jenisbeasiswa')->with('success', 'Data Jenis Beasiswa Berhasil diedit !');
+
+        return redirect('/jenisbeasiswa')->with('success', 'Data Jenis Beasiswa Berhasil diedit !');
     }
 
     /**
@@ -83,9 +83,9 @@ class JenisBeasiswaController extends Controller
      */
     public function destroy($id)
     {
-        $jenisbeasiswa = Jenisbeasiswa::find($id);
+        $jenisbeasiswa = JenisBeasiswa::find($id);
         $jenisbeasiswa->delete();
-        
-        return redirect ('/jenisbeasiswa')->with('success', 'Data Jenis Beasiswa Berhasil dihapus !');
+
+        return redirect('/jenisbeasiswa')->with('success', 'Data Jenis Beasiswa Berhasil dihapus !');
     }
 }

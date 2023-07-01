@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tahunusulan;
-use App\Models\Jenisbeasiswa;
+use App\Models\TahunUsulan;
+use App\Models\JenisBeasiswa;
 use Illuminate\Http\Request;
 
 class TahunUsulanController extends Controller
@@ -14,10 +14,10 @@ class TahunUsulanController extends Controller
     public function index()
     {
         //mengambil semua data dan direlasikan ke tabel jurusan
-        $tahunusulan = tahunusulan::with('jenisbeasiswa')->latest()->paginate(5);
-        
+        $tahunusulan = TahunUsulan::with('jenisbeasiswa')->latest()->paginate(5);
+
         //tampilkan halaman index
-        return view('tahunusulan/index', data:compact('tahunusulan'));
+        return view('tahunusulan/index', data: compact('tahunusulan'));
     }
 
     /**
@@ -25,7 +25,7 @@ class TahunUsulanController extends Controller
      */
     public function create()
     {
-        $jenis = Jenisbeasiswa::all();
+        $jenis = JenisBeasiswa::all();
         return view('tahunusulan/create', compact('jenis'));
     }
 
@@ -41,9 +41,9 @@ class TahunUsulanController extends Controller
             'kuota' => 'required'
         ]);
 
-        tahunusulan::create($validatedData);
-        
-        return redirect ('/tahunusulan')->with('success', 'Data Tahun Usulan Berhasil ditambahkan !');
+        TahunUsulan::create($validatedData);
+
+        return redirect('/tahunusulan')->with('success', 'Data Tahun Usulan Berhasil ditambahkan !');
     }
 
     /**
@@ -51,7 +51,7 @@ class TahunUsulanController extends Controller
      */
     public function show($id)
     {
-        $tahunusulan = tahunusulan::find($id);
+        $tahunusulan = TahunUsulan::find($id);
         return view('tahunusulan/show', compact('tahunusulan'));
     }
 
@@ -60,8 +60,8 @@ class TahunUsulanController extends Controller
      */
     public function edit($id)
     {
-        $tahunusulan = tahunusulan::find($id);
-        $jenis = Jenisbeasiswa::all();
+        $tahunusulan = TahunUsulan::find($id);
+        $jenis = JenisBeasiswa::all();
         return view('tahunusulan/update', compact('tahunusulan', 'jenis'));
     }
 
@@ -78,11 +78,11 @@ class TahunUsulanController extends Controller
         ]);
 
         //mengambil data yg akan diupdate
-        $tahunusulan = tahunusulan::find($id);
+        $tahunusulan = TahunUsulan::find($id);
 
         $tahunusulan->update($validatedData);
-        
-        return redirect ('/tahunusulan')->with('success', 'Data Tahun Usulan Berhasil diedit !');
+
+        return redirect('/tahunusulan')->with('success', 'Data Tahun Usulan Berhasil diedit !');
     }
 
     /**
@@ -90,7 +90,7 @@ class TahunUsulanController extends Controller
      */
     public function destroy($id)
     {
-        $tahunusulan = tahunusulan::find($id);
+        $tahunusulan = TahunUsulan::find($id);
         $tahunusulan->delete();
 
         return redirect('/tahunusulan')->with('success', 'Data Tahun Usulan Berhasil dihapus !');
