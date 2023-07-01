@@ -14,7 +14,8 @@ class Jurusan extends Model
     // protected $primaryKey = "id";
     // protected $fillable = ['id', 'namajurusan'];
 
-    public function prodi(){
+    public function prodi()
+    {
         return $this->hasMany(Prodi::class);
     }
 }

@@ -12,11 +12,13 @@ class Prodi extends Model
     protected $table = "prodi";
     protected $guarded = ['id'];
 
-    public function jurusan(){
+    public function jurusan()
+    {
         return $this->belongsTo(Jurusan::class);
     }
 
-    public function mahasiswa(){
+    public function mahasiswa()
+    {
         return $this->hasMany(mahasiswa::class);
     }
 }

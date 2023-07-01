@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Prodi;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProdiController extends Controller
 {
@@ -13,11 +14,15 @@ class ProdiController extends Controller
      */
     public function index()
     {
-         //mengambil semua data dan direlasikan ke tabel jurusan
-         $prodi = Prodi::with('jurusan')->latest()->paginate(5);
-        
-         //tampilkan halaman index
-         return view('prodi/index', data:compact('prodi'));
+        //mengambil semua data dan direlasikan ke tabel jurusan
+        // $prodi = Prodi::with('jurusan')->latest()->paginate(5);
+        $prodi = DB::table('prodi')
+            ->join('jurusan', 'prodi.idjurusan', '=', 'jurusan.id')
+            ->select('*')
+            ->get();
+
+        //tampilkan halaman index
+        return view('prodi/index', data: compact('prodi'));
     }
 
     /**
@@ -42,8 +47,8 @@ class ProdiController extends Controller
         ]);
 
         Prodi::create($validatedData);
-        
-        return redirect ('/prodi')->with('success', 'Data Prodi Berhasil ditambahkan !');
+
+        return redirect('/prodi')->with('success', 'Data Prodi Berhasil ditambahkan !');
     }
 
     /**
@@ -81,8 +86,8 @@ class ProdiController extends Controller
         $prodi = Prodi::find($id);
 
         $prodi->update($validatedData);
-        
-        return redirect ('/prodi')->with('success', 'Data Prodi Berhasil diedit !');
+
+        return redirect('/prodi')->with('success', 'Data Prodi Berhasil diedit !');
     }
 
     /**
@@ -92,7 +97,7 @@ class ProdiController extends Controller
     {
         $prodi = Prodi::find($id);
         $prodi->delete();
-        
-        return redirect ('/prodi')->with('success', 'Data Prodi Berhasil dihapus !');
+
+        return redirect('/prodi')->with('success', 'Data Prodi Berhasil dihapus !');
     }
 }
