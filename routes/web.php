@@ -14,6 +14,8 @@ use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\TahunUsulanController;
 use App\Http\Controllers\BobotKriteriaController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\IPKController;
+use App\Http\Controllers\NilaiprestasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,3 +106,19 @@ Route::get('/mahasiswa/{id}/edit', [MahasiswaController::class, 'edit']);
 Route::get('/mahasiswa/{id}/show', [MahasiswaController::class, 'show']);
 Route::put('/mahasiswa/{id}', [MahasiswaController::class, 'update']);
 Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy']);
+
+Route::get('/ipk', [IPKController::class, 'index']);
+Route::get('/ipk/create', [IPKController::class, 'create']);
+Route::post('/ipk/create', [IPKController::class, 'store']);
+Route::get('/ipk/{id}/edit', [IPKController::class, 'edit']);
+Route::get('/ipk/{id}/show', [IPKController::class, 'show']);
+Route::put('/ipk/{id}', [IPKController::class, 'update']);
+Route::delete('/ipk/{id}', [IPKController::class, 'destroy']);
+
+Route::get('/nilaiprestasi', [NilaiprestasiController::class, 'index']);
+Route::get('/nilaiprestasi/create', [NilaiprestasiController::class, 'create']);
+Route::post('/nilaiprestasi/create', [NilaiprestasiController::class, 'store']);
+Route::get('/nilaiprestasi/{id}/edit', [NilaiprestasiController::class, 'edit']);
+Route::get('/nilaiprestasi/{id}/show', [NilaiprestasiController::class, 'show']);
+Route::put('/nilaiprestasi/{id}', [NilaiprestasiController::class, 'update']);
+Route::delete('/nilaiprestasi/{id}', [NilaiprestasiController::class, 'destroy']);

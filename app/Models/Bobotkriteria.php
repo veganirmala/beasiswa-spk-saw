@@ -9,7 +9,7 @@ class Bobotkriteria extends Model
 {
     use HasFactory;
 
-    protected $table = "bobotkriterias";
+    protected $table = "bobotkriteria";
     protected $primaryKey = "id";
     protected $fillable = ['id', 'idtahunusulan', 'idjenisbeasiswa', 
     'bobotkriteriaipk', 'bobotkriteriaprestasi', 'bobotkriteriapenghasilan'];

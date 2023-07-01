@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Data Jenis Prestasi</h1>
+            <h1 class="m-0">Data Nilai Prestasi</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -35,38 +35,42 @@
             <div class="card">
               <!-- /.card-header -->
               <div class="card-body">
-                <a href="/jenisprestasi/create" class="btn btn-primary" title="Tambah Data"><i class="fas fa-plus"></i> Tambah</a>
+                <a href="/nilaiprestasi/create" class="btn btn-primary" title="Tambah Data"><i class="fas fa-plus"></i> Tambah</a>
                 <p></p>
                 <div class="table-responsive">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
                     <th>NO</th>
-                    <th>PERINGKAT</th>
+                    <th>NIM</th>
                     <th>JENIS PRESTASI</th>
-                    <th>TINGKAT</th>
-                    <th>NILAI</th>
+                    <th>SKOR</th>
+                    <th>TOTAL</th>
+                    <th>TAHUN USULAN</th>
+                    <th>JENIS BEASISWA</th>
                     <th>ACTION</th>
                   </tr>
                   </thead>
                   <tbody>
-                    <?php if (empty($jenis)) : ?>
+                    <?php if (empty($nilaiprestasi)) : ?>
                     <div class="alert alert-danger" role="alert">
-                        Data Jenis Prestasi tidak berhasil ditemukan
+                        Data Nilai Prestasi tidak berhasil ditemukan
                     </div>
                 <?php endif; ?>
                 <?php $i = 1; ?>
-                <?php foreach ($jenis as $jenisprestasii) : ?>
+                <?php foreach ($nilaiprestasi as $nilai) : ?>
                     <tr>
                         <th scope="row"><?= $i; ?></th>
-                        <td>{{ $jenisprestasii->peringkat }}</td>
-                        <td>{{ $jenisprestasii->jenisprestasi }}</td>
-                        <td>{{ $jenisprestasii->tingkat }}</td>
-                        <td>{{ $jenisprestasii->nilai }}</td>
+                        <td>{{ $nilai->nim }}</td>
+                        <td>{{ $nilai->id_jenis_prestasi }}</td>
+                        <td>{{ $nilai->skor }}</td>
+                        <td>{{ $nilai->total }}</td>
+                        <td>{{ $nilai->id_usulan }}</td>
+                        <td>{{ $nilai->id_jenis_beasiswa }}</td>
                         <td>
-                            <a href="/jenisprestasi/{{ $jenisprestasii->id }}/show" class="btn btn-success" title="Detail Data"><i class="fas fa-info-circle"></i></a>
-                            <a href="/jenisprestasi/{{ $jenisprestasii->id }}/edit" class="btn btn-danger" title="Edit Data"><i class="fas fa-edit"></i></a>
-                            <form action="/jenisprestasi/{{ $jenisprestasii->id }}" method="POST">
+                            <a href="/nilaiprestasi/{{ $nilai->id }}/show" class="btn btn-success" title="Detail Data"><i class="fas fa-info-circle"></i></a>
+                            <a href="/nilaiprestasi/{{ $nilai->id }}/edit" class="btn btn-danger" title="Edit Data"><i class="fas fa-edit"></i></a>
+                            <form action="/nilaiprestasi/{{ $nilai->id }}" method="POST">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-warning" title="Delete Data" onclick="return confirm('Apakah anda akan menghapus data ini?');"><i class="fas fa-trash-alt"></i></button>

@@ -23,4 +23,12 @@ class Mahasiswa extends Model
     public function prodi(){
         return $this->belongsTo(prodi::class);
     }
+
+    public function ipk(){
+        return $this->hasMany(ipk::class);
+    }
+
+    public function nilaiprestasi(){
+        return $this->hasMany(nilaiprestasi::class);
+    }
 }

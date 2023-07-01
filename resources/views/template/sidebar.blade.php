@@ -83,13 +83,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/mailbox/compose.html" class="nav-link">
+                <a href="/nilaiprestasi" class="nav-link">
                   <i class="far fa fa-book nav-icon"></i>
                   <p>Data Nilai Prestasi</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/mailbox/read-mail.html" class="nav-link">
+                <a href="/ipk" class="nav-link">
                   <i class="far fa fa-award nav-icon"></i>
                   <p>Data IPK</p>
                 </a>
