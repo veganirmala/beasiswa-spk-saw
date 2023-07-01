@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
+
     public function index()
     {
         return view('auth.login')->with('title', 'Login');
@@ -24,7 +26,9 @@ class LoginController extends Controller
 
             return redirect()->intended('/dashboard');
         }
-        return back()->with('loginError', 'Login Failed!');
+        return back()->withInput(
+            $request->except('password')
+        )->with('error', 'Login Failed!');
     }
 
     public function logout()
