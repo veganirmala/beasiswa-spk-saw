@@ -12,7 +12,8 @@ class Jenisprestasi extends Model
     protected $table = "jenisprestasi";
     protected $guarded = ['id'];
 
-    public function nilaiprestasi(){
-        return $this->hasMany(nilaiprestasi::class);
+    public function nilaiprestasi()
+    {
+        return $this->hasMany(NilaiPrestasi::class);
     }
 }

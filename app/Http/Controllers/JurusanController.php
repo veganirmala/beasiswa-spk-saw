@@ -12,11 +12,11 @@ class JurusanController extends Controller
      */
     public function index()
     {
-         //mengambil semua data diurutkan dari yg terbaru DESC
-         $jurusan = Jurusan::latest()->paginate(5);
-        
-         //tampilkan halaman index
-         return view('jurusan/index', data:compact('jurusan'));
+        //mengambil semua data diurutkan dari yg terbaru DESC
+        $jurusan = Jurusan::latest()->paginate(5);
+
+        //tampilkan halaman index
+        return view('jurusan/index', data: compact('jurusan'));
     }
 
     /**
@@ -38,8 +38,8 @@ class JurusanController extends Controller
         ]);
 
         Jurusan::create($validatedData);
-        
-        return redirect ('/jurusan')->with('success', 'Data Jurusan Berhasil ditambahkan !');
+
+        return redirect('/jurusan')->with('success', 'Data Jurusan Berhasil ditambahkan !');
     }
 
     /**
@@ -65,8 +65,8 @@ class JurusanController extends Controller
      */
     public function update(Request $request, $id)
     {
-         //membuat form validasi
-         $validatedData = $request->validate([
+        //membuat form validasi
+        $validatedData = $request->validate([
             'namajurusan' => 'required|max:255'
         ]);
 
@@ -74,8 +74,8 @@ class JurusanController extends Controller
         $jurusan = Jurusan::find($id);
 
         $jurusan->update($validatedData);
-        
-        return redirect ('/jurusan')->with('success', 'Data Jurusan Berhasil diedit !');
+
+        return redirect('/jurusan')->with('success', 'Data Jurusan Berhasil diedit !');
     }
 
     /**
@@ -85,7 +85,7 @@ class JurusanController extends Controller
     {
         $jurusan = Jurusan::find($id);
         $jurusan->delete();
-        
-        return redirect ('/jurusan')->with('success', 'Data Jurusan Berhasil dihapus !');
+
+        return redirect('/jurusan')->with('success', 'Data Jurusan Berhasil dihapus !');
     }
 }

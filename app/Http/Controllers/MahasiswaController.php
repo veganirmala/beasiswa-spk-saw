@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tahunusulan;
-use App\Models\mahasiswa;
-use App\Models\prodi;
+use App\Models\TahunUsulan;
+use App\Models\Mahasiswa;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -16,9 +16,9 @@ class MahasiswaController extends Controller
     {
         //mengambil semua data diurutkan dari yg terbaru DESC
         $mahasiswa = Mahasiswa::with('tahunusulan', 'prodi')->latest()->paginate(5);
-        
+
         //tampilkan halaman index
-        return view('mahasiswa/index', data:compact('mahasiswa'));
+        return view('mahasiswa/index', data: compact('mahasiswa'));
     }
 
     /**
@@ -26,7 +26,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        $thusulan = Tahunusulan::all();
+        $thusulan = TahunUsulan::all();
         $prodi = Prodi::all();
         return view('mahasiswa/create', compact('thusulan', 'prodi'));
     }
@@ -60,8 +60,8 @@ class MahasiswaController extends Controller
         ]);
 
         Mahasiswa::create($validatedData);
-        
-        return redirect ('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil ditambahkan !');
+
+        return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil ditambahkan !');
     }
 
     /**
@@ -69,7 +69,7 @@ class MahasiswaController extends Controller
      */
     public function show($id)
     {
-        $mahasiswa = mahasiswa::find($id);
+        $mahasiswa = Mahasiswa::find($id);
         return view('mahasiswa/show', compact('mahasiswa'));
     }
 
@@ -78,10 +78,10 @@ class MahasiswaController extends Controller
      */
     public function edit($id)
     {
-        $mahasiswa = mahasiswa::find($id);
-        $thusulan = Tahunusulan::all();
+        $mahasiswa = Mahasiswa::find($id);
+        $thusulan = TahunUsulan::all();
         $prodi = Prodi::all();
-        return view('mahasiswa/update', compact('mahasiswa','thusulan', 'prodi'));
+        return view('mahasiswa/update', compact('mahasiswa', 'thusulan', 'prodi'));
     }
 
     /**
@@ -115,8 +115,8 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::find($id);
 
         $mahasiswa->update($validatedData);
-        
-        return redirect ('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil diedit !');
+
+        return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil diedit !');
     }
 
     /**
@@ -126,7 +126,7 @@ class MahasiswaController extends Controller
     {
         $mahasiswa = Mahasiswa::find($id);
         $mahasiswa->delete();
-        
-        return redirect ('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil dihapus !');
+
+        return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil dihapus !');
     }
 }

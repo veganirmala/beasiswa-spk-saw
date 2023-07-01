@@ -5,26 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Nilaiprestasi extends Model
+class BobotKriteria extends Model
 {
     use HasFactory;
 
-    protected $table = "nilaiprestasi";
+    protected $table = "bobotkriteria";
     protected $primaryKey = "id";
     protected $fillable = [
-        'id', 'nim', 'id_jenis_prestasi',
-        'skor', 'total', 'id_usulan', 'id_jenis_beasiswa'
+        'id', 'idtahunusulan', 'idjenisbeasiswa',
+        'bobotkriteriaipk', 'bobotkriteriaprestasi', 'bobotkriteriapenghasilan'
     ];
-
-    public function mahasiswa()
-    {
-        return $this->belongsTo(Mahasiswa::class);
-    }
-
-    public function jenisprestasi()
-    {
-        return $this->belongsTo(Jenisprestasi::class);
-    }
 
     public function tahunusulan()
     {

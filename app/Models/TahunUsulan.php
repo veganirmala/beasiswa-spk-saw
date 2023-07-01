@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tahunusulan extends Model
+class TahunUsulan extends Model
 {
     use HasFactory;
 
@@ -13,16 +13,18 @@ class Tahunusulan extends Model
     protected $primaryKey = "id";
     protected $fillable = ['id', 'idjenisbeasiswa', 'tahun', 'kuota'];
 
-    public function jenisbeasiswa(){
-        return $this->belongsTo(Jenisbeasiswa::class);
+    public function jenisbeasiswa()
+    {
+        return $this->belongsTo(JenisBeasiswa::class);
     }
 
-    public function bobotkriteria(){
+    public function bobotkriteria()
+    {
         return $this->hasMany(Bobotkriteria::class);
     }
 
-    public function tahunusulan(){
-        return $this->hasMany(tahunusulan::class);
+    public function tahunusulan()
+    {
+        return $this->hasMany(TahunUsulan::class);
     }
-     
 }

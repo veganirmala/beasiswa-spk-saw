@@ -98,7 +98,7 @@
                           </li>
                       </ul>
                   <li class="nav-item">
-                      <a href="pages/gallery.html" class="nav-link">
+                      <a href="#" class="nav-link">
                           <i class="nav-icon far fa fa-graduation-cap"></i>
                           <p>
                               Data Rekapan
