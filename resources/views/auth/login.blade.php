@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SPK BEASISWA | {{ $title }}</title>
+    <title>{{ $title }}| SPK BEASISWA</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -20,7 +20,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a href="../../index2.html"><b>SPK</b> Beasiswa</a>
+            <a href="{{ route('login') }}"><b>SPK</b> Beasiswa</a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -47,12 +47,7 @@
                     </div>
                     <div class="row">
                         <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
+                            <a href="/registrasi" class="text-center">Register a new account</a>
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
@@ -61,12 +56,12 @@
                         <!-- /.col -->
                     </div>
                 </form>
-                <p class="mb-1">
+                {{-- <p class="mb-1">
                     <a href="forgot-password.html">I forgot my password</a>
                 </p>
                 <p class="mb-0">
                     <a href="/registrasi" class="text-center">Register a new membership</a>
-                </p>
+                </p> --}}
             </div>
             <!-- /.login-card-body -->
         </div>
