@@ -37,10 +37,10 @@ class IPKController extends Controller
         //membuat form validasi
         $validatedData = $request->validate([
             'nim' => 'required',
-            'nilaiipk' => 'required'
+            'nilai_ipk' => 'required'
         ]);
 
-        Ipk::create($validatedData);
+        IPK::create($validatedData);
 
         return redirect('/ipk')->with('success', 'Data ipk Berhasil ditambahkan !');
     }
@@ -59,9 +59,9 @@ class IPKController extends Controller
      */
     public function edit($id)
     {
-        $mahasiswa = mahasiswa::find($id);
-        $ipk = Ipk::all();
-        return view('ipk/update', compact('mahasiswa', 'ipk'));
+        $ipk = ipk::find($id);
+        $mhs = mahasiswa::all();
+        return view('ipk/update', compact('mhs', 'ipk'));
     }
 
     /**
@@ -69,7 +69,16 @@ class IPKController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //membuat form validasi
+        $validatedData = $request->validate([
+            'nim' => 'required',
+            'nilai_ipk' => 'required'
+        ]);
+        
+        $ipk = IPK::find($id);
+
+        $ipk->update($validatedData);
+        return redirect('/ipk')->with('success', 'Data IPK Berhasil diubah !');
     }
 
     /**
