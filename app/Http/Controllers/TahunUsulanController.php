@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TahunUsulan;
 use App\Models\JenisBeasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TahunUsulanController extends Controller
 {
@@ -14,8 +15,11 @@ class TahunUsulanController extends Controller
     public function index()
     {
         //mengambil semua data dan direlasikan ke tabel jurusan
-        $tahunusulan = TahunUsulan::with('jenisbeasiswa')->latest()->paginate(5);
-
+        //$tahunusulan = TahunUsulan::with('jenisbeasiswa')->latest()->paginate(5); 
+        $tahunusulan = DB::table('tahunusulan')
+        ->join('jenisbeasiswa', 'tahunusulan.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
+        ->select('*')
+        ->get();
         //tampilkan halaman index
         return view('tahunusulan/index', data: compact('tahunusulan'));
     }

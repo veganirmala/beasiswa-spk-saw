@@ -62,11 +62,11 @@
                     <tr>
                         <th scope="row"><?= $i; ?></th>
                         <td>{{ $nilai->nim }}</td>
-                        <td>{{ $nilai->id_jenis_prestasi }}</td>
+                        <td>{{ $nilai->jenisprestasi }}</td>
                         <td>{{ $nilai->skor }}</td>
                         <td>{{ $nilai->total }}</td>
-                        <td>{{ $nilai->id_usulan }}</td>
-                        <td>{{ $nilai->id_jenis_beasiswa }}</td>
+                        <td>{{ $nilai->tahun }}</td>
+                        <td>{{ $nilai->jenisbeasiswa }}</td>
                         <td>
                             <a href="/nilaiprestasi/{{ $nilai->id }}/show" class="btn btn-success" title="Detail Data"><i class="fas fa-info-circle"></i></a>
                             <a href="/nilaiprestasi/{{ $nilai->id }}/edit" class="btn btn-danger" title="Edit Data"><i class="fas fa-edit"></i></a>

@@ -7,7 +7,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-        <h3>Tambah Data Bobot Kriteria</h3>
+        <h3>Edit Data Bobot Kriteria</h3>
         <form action="/bobotkriteria/{{ $bobotkriteria->id }}" method="POST">
             @method('put')
             @csrf

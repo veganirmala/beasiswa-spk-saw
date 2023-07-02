@@ -58,7 +58,7 @@
                 <?php foreach ($tahunusulan as $thusulan) : ?>
                     <tr>
                         <th scope="row"><?= $i; ?></th>
-                        <td>{{ $thusulan->idjenisbeasiswa }}</td>
+                        <td>{{ $thusulan->jenisbeasiswa }}</td>
                         <td>{{ $thusulan->tahun }}</td>
                         <td>{{ $thusulan->kuota }}</td>
                         <td>

@@ -6,6 +6,7 @@ use App\Models\TahunUsulan;
 use App\Models\Mahasiswa;
 use App\Models\Prodi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MahasiswaController extends Controller
 {
@@ -15,7 +16,12 @@ class MahasiswaController extends Controller
     public function index()
     {
         //mengambil semua data diurutkan dari yg terbaru DESC
-        $mahasiswa = Mahasiswa::with('tahunusulan', 'prodi')->latest()->paginate(5);
+        //$mahasiswa = Mahasiswa::with('tahunusulan', 'prodi')->latest()->paginate(5);
+        $mahasiswa = DB::table('mahasiswa')
+        ->join('tahunusulan', 'mahasiswa.idtahunusulan', '=', 'tahunusulan.id')
+        ->join('prodi', 'mahasiswa.idprodi', '=', 'prodi.id')
+        ->select('*')
+        ->get();
 
         //tampilkan halaman index
         return view('mahasiswa/index', data: compact('mahasiswa'));

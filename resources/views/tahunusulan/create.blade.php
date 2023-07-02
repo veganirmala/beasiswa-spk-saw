@@ -25,7 +25,7 @@
             </div>
             <div class="form-group">
                 <label for="tahun">Tahun<span style="color:red;">*</span></label>
-                <input type="text" name="tahun" class="form-control @error ('tahun') is-invalid @enderror" id="tahun" placeholder="Tahun" required autofocus value="{{ old('tahun') }}">   
+                <input type="text" name="tahun" class="form-control @error ('tahun') is-invalid @enderror" id="tahun" placeholder="Tahun" required  value="{{ old('tahun') }}">   
                 @error ('tahun') 
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -34,7 +34,7 @@
             </div>
             <div class="form-group">
                 <label for="kuota">Kuota<span style="color:red;">*</span></label>
-                <input type="text" name="kuota" class="form-control @error ('kuota') is-invalid @enderror" id="kuota" placeholder="Kuota" required autofocus value="{{ old('kuota') }}">   
+                <input type="text" name="kuota" class="form-control @error ('kuota') is-invalid @enderror" id="kuota" placeholder="Kuota" required  value="{{ old('kuota') }}">   
                 @error ('kuota') 
                 <div class="invalid-feedback">
                     {{ $message }}

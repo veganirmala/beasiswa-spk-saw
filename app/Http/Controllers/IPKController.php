@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ipk;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IPKController extends Controller
 {
@@ -14,7 +15,11 @@ class IPKController extends Controller
     public function index()
     {
         //mengambil semua data dan direlasikan ke tabel jurusan
-        $ipk = Ipk::with('mahasiswa')->latest()->paginate(5);
+        //$ipk = Ipk::with('mahasiswa')->latest()->paginate(5);
+        $ipk = DB::table('ipk')
+        ->join('mahasiswa', 'ipk.nim', '=', 'mahasiswa.id')
+        ->select('*')
+        ->get();
 
         //tampilkan halaman index
         return view('ipk/index', data: compact('ipk'));
