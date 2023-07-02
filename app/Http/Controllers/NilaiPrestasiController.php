@@ -43,7 +43,7 @@ class NilaiprestasiController extends Controller
         //membuat form validasi
         $validatedData = $request->validate([
             'nim' => 'required',
-            'jenis_prestasi' => 'required',
+            'id_jenis_prestasi' => 'required',
             'skor' => 'required',
             'total' => 'required',
             'id_usulan' => 'required',
@@ -69,7 +69,12 @@ class NilaiprestasiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $nilaiprestasi = nilaiprestasi::find($id);
+        $mhs = Mahasiswa::all();
+        $jenisprestasi = JenisPrestasi::all();
+        $tahunusulan = TahunUsulan::all();
+        $jenisbeasiswa = JenisBeasiswa::all();
+        return view('nilaiprestasi/update', compact('nilaiprestasi', 'mhs', 'jenisprestasi', 'tahunusulan', 'jenisbeasiswa'));
     }
 
     /**
@@ -77,7 +82,20 @@ class NilaiprestasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //membuat form validasi
+        $validatedData = $request->validate([
+            'nim' => 'required',
+            'id_jenis_prestasi' => 'required',
+            'skor' => 'required',
+            'total' => 'required',
+            'id_usulan' => 'required',
+            'id_jenis_beasiswa' => 'required'
+        ]);
+
+        $nilaiprestasi = NilaiPrestasi::find($id);
+
+        $nilaiprestasi->update($validatedData);
+        return redirect('/nilaiprestasi')->with('success', 'Data Nilai Prestasi Berhasil diubah !');
     }
 
     /**
