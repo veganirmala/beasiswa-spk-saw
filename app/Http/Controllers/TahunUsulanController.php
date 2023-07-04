@@ -42,7 +42,8 @@ class TahunUsulanController extends Controller
         $validatedData = $request->validate([
             'idjenisbeasiswa' => 'required',
             'tahun' => 'required',
-            'kuota' => 'required'
+            'kuota' => 'required',
+            'status' => 'required'
         ]);
 
         TahunUsulan::create($validatedData);

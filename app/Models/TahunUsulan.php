@@ -11,7 +11,7 @@ class TahunUsulan extends Model
 
     protected $table = "tahunusulan";
     protected $primaryKey = "id";
-    protected $fillable = ['id', 'idjenisbeasiswa', 'tahun', 'kuota'];
+    protected $fillable = ['id', 'idjenisbeasiswa', 'tahun', 'kuota', 'status'];
 
     public function jenisbeasiswa()
     {
