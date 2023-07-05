@@ -130,4 +130,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/nilaiprestasi/{id}', [NilaiprestasiController::class, 'destroy']);
 
     Route::get('/rekapanbeasiswa', [RekapanbeasiswaController::class, 'index']);
+    Route::post('/rekapanbeasiswa/sinkron', [RekapanbeasiswaController::class, 'rekap_sinkron']);
 });
