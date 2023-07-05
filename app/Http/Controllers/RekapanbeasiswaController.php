@@ -126,21 +126,21 @@ class RekapanbeasiswaController extends Controller
                 }
             }
 
-            //hitung max kriteria ipk
+            //hitung max kriteria ipk dari tabel dummy
 
-            //hitung max kriteria prestasi
+            //hitung max kriteria prestasi dari tabel dummy
 
-            //hitung min kriteria ekonomi
+            //hitung min kriteria ekonomi dari tabel dummy
 
             //RUMUS BENEFIT DAN COST SAW
             if ($skor_ipk >= 0.2) {
-                $this->penilaian[1] = $skor_ipk / $kriteriaipk['kriteria_ip'];
+                //$this->penilaian[1] = $skor_ipk / nilai max dari tabel dummy;
             }
             if ($skor_prestasi >= 0.2) {
-                $this->penilaian[2] = $skor_prestasi / $kriteria_prestasi['kriteria_prestasi'];
+                //$this->penilaian[2] = $skor_prestasi / nilai max dari tabel dummy;
             }
             if ($skor_ekonomi >= 0.2) {
-                $this->penilaian[3] = $kriteria_ekonomi['kriteria_ekonomi'] / $skor_ekonomi;
+                //$this->penilaian[3] = nilai min dari tabel dummy / $skor_ekonomi;
             }
 
             //Nilai Bobot Persentase Per Kriteria ngambil dari tabel bobot
