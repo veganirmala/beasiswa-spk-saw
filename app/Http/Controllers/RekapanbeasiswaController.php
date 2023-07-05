@@ -82,7 +82,7 @@ class RekapanbeasiswaController extends Controller
             $this->run($datamahasiswa);
 
             //panggil function rekap dari controller rekap
-            redirect('rekap/index');
+            redirect('rekapanbeasiswa/index');
     }
 
     public function run($datamahasiswa)
