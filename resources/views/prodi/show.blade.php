@@ -21,7 +21,7 @@
                             <h4 class="card-title">Jenjang</h4>
                             <p class="card-text"><?= $prodi['jenjang']; ?></p>
                             <h4 class="card-title">Nama Jurusan</h4>
-                            <p class="card-text"><?= $prodi['idjurusan']; ?></p>
+                            <p class="card-text"><?= $prodi['namajurusan']; ?></p>
                         </div>
                     </div>
                 </div>

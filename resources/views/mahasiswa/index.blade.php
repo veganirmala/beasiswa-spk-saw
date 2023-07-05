@@ -60,7 +60,7 @@
                         <th scope="row"><?= $i; ?></th>
                         <td>{{ $mahasiswa->nim }}</td>
                         <td>{{ $mahasiswa->nama }}</td>
-                        <td>{{ $mahasiswa->idprodi }}</td>
+                        <td>{{ $mahasiswa->namaprodi }}</td>
                         <td>
                             <a href="/mahasiswa/{{ $mahasiswa->nim }}/show" class="btn btn-success" title="Detail Data"><i class="fas fa-info-circle"></i></a>
                             <a href="/mahasiswa/{{ $mahasiswa->nim }}/edit" class="btn btn-danger" title="Edit Data"><i class="fas fa-edit"></i></a>

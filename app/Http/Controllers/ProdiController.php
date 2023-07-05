@@ -56,7 +56,13 @@ class ProdiController extends Controller
      */
     public function show($id)
     {
-        $prodi = Prodi::find($id);
+        //$prodi = Prodi::find($id);
+        
+         $prodi = "SELECT * FROM prodi
+         INNER JOIN jurusan
+         ON jurusan.id = prodi.idjurusan
+         WHERE prodi.id = $id";
+
         return view('prodi/show', compact('prodi'));
     }
 

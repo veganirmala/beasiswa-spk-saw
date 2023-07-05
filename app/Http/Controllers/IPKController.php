@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ipk;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IPKController extends Controller
 {
@@ -14,7 +15,11 @@ class IPKController extends Controller
     public function index()
     {
         //mengambil semua data dan direlasikan ke tabel jurusan
-        $ipk = Ipk::with('mahasiswa')->latest()->paginate(5);
+        //$ipk = Ipk::with('mahasiswa')->latest()->paginate(5);
+        $ipk = DB::table('ipk')
+        ->join('mahasiswa', 'ipk.nim', '=', 'mahasiswa.id')
+        ->select('*')
+        ->get();
 
         //tampilkan halaman index
         return view('ipk/index', data: compact('ipk'));
@@ -37,10 +42,10 @@ class IPKController extends Controller
         //membuat form validasi
         $validatedData = $request->validate([
             'nim' => 'required',
-            'nilaiipk' => 'required'
+            'nilai_ipk' => 'required'
         ]);
 
-        Ipk::create($validatedData);
+        IPK::create($validatedData);
 
         return redirect('/ipk')->with('success', 'Data ipk Berhasil ditambahkan !');
     }
@@ -59,9 +64,9 @@ class IPKController extends Controller
      */
     public function edit($id)
     {
-        $mahasiswa = mahasiswa::find($id);
-        $ipk = Ipk::all();
-        return view('ipk/update', compact('mahasiswa', 'ipk'));
+        $ipk = ipk::find($id);
+        $mhs = mahasiswa::all();
+        return view('ipk/update', compact('mhs', 'ipk'));
     }
 
     /**
@@ -69,7 +74,16 @@ class IPKController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //membuat form validasi
+        $validatedData = $request->validate([
+            'nim' => 'required',
+            'nilai_ipk' => 'required'
+        ]);
+        
+        $ipk = IPK::find($id);
+
+        $ipk->update($validatedData);
+        return redirect('/ipk')->with('success', 'Data IPK Berhasil diubah !');
     }
 
     /**

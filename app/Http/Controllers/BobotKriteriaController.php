@@ -6,6 +6,7 @@ use App\Models\TahunUsulan;
 use App\Models\JenisBeasiswa;
 use App\Models\BobotKriteria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BobotKriteriaController extends Controller
 {
@@ -15,7 +16,12 @@ class BobotKriteriaController extends Controller
     public function index()
     {
         //mengambil semua data diurutkan dari yg terbaru DESC
-        $bobotkriteria = BobotKriteria::with('tahunusulan', 'jenisbeasiswa')->latest()->paginate(5);
+        //$bobotkriteria = BobotKriteria::with('tahunusulan', 'jenisbeasiswa')->latest()->paginate(5);
+        $bobotkriteria = DB::table('bobotkriteria')
+        ->join('tahunusulan', 'bobotkriteria.idtahunusulan', '=', 'tahunusulan.id')
+        ->join('jenisbeasiswa', 'bobotkriteria.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
+        ->select('*')
+        ->get();
 
         //tampilkan halaman index
         return view('bobotkriteria/index', data: compact('bobotkriteria'));

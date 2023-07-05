@@ -14,6 +14,7 @@
             <div class="form-group">
                 <label for="nim">NIM<span style="color:red;">*</span></label>
                 <select class="form-control @error ('nim') is-invalid @enderror" tabindex="-1" aria-hidden="true" name="nim" id="nim" value="{{ old('nim')}}">
+                    <option value="<?= $ipk['nim']; ?>"><?= $ipk['nim']; ?></option>
                     @foreach ($mhs as $mahasiswa)
                     <option value="{{ $mahasiswa->id }}">{{ $mahasiswa->nim }}</option>
                     @endforeach
@@ -24,9 +25,9 @@
                 </div>
                 @enderror
             <div class="form-group">
-                <label for="nilaiipk">Nilai IPK<span style="color:red;">*</span></label>
-                <input type="text" name="nilaiipk" class="form-control @error ('nilaiipk') is-invalid @enderror" id="nilaiipk" placeholder="Nilai IPK" required value="{{ old('nilaiipk') }}">   
-                @error ('nilaiipk') 
+                <label for="nilai_ipk">Nilai IPK<span style="color:red;">*</span></label>
+                <input type="text" name="nilai_ipk" class="form-control @error ('nilai_ipk') is-invalid @enderror" id="nilai_ipk" placeholder="Nilai IPK" required value="{{ old('nilai_ipk', $ipk->nilai_ipk) }}">   
+                @error ('nilai_ipk') 
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>

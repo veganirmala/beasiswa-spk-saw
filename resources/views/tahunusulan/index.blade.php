@@ -45,6 +45,7 @@
                     <th>JENIS BEASISWA</th>
                     <th>TAHUN</th>
                     <th>KUOTA</th>
+                    <th>STATUS</th>
                     <th>ACTION</th>
                   </tr>
                   </thead>
@@ -58,9 +59,10 @@
                 <?php foreach ($tahunusulan as $thusulan) : ?>
                     <tr>
                         <th scope="row"><?= $i; ?></th>
-                        <td>{{ $thusulan->idjenisbeasiswa }}</td>
+                        <td>{{ $thusulan->jenisbeasiswa }}</td>
                         <td>{{ $thusulan->tahun }}</td>
                         <td>{{ $thusulan->kuota }}</td>
+                        <td>{{ $thusulan->status }}</td>
                         <td>
                             <a href="/tahunusulan/{{ $thusulan->id }}/show" class="btn btn-success" title="Detail Data"><i class="fas fa-info-circle"></i></a>
                             <a href="/tahunusulan/{{ $thusulan->id }}/edit" class="btn btn-danger" title="Edit Data"><i class="fas fa-edit"></i></a>

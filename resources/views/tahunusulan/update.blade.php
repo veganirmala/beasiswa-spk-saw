@@ -43,7 +43,19 @@
                 </div>
                 @enderror
             </div>
-            
+            <div class="form-group">
+                <label for="status">Status<span style="color:red;">*</span></label>
+                <select class="form-control @error ('status') is-invalid @enderror" tabindex="-1" aria-hidden="true" name="status" id="status" value="{{ old('status')}}">
+                    <option value="{{ $tahunusulan->status }}">{{ $tahunusulan->status }}</option>
+                    <option value="Aktif">Aktif</option>
+                    <option value="Tidak Aktif">Tidak Aktif</option>
+                </select>
+                @error ('status') 
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
             <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
                 Simpan
             </button>

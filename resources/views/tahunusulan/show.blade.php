@@ -22,6 +22,8 @@
                             <p class="card-text"><?= $tahunusulan['tahun']; ?></p>
                             <h4 class="card-title">Kuota</h4>
                             <p class="card-text"><?= $tahunusulan['kuota']; ?></p>
+                            <h4 class="card-title">Status</h4>
+                            <p class="card-text"><?= $tahunusulan['status']; ?></p>
                         </div>
                     </div>
                 </div>

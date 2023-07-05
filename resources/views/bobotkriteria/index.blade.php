@@ -60,8 +60,8 @@
                 <?php foreach ($bobotkriteria as $bobotkriteriaa) : ?>
                     <tr>
                         <th scope="row"><?= $i; ?></th>
-                        <td>{{ $bobotkriteriaa->idtahunusulan }}</td>
-                        <td>{{ $bobotkriteriaa->idjenisbeasiswa }}</td>
+                        <td>{{ $bobotkriteriaa->tahun }}</td>
+                        <td>{{ $bobotkriteriaa->jenisbeasiswa }}</td>
                         <td>{{ $bobotkriteriaa->bobotkriteriaipk }}</td>
                         <td>{{ $bobotkriteriaa->bobotkriteriaprestasi }}</td>
                         <td>{{ $bobotkriteriaa->bobotkriteriapenghasilan }}</td>

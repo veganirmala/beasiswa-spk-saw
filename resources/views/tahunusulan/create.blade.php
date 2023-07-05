@@ -25,7 +25,7 @@
             </div>
             <div class="form-group">
                 <label for="tahun">Tahun<span style="color:red;">*</span></label>
-                <input type="text" name="tahun" class="form-control @error ('tahun') is-invalid @enderror" id="tahun" placeholder="Tahun" required autofocus value="{{ old('tahun') }}">   
+                <input type="text" name="tahun" class="form-control @error ('tahun') is-invalid @enderror" id="tahun" placeholder="Tahun" required  value="{{ old('tahun') }}">   
                 @error ('tahun') 
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -34,14 +34,25 @@
             </div>
             <div class="form-group">
                 <label for="kuota">Kuota<span style="color:red;">*</span></label>
-                <input type="text" name="kuota" class="form-control @error ('kuota') is-invalid @enderror" id="kuota" placeholder="Kuota" required autofocus value="{{ old('kuota') }}">   
+                <input type="text" name="kuota" class="form-control @error ('kuota') is-invalid @enderror" id="kuota" placeholder="Kuota" required  value="{{ old('kuota') }}">   
                 @error ('kuota') 
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
-            
+            <div class="form-group">
+                <label for="status">Status<span style="color:red;">*</span></label>
+                <select class="form-control @error ('status') is-invalid @enderror" tabindex="-1" aria-hidden="true" name="status" id="status" value="{{ old('status')}}">
+                    <option value="Aktif">Aktif</option>
+                    <option value="Tidak Aktif">Tidak Aktif</option>
+                </select>
+                @error ('status') 
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
             <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
                 Simpan
             </button>

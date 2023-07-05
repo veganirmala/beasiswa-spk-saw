@@ -23,9 +23,9 @@
                 </div>
                 @enderror
             <div class="form-group">
-                <label for="nilaiipk">Nilai IPK<span style="color:red;">*</span></label>
-                <input type="text" name="nilaiipk" class="form-control @error ('nilaiipk') is-invalid @enderror" id="nilaiipk" placeholder="Nilai IPK" required value="{{ old('nilaiipk') }}">   
-                @error ('nilaiipk') 
+                <label for="nilai_ipk">Nilai IPK<span style="color:red;">*</span></label>
+                <input type="text" name="nilai_ipk" class="form-control @error ('nilai_ipk') is-invalid @enderror" id="nilai_ipk" placeholder="Nilai IPK" required value="{{ old('nilai_ipk') }}">   
+                @error ('nilai_ipk') 
                 <div class="invalid-feedback">
                     {{ $message }}
                 </div>

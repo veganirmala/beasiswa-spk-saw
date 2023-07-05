@@ -8,6 +8,7 @@ use App\Models\JenisPrestasi;
 use App\Models\TahunUsulan;
 use App\Models\JenisBeasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NilaiprestasiController extends Controller
 {
@@ -17,7 +18,14 @@ class NilaiprestasiController extends Controller
     public function index()
     {
         //mengambil semua data diurutkan dari yg terbaru DESC
-        $nilaiprestasi = NilaiPrestasi::latest()->paginate(5);
+        //$nilaiprestasi = NilaiPrestasi::latest()->paginate(5);
+        $nilaiprestasi = DB::table('nilaiprestasi')
+        ->join('mahasiswa', 'nilaiprestasi.nim', '=', 'mahasiswa.id')
+        ->join('jenisprestasi', 'nilaiprestasi.id_jenis_prestasi', '=', 'jenisprestasi.id')
+        ->join('tahunusulan', 'nilaiprestasi.id_usulan', '=', 'tahunusulan.id')
+        ->join('jenisbeasiswa', 'nilaiprestasi.id_jenis_beasiswa', '=', 'jenisbeasiswa.id')
+        ->select('*')
+        ->get();
 
         //tampilkan halaman index
         return view('nilaiprestasi/index', data: compact('nilaiprestasi'));
@@ -43,7 +51,7 @@ class NilaiprestasiController extends Controller
         //membuat form validasi
         $validatedData = $request->validate([
             'nim' => 'required',
-            'jenis_prestasi' => 'required',
+            'id_jenis_prestasi' => 'required',
             'skor' => 'required',
             'total' => 'required',
             'id_usulan' => 'required',
@@ -69,7 +77,12 @@ class NilaiprestasiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $nilaiprestasi = nilaiprestasi::find($id);
+        $mhs = Mahasiswa::all();
+        $jenisprestasi = JenisPrestasi::all();
+        $tahunusulan = TahunUsulan::all();
+        $jenisbeasiswa = JenisBeasiswa::all();
+        return view('nilaiprestasi/update', compact('nilaiprestasi', 'mhs', 'jenisprestasi', 'tahunusulan', 'jenisbeasiswa'));
     }
 
     /**
@@ -77,7 +90,20 @@ class NilaiprestasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //membuat form validasi
+        $validatedData = $request->validate([
+            'nim' => 'required',
+            'id_jenis_prestasi' => 'required',
+            'skor' => 'required',
+            'total' => 'required',
+            'id_usulan' => 'required',
+            'id_jenis_beasiswa' => 'required'
+        ]);
+
+        $nilaiprestasi = NilaiPrestasi::find($id);
+
+        $nilaiprestasi->update($validatedData);
+        return redirect('/nilaiprestasi')->with('success', 'Data Nilai Prestasi Berhasil diubah !');
     }
 
     /**

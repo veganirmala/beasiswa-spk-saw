@@ -7,7 +7,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-        <h3>Tambah Data Prodi</h3>
+        <h3>Edit Data Prodi</h3>
         <form action="/prodi/{{ $prodi->id }}" method="POST">
             @method('put')
             @csrf
