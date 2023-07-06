@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\TahunUsulan;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use stdClass;
 
-class RekapanbeasiswaController extends Controller
+class RekapanBeasiswaController extends Controller
 {
 
     private $mahasiswa = [];

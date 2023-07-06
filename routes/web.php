@@ -16,7 +16,7 @@ use App\Http\Controllers\BobotKriteriaController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\IPKController;
 use App\Http\Controllers\NilaiprestasiController;
-use App\Http\Controllers\RekapanbeasiswaController;
+use App\Http\Controllers\RekapanBeasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -129,6 +129,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/nilaiprestasi/{id}', [NilaiprestasiController::class, 'update']);
     Route::delete('/nilaiprestasi/{id}', [NilaiprestasiController::class, 'destroy']);
 
-    Route::get('/rekapanbeasiswa', [RekapanbeasiswaController::class, 'index']);
-    Route::post('/rekapanbeasiswa/sinkron', [RekapanbeasiswaController::class, 'rekap_sinkron']);
+    Route::get('/rekapanbeasiswa', [RekapanBeasiswaController::class, 'index']);
+    Route::post('/rekapanbeasiswa/sinkron', [RekapanBeasiswaController::class, 'rekap_sinkron']);
 });
