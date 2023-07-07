@@ -15,11 +15,11 @@ class TahunUsulanController extends Controller
     public function index()
     {
         //mengambil semua data dan direlasikan ke tabel jurusan
-        //$tahunusulan = TahunUsulan::with('jenisbeasiswa')->latest()->paginate(5); 
+        //$tahunusulan = TahunUsulan::with('jenisbeasiswa')->latest()->paginate(5);
         $tahunusulan = DB::table('tahunusulan')
-        ->join('jenisbeasiswa', 'tahunusulan.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
-        ->select('*')
-        ->get();
+            ->join('jenisbeasiswa', 'tahunusulan.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
+            ->select('*')
+            ->get();
         //tampilkan halaman index
         return view('tahunusulan/index', data: compact('tahunusulan'));
     }
@@ -75,11 +75,13 @@ class TahunUsulanController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         //membuat form validasi
         $validatedData = $request->validate([
             'idjenisbeasiswa' => 'required',
             'tahun' => 'required',
-            'kuota' => 'required'
+            'kuota' => 'required',
+            'status' => 'required',
         ]);
 
         //mengambil data yg akan diupdate

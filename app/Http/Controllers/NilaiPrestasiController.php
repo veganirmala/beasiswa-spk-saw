@@ -10,7 +10,7 @@ use App\Models\JenisBeasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class NilaiprestasiController extends Controller
+class NilaiPrestasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,12 +20,12 @@ class NilaiprestasiController extends Controller
         //mengambil semua data diurutkan dari yg terbaru DESC
         //$nilaiprestasi = NilaiPrestasi::latest()->paginate(5);
         $nilaiprestasi = DB::table('nilaiprestasi')
-        ->join('mahasiswa', 'nilaiprestasi.nim', '=', 'mahasiswa.id')
-        ->join('jenisprestasi', 'nilaiprestasi.id_jenis_prestasi', '=', 'jenisprestasi.id')
-        ->join('tahunusulan', 'nilaiprestasi.id_usulan', '=', 'tahunusulan.id')
-        ->join('jenisbeasiswa', 'nilaiprestasi.id_jenis_beasiswa', '=', 'jenisbeasiswa.id')
-        ->select('*')
-        ->get();
+            ->join('mahasiswa', 'nilaiprestasi.nim', '=', 'mahasiswa.id')
+            ->join('jenisprestasi', 'nilaiprestasi.id_jenis_prestasi', '=', 'jenisprestasi.id')
+            ->join('tahunusulan', 'nilaiprestasi.id_usulan', '=', 'tahunusulan.id')
+            ->join('jenisbeasiswa', 'nilaiprestasi.id_jenis_beasiswa', '=', 'jenisbeasiswa.id')
+            ->select('*')
+            ->get();
 
         //tampilkan halaman index
         return view('nilaiprestasi/index', data: compact('nilaiprestasi'));
