@@ -15,7 +15,7 @@ use App\Http\Controllers\TahunUsulanController;
 use App\Http\Controllers\BobotKriteriaController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\IPKController;
-use App\Http\Controllers\NilaiprestasiController;
+use App\Http\Controllers\NilaiPrestasiController;
 use App\Http\Controllers\RekapanBeasiswaController;
 
 /*
@@ -121,13 +121,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/ipk/{id}', [IPKController::class, 'update']);
     Route::delete('/ipk/{id}', [IPKController::class, 'destroy']);
 
-    Route::get('/nilaiprestasi', [NilaiprestasiController::class, 'index']);
-    Route::get('/nilaiprestasi/create', [NilaiprestasiController::class, 'create']);
-    Route::post('/nilaiprestasi/create', [NilaiprestasiController::class, 'store']);
-    Route::get('/nilaiprestasi/{id}/edit', [NilaiprestasiController::class, 'edit']);
-    Route::get('/nilaiprestasi/{id}/show', [NilaiprestasiController::class, 'show']);
-    Route::put('/nilaiprestasi/{id}', [NilaiprestasiController::class, 'update']);
-    Route::delete('/nilaiprestasi/{id}', [NilaiprestasiController::class, 'destroy']);
+    Route::get('/nilaiprestasi', [NilaiPrestasiController::class, 'index']);
+    Route::get('/nilaiprestasi/create', [NilaiPrestasiController::class, 'create']);
+    Route::post('/nilaiprestasi/create', [NilaiPrestasiController::class, 'store']);
+    Route::get('/nilaiprestasi/{id}/edit', [NilaiPrestasiController::class, 'edit']);
+    Route::get('/nilaiprestasi/{id}/show', [NilaiPrestasiController::class, 'show']);
+    Route::put('/nilaiprestasi/{id}', [NilaiPrestasiController::class, 'update']);
+    Route::delete('/nilaiprestasi/{id}', [NilaiPrestasiController::class, 'destroy']);
 
     Route::get('/rekapanbeasiswa', [RekapanBeasiswaController::class, 'index']);
     Route::post('/rekapanbeasiswa/sinkron', [RekapanBeasiswaController::class, 'rekap_sinkron']);

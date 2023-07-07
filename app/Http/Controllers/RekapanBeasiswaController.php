@@ -181,19 +181,21 @@ class RekapanBeasiswaController extends Controller
             $this->penilaian[3] = $min_ekonomi / $skor_ekonomi;
         }
 
-        dd($this->penilaian);
-
         //Nilai Bobot Persentase Per Kriteria ngambil dari tabel bobot
-        $w = [];
+        $get_table_bobot = DB::table('bobotkriteria')
+            ->select('tahun', 'bobotkriteriaipk', 'bobotkriteriaprestasi', 'bobotkriteriapenghasilan', 'kuota', 'status')
+            ->join('tahunusulan', 'bobotkriteria.idtahunusulan', '=', 'tahunusulan.id')
+            ->get();
+
+        $w = $get_table_bobot->toArray()[0];
 
         //Rumus Normalisasi dikalikan dengan bobot
-        $this->normalisasi[0] = $w[0] * $this->penilaian[1];
-        $this->normalisasi[1] = $w[1] * $this->penilaian[2];
-        $this->normalisasi[2] = $w[2] * $this->penilaian[3];
-        $this->normalisasi[3] = $w[3] * $this->penilaian[4];
+        $this->normalisasi[0] = $w->bobotkriteriaipk * $this->penilaian[1];
+        $this->normalisasi[1] = $w->bobotkriteriaprestasi * $this->penilaian[2];
+        $this->normalisasi[2] = $w->bobotkriteriapenghasilan * $this->penilaian[3];
 
         //hitung total nilai mahasiswa
-        $this->total = $this->normalisasi[0] + $this->normalisasi[1] + $this->normalisasi[2] + $this->normalisasi[3];
+        $this->total = $this->normalisasi[0] + $this->normalisasi[1] + $this->normalisasi[2];
 
         //buat if status nilai akhir
         if ($this->total >= 85) {
@@ -204,6 +206,7 @@ class RekapanBeasiswaController extends Controller
             $status = 'Tidak Layak';
         }
 
+        dd($status);
         //simpan ke tabel rekap
     }
 }
