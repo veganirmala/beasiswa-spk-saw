@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Middleware\Authenticate;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
-use App\Http\Middleware\Authenticate;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JurusanController;
@@ -122,13 +121,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/ipk/{id}', [IPKController::class, 'update']);
     Route::delete('/ipk/{id}', [IPKController::class, 'destroy']);
 
-    Route::get('/nilaiprestasi', [NilaiprestasiController::class, 'index']);
-    Route::get('/nilaiprestasi/create', [NilaiprestasiController::class, 'create']);
-    Route::post('/nilaiprestasi/create', [NilaiprestasiController::class, 'store']);
-    Route::get('/nilaiprestasi/{id}/edit', [NilaiprestasiController::class, 'edit']);
-    Route::get('/nilaiprestasi/{id}/show', [NilaiprestasiController::class, 'show']);
-    Route::put('/nilaiprestasi/{id}', [NilaiprestasiController::class, 'update']);
-    Route::delete('/nilaiprestasi/{id}', [NilaiprestasiController::class, 'destroy']);
+    Route::get('/nilaiprestasi', [NilaiPrestasiController::class, 'index']);
+    Route::get('/nilaiprestasi/create', [NilaiPrestasiController::class, 'create']);
+    Route::post('/nilaiprestasi/create', [NilaiPrestasiController::class, 'store']);
+    Route::get('/nilaiprestasi/{id}/edit', [NilaiPrestasiController::class, 'edit']);
+    Route::get('/nilaiprestasi/{id}/show', [NilaiPrestasiController::class, 'show']);
+    Route::put('/nilaiprestasi/{id}', [NilaiPrestasiController::class, 'update']);
+    Route::delete('/nilaiprestasi/{id}', [NilaiPrestasiController::class, 'destroy']);
 
     Route::get('/rekapanbeasiswa', [RekapanbeasiswaController::class, 'index']);
     Route::post('/rekapanbeasiswa/sinkron', [RekapanBeasiswaController::class, 'rekap_sinkron']);
@@ -136,4 +135,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/berkasmahasiswa', [BerkasMahasiswaController::class, 'index']);
     Route::get('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'create']);
     Route::post('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'store']);
+    Route::get('/rekapanbeasiswa', [RekapanBeasiswaController::class, 'index']);
+    Route::post('/rekapanbeasiswa/sinkron', [RekapanBeasiswaController::class, 'rekap_sinkron']);
 });
