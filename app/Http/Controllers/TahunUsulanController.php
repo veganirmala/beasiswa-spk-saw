@@ -16,9 +16,9 @@ class TahunUsulanController extends Controller
     {
         //mengambil semua data dan direlasikan ke tabel jurusan
         //$tahunusulan = TahunUsulan::with('jenisbeasiswa')->latest()->paginate(5);
-        $tahunusulan = DB::table('tahunusulan')
-            ->join('jenisbeasiswa', 'tahunusulan.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
-            ->select('*')
+        $tahunusulan =
+            TahunUsulan::join('jenisbeasiswa', 'tahunusulan.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
+            ->select('tahunusulan.*', 'jenisbeasiswa.jenisbeasiswa')
             ->get();
         //tampilkan halaman index
         return view('tahunusulan/index', data: compact('tahunusulan'));
@@ -67,7 +67,7 @@ class TahunUsulanController extends Controller
     {
         $tahunusulan = TahunUsulan::join('jenisbeasiswa', 'tahunusulan.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
             ->where('tahunusulan.id', $id)
-            ->select('tahunusulan.*', 'jenisbeasiswa.*')
+            ->select('tahunusulan.*', 'jenisbeasiswa.jenisbeasiswa')
             ->first();
 
         $jenis = JenisBeasiswa::all();

@@ -69,12 +69,13 @@
                                             <th>NIM</th>
                                             <th>Tahun Usulan</th>
                                             <th>Skor IPK</th>
-                                            <th>Skor Pribadi</th>
+                                            {{-- <th>Skor Pribadi</th> --}}
                                             <th>Skor Prestasi</th>
                                             <th>Skor Ekonomi</th>
                                             <th>Skor Total</th>
                                             <th>Status Kelayakan</th>
-                                            <th>Ranking</th>
+                                            {{-- <th>Action</th> --}}
+                                            {{-- <th>Ranking</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -83,6 +84,35 @@
                                             Data Rekapan Beasiswa tidak berhasil ditemukan
                                         </div>
                                         <?php endif; ?>
+                                        <?php $i = 1; ?>
+                                        <?php foreach ($rekapan as $rekapans) : ?>
+                                        <tr>
+                                            <th scope="row"><?= $i ?></th>
+                                            <td>{{ $rekapans->nim }}</td>
+                                            <td>{{ $rekapans->tahun }}</td>
+                                            <td>{{ $rekapans->skor_ipk }}</td>
+                                            <td>{{ $rekapans->skor_prestasi }}</td>
+                                            <td>{{ $rekapans->skor_ekonomi }}</td>
+                                            <td>{{ $rekapans->total }}</td>
+                                            <td>{{ $rekapans->status }}</td>
+                                            {{-- <td>
+                                                <a href="/rekapanbeasiswa/{{ $rekapans->id }}/show"
+                                                    class="btn btn-success" title="Detail Data"><i
+                                                        class="fas fa-info-circle"></i></a>
+                                                <a href="/rekapanbeasiswa/{{ $rekapans->id }}/edit"
+                                                    class="btn btn-danger" title="Edit Data"><i
+                                                        class="fas fa-edit"></i></a>
+                                                <form action="/rekapanbeasiswa/{{ $rekapans->id }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-warning" title="Delete Data"
+                                                        onclick="return confirm('Apakah anda akan menghapus data ini?');"><i
+                                                            class="fas fa-trash-alt"></i></button>
+                                                </form>
+                                            </td> --}}
+                                        </tr>
+                                        <?php $i++; ?>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
