@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rekap;
 use App\Models\TahunUsulan;
 use Illuminate\Support\Facades\DB;
 use stdClass;
@@ -20,7 +21,8 @@ class RekapanBeasiswaController extends Controller
     {
         //tampilkan halaman index
         $thusulan = TahunUsulan::all();
-        return view('rekapanbeasiswa/index', compact('thusulan'));
+        $rekapan = Rekap::all();
+        return view('rekapanbeasiswa/index', compact('thusulan', 'rekapan'));
     }
 
     //function cek skor IPK
@@ -116,7 +118,7 @@ class RekapanBeasiswaController extends Controller
         $this->run($datamahasiswa);
 
         //panggil function rekap dari controller rekap
-        return redirect('rekapanbeasiswa/index');
+        return redirect('rekapanbeasiswa');
     }
 
     public function run($datamahasiswa)
@@ -151,65 +153,76 @@ class RekapanBeasiswaController extends Controller
             $temp_data_mhs->skor_prestasi = $skor_prestasi;
             $temp_data_mhs->skor_ekonomi = $skor_ekonomi;
             $generated_score[] = $temp_data_mhs;
-        }
 
-        //simpan semua data mahasiswa bentuk array
-        for ($i = 0; $i < count($generated_score); $i++) {
-            $this->nilai[$i] = [];
-            for ($j = 0; $j < 3; $j++) {
-                $this->nilai[$i][0] = $generated_score[$i]->nim;
-                $this->nilai[$i][1] = $generated_score[$i]->skor_ipk; //benefit
-                $this->nilai[$i][2] = $generated_score[$i]->skor_prestasi; //benefit
-                $this->nilai[$i][3] = $generated_score[$i]->skor_ekonomi; //cost
+            //simpan semua data mahasiswa bentuk array
+            for ($i = 0; $i < count($generated_score); $i++) {
+                $this->nilai[$i] = [];
+                for ($j = 0; $j < 3; $j++) {
+                    $this->nilai[$i][0] = $generated_score[$i]->nim;
+                    $this->nilai[$i][1] = $generated_score[$i]->skor_ipk; //benefit
+                    $this->nilai[$i][2] = $generated_score[$i]->skor_prestasi; //benefit
+                    $this->nilai[$i][3] = $generated_score[$i]->skor_ekonomi; //cost
+                }
             }
+
+            //hitung max kriteria ipk dari tabel dummy
+            $max_ipk = $this->getValueInArray('max', $this->nilai, 1);
+
+            //hitung max kriteria prestasi dari tabel dummy
+            $max_prestasi = $this->getValueInArray('max', $this->nilai, 2);
+
+            //hitung min kriteria ekonomi dari tabel dummy
+            $min_ekonomi = $this->getValueInArray('min', $this->nilai, 3);
+
+            //RUMUS BENEFIT DAN COST SAW
+            if ($skor_ipk >= 0.2) {
+                $this->penilaian[1] = $skor_ipk / $max_ipk;
+            }
+            if ($skor_prestasi >= 0.2) {
+                $this->penilaian[2] = $skor_prestasi / $max_prestasi;
+            }
+            if ($skor_ekonomi >= 0.2) {
+                $this->penilaian[3] = $min_ekonomi / $skor_ekonomi;
+            }
+
+            //Nilai Bobot Persentase Per Kriteria ngambil dari tabel bobot
+            $get_table_bobot = DB::table('bobotkriteria')
+                ->select('tahun', 'bobotkriteriaipk', 'bobotkriteriaprestasi', 'bobotkriteriapenghasilan', 'kuota', 'status')
+                ->join('tahunusulan', 'bobotkriteria.idtahunusulan', '=', 'tahunusulan.id')
+                ->where('status', '=', 'Aktif')
+                ->get();
+
+            $w = $get_table_bobot->toArray()[0];
+
+            //Rumus Normalisasi dikalikan dengan bobot
+            $this->normalisasi[0] = $w->bobotkriteriaipk * $this->penilaian[1];
+            $this->normalisasi[1] = $w->bobotkriteriaprestasi * $this->penilaian[2];
+            $this->normalisasi[2] = $w->bobotkriteriapenghasilan * $this->penilaian[3];
+
+            //hitung total nilai mahasiswa
+            $this->total = $this->normalisasi[0] + $this->normalisasi[1] + $this->normalisasi[2];
+
+            //buat if status nilai akhir
+            if ($this->total >= 85) {
+                $status = 'Sangat Layak';
+            } else if ($this->total >= 75) {
+                $status = 'Layak';
+            } else {
+                $status = 'Tidak Layak';
+            }
+
+            $payloadRekap = [
+                'nim' => $datamhs->nim,
+                'tahun' => $datamhs->tahun,
+                'skor_ipk' => $skor_ipk,
+                'skor_prestasi' => $skor_prestasi,
+                'skor_ekonomi' => $skor_ekonomi,
+                'total' => $this->total,
+                'status' => $status
+            ];
+
+            //simpan ke tabel rekap
+            Rekap::create($payloadRekap);
         }
-
-        //hitung max kriteria ipk dari tabel dummy
-        $max_ipk = $this->getValueInArray('max', $this->nilai, 1);
-
-        //hitung max kriteria prestasi dari tabel dummy
-        $max_prestasi = $this->getValueInArray('max', $this->nilai, 2);
-
-        //hitung min kriteria ekonomi dari tabel dummy
-        $min_ekonomi = $this->getValueInArray('min', $this->nilai, 3);
-
-        //RUMUS BENEFIT DAN COST SAW
-        if ($skor_ipk >= 0.2) {
-            $this->penilaian[1] = $skor_ipk / $max_ipk;
-        }
-        if ($skor_prestasi >= 0.2) {
-            $this->penilaian[2] = $skor_prestasi / $max_prestasi;
-        }
-        if ($skor_ekonomi >= 0.2) {
-            $this->penilaian[3] = $min_ekonomi / $skor_ekonomi;
-        }
-
-        //Nilai Bobot Persentase Per Kriteria ngambil dari tabel bobot
-        $get_table_bobot = DB::table('bobotkriteria')
-            ->select('tahun', 'bobotkriteriaipk', 'bobotkriteriaprestasi', 'bobotkriteriapenghasilan', 'kuota', 'status')
-            ->join('tahunusulan', 'bobotkriteria.idtahunusulan', '=', 'tahunusulan.id')
-            ->get();
-
-        $w = $get_table_bobot->toArray()[0];
-
-        //Rumus Normalisasi dikalikan dengan bobot
-        $this->normalisasi[0] = $w->bobotkriteriaipk * $this->penilaian[1];
-        $this->normalisasi[1] = $w->bobotkriteriaprestasi * $this->penilaian[2];
-        $this->normalisasi[2] = $w->bobotkriteriapenghasilan * $this->penilaian[3];
-
-        //hitung total nilai mahasiswa
-        $this->total = $this->normalisasi[0] + $this->normalisasi[1] + $this->normalisasi[2];
-
-        //buat if status nilai akhir
-        if ($this->total >= 85) {
-            $status = 'Sangat Layak';
-        } else if ($this->total >= 75) {
-            $status = 'Layak';
-        } else {
-            $status = 'Tidak Layak';
-        }
-
-        dd($status);
-        //simpan ke tabel rekap
     }
 }
