@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\TahunUsulan;
+use App\Models\Rekap;
 use Illuminate\Support\Facades\DB;
 use stdClass;
+use Illuminate\Http\Request;
 
 class RekapanBeasiswaController extends Controller
 {
-
     private $mahasiswa = [];
     private $nilai = [];
     private $penilaian = [];
@@ -205,8 +206,22 @@ class RekapanBeasiswaController extends Controller
         } else {
             $status = 'Tidak Layak';
         }
-
-        dd($status);
         //simpan ke tabel rekap
+        dd($this->total);
+        dd($status);
+
+        //simpan ke tabel rekap
+        // $validatedData = ([
+        //     'nim' => $nim,
+        //     'tahun' => 0,
+        //     'skor_ipk' => $skor_ipk,
+        //     'skor_prestasi' => $skor_prestasi,
+        //     'skor_ekonomi' => $skor_ekonomi,
+        //     'total' => $this->total,
+        //     'status' => $status,
+        // ]);
+        // Rekap::create($validatedData);
+
+        // return redirect('/rekapanbeasiswa')->with('success', 'Data Rekapan Beasiswa Berhasil ditambahkan !');
     }
 }
