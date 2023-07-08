@@ -14,6 +14,14 @@
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                   data-accordion="false">
                   <li class="nav-item">
+                      <a href="/berkasmahasiswa" class="nav-link">
+                          <i class="nav-icon far fa-user"></i>
+                          <p>
+                              Data Berkas Mahasiswa
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
                       <a href="/user" class="nav-link">
                           <i class="nav-icon far fa-user"></i>
                           <p>

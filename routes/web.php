@@ -17,6 +17,7 @@ use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\IPKController;
 use App\Http\Controllers\NilaiPrestasiController;
 use App\Http\Controllers\RekapanBeasiswaController;
+use App\Http\Controllers\BerkasMahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -131,4 +132,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/rekapanbeasiswa', [RekapanBeasiswaController::class, 'index']);
     Route::post('/rekapanbeasiswa/sinkron', [RekapanBeasiswaController::class, 'rekap_sinkron']);
+
+    Route::get('/berkasmahasiswa', [BerkasMahasiswaController::class, 'index']);
+    Route::get('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'create']);
+    Route::post('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'store']);
 });
