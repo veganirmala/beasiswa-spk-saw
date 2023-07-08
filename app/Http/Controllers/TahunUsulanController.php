@@ -65,8 +65,13 @@ class TahunUsulanController extends Controller
      */
     public function edit($id)
     {
-        $tahunusulan = TahunUsulan::find($id);
+        $tahunusulan = TahunUsulan::join('jenisbeasiswa', 'tahunusulan.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
+            ->where('tahunusulan.id', $id)
+            ->select('tahunusulan.*', 'jenisbeasiswa.*')
+            ->first();
+
         $jenis = JenisBeasiswa::all();
+
         return view('tahunusulan/update', compact('tahunusulan', 'jenis'));
     }
 
