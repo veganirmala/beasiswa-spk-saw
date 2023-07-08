@@ -16,7 +16,7 @@ use App\Http\Controllers\BobotKriteriaController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\IPKController;
 use App\Http\Controllers\NilaiPrestasiController;
-use App\Http\Controllers\RekapanbeasiswaController;
+use App\Http\Controllers\RekapanBeasiswaController;
 use App\Http\Controllers\BerkasMahasiswaController;
 
 /*
