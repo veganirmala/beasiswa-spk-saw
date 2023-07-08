@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Rekap extends Model
 {
     use HasFactory;
-
     public function tahunusulan()
     {
         return $this->belongsTo(TahunUsulan::class);
