@@ -17,9 +17,8 @@ class IPKController extends Controller
         //mengambil semua data dan direlasikan ke tabel jurusan
         //$ipk = Ipk::with('mahasiswa')->latest()->paginate(5);
         $ipk = DB::table('ipk')
-        ->join('mahasiswa', 'ipk.nim', '=', 'mahasiswa.id')
-        ->select('*')
-        ->get();
+            ->select('*')
+            ->get();
 
         //tampilkan halaman index
         return view('ipk/index', data: compact('ipk'));
@@ -55,7 +54,11 @@ class IPKController extends Controller
      */
     public function show($id)
     {
-        $ipk = Ipk::find($id);
+        $ipk = Ipk::join('mahasiswa', 'ipk.nim', '=', 'mahasiswa.nim')
+            ->where('ipk.id', $id)
+            ->select('ipk.*', 'mahasiswa.*')
+            ->first();
+
         return view('ipk/show', compact('ipk'));
     }
 
@@ -64,7 +67,8 @@ class IPKController extends Controller
      */
     public function edit($id)
     {
-        $ipk = ipk::find($id);
+        $ipk =
+            Ipk::find($id);
         $mhs = mahasiswa::all();
         return view('ipk/update', compact('mhs', 'ipk'));
     }
@@ -79,7 +83,7 @@ class IPKController extends Controller
             'nim' => 'required',
             'nilai_ipk' => 'required'
         ]);
-        
+
         $ipk = IPK::find($id);
 
         $ipk->update($validatedData);
