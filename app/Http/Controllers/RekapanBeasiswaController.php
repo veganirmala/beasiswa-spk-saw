@@ -100,14 +100,17 @@ class RekapanBeasiswaController extends Controller
         $datamahasiswa = DB::table('mahasiswa')
             ->join('ipk', 'mahasiswa.nim', '=', 'ipk.nim')
             ->join('nilaiprestasi', 'mahasiswa.nim', '=', 'nilaiprestasi.nim')
+            ->join('tahunusulan', 'mahasiswa.idtahunusulan', '=', 'tahunusulan.id')
+            ->where('status', '=', 'Aktif')
             ->select('*')
             ->get();
 
         //ngambil data tahun usulan aktif
-        $tahunusulan = DB::table('tahunusulan')
-            ->where('status', '=', 'Aktif')
-            ->select('*')
-            ->get();
+        // $tahunusulan = DB::table('tahunusulan')
+        //     ->where('status', '=', 'Aktif')
+        //     ->select('*')
+        //     ->get();
+
 
         //panggil function datamahasiswa
         $this->run($datamahasiswa);
