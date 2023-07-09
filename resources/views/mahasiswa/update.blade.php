@@ -288,4 +288,85 @@
     <!-- /.content -->
 </div>
 
+<script type="text/javascript">
+    var rupiah = document.getElementById('totalpenghasilan');
+    totalpenghasilan.addEventListener('keyup', function(e) {
+        //tambahkan 'Rp.' pada saat form di ketik
+        //gunakan fungsi formatRupiah() untuk mengubah angka yang diketik menjadi format angka
+        totalpenghasilan.value = formatRupiah(this.value, 'Rp.');
+    });
+
+    /* fungsi formatRupiah() */
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        //tambahkan titik jika yang diinput sudah menjadi angka ribuan
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
+</script>
+
+<script type="text/javascript">
+    var rupiah = document.getElementById('penghasilanayah');
+    penghasilanayah.addEventListener('keyup', function(e) {
+        //tambahkan 'Rp.' pada saat form di ketik
+        //gunakan fungsi formatRupiah() untuk mengubah angka yang diketik menjadi format angka
+        penghasilanayah.value = formatRupiah(this.value, 'Rp.');
+    });
+
+    /* fungsi formatRupiah() */
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        //tambahkan titik jika yang diinput sudah menjadi angka ribuan
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
+</script>
+
+<script type="text/javascript">
+    var rupiah = document.getElementById('penghasilanibu');
+    penghasilanibu.addEventListener('keyup', function(e) {
+        //tambahkan 'Rp.' pada saat form di ketik
+        //gunakan fungsi formatRupiah() untuk mengubah angka yang diketik menjadi format angka
+        penghasilanibu.value = formatRupiah(this.value, 'Rp.');
+    });
+
+    /* fungsi formatRupiah() */
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+        //tambahkan titik jika yang diinput sudah menjadi angka ribuan
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
+</script>
+
 @include('template.footer')
