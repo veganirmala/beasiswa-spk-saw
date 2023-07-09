@@ -10,7 +10,7 @@ class NilaiPrestasi extends Model
     use HasFactory;
 
     protected $table = "nilaiprestasi";
-    protected $primaryKey = "id";
+    protected $primaryKey = "nim";
     protected $fillable = [
         'id', 'nim', 'id_jenis_prestasi',
         'skor', 'total', 'id_usulan', 'id_jenis_beasiswa'

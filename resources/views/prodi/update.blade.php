@@ -40,7 +40,7 @@
                     <label for="idjurusan">Nama Jurusan<span style="color:red;">*</span></label>
                     <select class="form-control @error('idjurusan') is-invalid @enderror" tabindex="-1"
                         aria-hidden="true" name="idjurusan" id="idjurusan" value="{{ old('idjurusan') }}">
-                        <option value="{{ $prodi->id }}">{{ $prodi->jurusan }}</option>
+                        <option value="{{ $prodi->id }}">{{ $prodi->namajurusan }}</option>
                         @foreach ($jur as $jurusann)
                             <option value="{{ $jurusann->id }}">{{ $jurusann->namajurusan }}</option>
                         @endforeach

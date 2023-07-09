@@ -61,11 +61,11 @@
                                         <td>{{ $ipkk->nim }}</td>
                                         <td>{{ $ipkk->nilai_ipk }}</td>
                                         <td>
-                                            <a href="/ipk/{{ $ipkk->id }}/show" class="btn btn-success"
+                                            <a href="/ipk/{{ $ipkk->nim }}/show" class="btn btn-success"
                                                 title="Detail Data"><i class="fas fa-info-circle"></i></a>
-                                            <a href="/ipk/{{ $ipkk->id }}/edit" class="btn btn-danger"
+                                            <a href="/ipk/{{ $ipkk->nim }}/edit" class="btn btn-danger"
                                                 title="Edit Data"><i class="fas fa-edit"></i></a>
-                                            <form action="/ipk/{{ $ipkk->id }}" method="POST">
+                                            <form action="/ipk/{{ $ipkk->nim }}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-warning" title="Delete Data"

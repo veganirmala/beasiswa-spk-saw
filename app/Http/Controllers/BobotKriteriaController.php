@@ -18,14 +18,13 @@ class BobotKriteriaController extends Controller
         //mengambil semua data diurutkan dari yg terbaru DESC
         //$bobotkriteria = BobotKriteria::with('tahunusulan', 'jenisbeasiswa')->latest()->paginate(5);
         $bobotkriteria = DB::table('bobotkriteria')
-        ->join('tahunusulan', 'bobotkriteria.idtahunusulan', '=', 'tahunusulan.id')
-        ->join('jenisbeasiswa', 'bobotkriteria.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
-        ->select('*')
-        ->get();
+            ->join('tahunusulan', 'bobotkriteria.idtahunusulan', '=', 'tahunusulan.id')
+            ->join('jenisbeasiswa', 'bobotkriteria.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
+            ->select('*')
+            ->get();
 
         //tampilkan halaman index
         return view('bobotkriteria/index', data: compact('bobotkriteria'));
-        //return view('bobotkriteria/index');
     }
 
     /**
@@ -62,7 +61,13 @@ class BobotKriteriaController extends Controller
      */
     public function show($id)
     {
-        $bobotkriteria = BobotKriteria::find($id);
+        //$bobotkriteria = BobotKriteria::find($id);
+        $bobotkriteria =
+            BobotKriteria::join('tahunusulan', 'bobotkriteria.idtahunusulan', '=', 'tahunusulan.id')
+            ->join('jenisbeasiswa', 'bobotkriteria.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
+            ->where('bobotkriteria.id', $id)
+            ->select('bobotkriteria.*', 'tahunusulan.*', 'jenisbeasiswa.*')
+            ->first();
         return view('bobotkriteria/show', compact('bobotkriteria'));
     }
 
@@ -71,7 +76,11 @@ class BobotKriteriaController extends Controller
      */
     public function edit($id)
     {
-        $bobotkriteria = BobotKriteria::find($id);
+        $bobotkriteria = BobotKriteria::join('tahunusulan', 'bobotkriteria.idtahunusulan', '=', 'tahunusulan.id')
+            ->join('jenisbeasiswa', 'bobotkriteria.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
+            ->where('bobotkriteria.id', $id)
+            ->select('bobotkriteria.*', 'tahunusulan.*', 'jenisbeasiswa.*')
+            ->first();
         $thusulan = TahunUsulan::all();
         $jenis = JenisBeasiswa::all();
         return view('bobotkriteria/update', compact('bobotkriteria', 'thusulan', 'jenis'));

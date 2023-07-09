@@ -56,7 +56,12 @@ class TahunUsulanController extends Controller
      */
     public function show($id)
     {
-        $tahunusulan = TahunUsulan::find($id);
+        //$tahunusulan = TahunUsulan::find($id);
+        $tahunusulan =
+            TahunUsulan::join('jenisbeasiswa', 'tahunusulan.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
+            ->where('tahunusulan.id', $id)
+            ->select('tahunusulan.*', 'jenisbeasiswa.*')
+            ->first();
         return view('tahunusulan/show', compact('tahunusulan'));
     }
 

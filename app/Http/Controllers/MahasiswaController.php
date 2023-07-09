@@ -18,10 +18,10 @@ class MahasiswaController extends Controller
         //mengambil semua data diurutkan dari yg terbaru DESC
         //$mahasiswa = Mahasiswa::with('tahunusulan', 'prodi')->latest()->paginate(5);
         $mahasiswa = DB::table('mahasiswa')
-        ->join('tahunusulan', 'mahasiswa.idtahunusulan', '=', 'tahunusulan.id')
-        ->join('prodi', 'mahasiswa.idprodi', '=', 'prodi.id')
-        ->select('*')
-        ->get();
+            ->join('tahunusulan', 'mahasiswa.idtahunusulan', '=', 'tahunusulan.id')
+            ->join('prodi', 'mahasiswa.idprodi', '=', 'prodi.id')
+            ->select('*')
+            ->get();
 
         //tampilkan halaman index
         return view('mahasiswa/index', data: compact('mahasiswa'));
@@ -73,18 +73,29 @@ class MahasiswaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($nim)
     {
-        $mahasiswa = Mahasiswa::find($id);
+        //$mahasiswa = Mahasiswa::find($nim);
+        $mahasiswa = Mahasiswa::join('prodi', 'mahasiswa.idprodi', '=', 'prodi.id')
+            ->join('tahunusulan', 'mahasiswa.idtahunusulan', '=', 'tahunusulan.id')
+            ->where('mahasiswa.nim', $nim)
+            ->select('mahasiswa.*', 'prodi.*', 'tahunusulan.*')
+            ->first();
         return view('mahasiswa/show', compact('mahasiswa'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($nim)
     {
-        $mahasiswa = Mahasiswa::find($id);
+        //$mahasiswa = Mahasiswa::find($id);
+        $mahasiswa =
+            Mahasiswa::join('prodi', 'mahasiswa.idprodi', '=', 'prodi.id')
+            ->join('tahunusulan', 'mahasiswa.idtahunusulan', '=', 'tahunusulan.id')
+            ->where('mahasiswa.nim', $nim)
+            ->select('mahasiswa.*', 'prodi.*', 'tahunusulan.*')
+            ->first();
         $thusulan = TahunUsulan::all();
         $prodi = Prodi::all();
         return view('mahasiswa/update', compact('mahasiswa', 'thusulan', 'prodi'));
@@ -93,7 +104,7 @@ class MahasiswaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $nim)
     {
         //membuat form validasi
         $validatedData = $request->validate([
@@ -118,7 +129,7 @@ class MahasiswaController extends Controller
         ]);
 
         //mengambil data yg akan diupdate
-        $mahasiswa = Mahasiswa::find($id);
+        $mahasiswa = Mahasiswa::find($nim);
 
         $mahasiswa->update($validatedData);
 
@@ -128,9 +139,9 @@ class MahasiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $nim)
     {
-        $mahasiswa = Mahasiswa::find($id);
+        $mahasiswa = Mahasiswa::find($nim);
         $mahasiswa->delete();
 
         return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil dihapus !');
