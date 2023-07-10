@@ -27,33 +27,6 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="id_jenis_prestasi">Jenis Prestasi<span style="color:red;">*</span></label>
-                    <select class="form-control @error('id_jenis_prestasi') is-invalid @enderror" tabindex="-1"
-                        aria-hidden="true" name="id_jenis_prestasi" id="id_jenis_prestasi"
-                        value="{{ old('id_jenis_prestasi') }}">
-                        <option value="<?= $nilaiprestasi['id_jenis_prestasi'] ?>">
-                            <?= $nilaiprestasi['jenisprestasi'] ?></option>
-                        @foreach ($jenisprestasi as $jenis)
-                            <option value="{{ $jenis->id }}">{{ $jenis->jenisprestasi }}</option>
-                        @endforeach
-                    </select>
-                    @error('id_jenis_prestasi')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="skor">Skor<span style="color:red;">*</span></label>
-                    <input type="text" name="skor" class="form-control @error('skor') is-invalid @enderror"
-                        id="skor" placeholder="Skor" required value="{{ old('skor', $nilaiprestasi->skor) }}">
-                    @error('skor')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="form-group">
                     <label for="total">Total<span style="color:red;">*</span></label>
                     <input type="text" name="total" class="form-control @error('total') is-invalid @enderror"
                         id="total" placeholder="Total" required value="{{ old('total', $nilaiprestasi->total) }}">

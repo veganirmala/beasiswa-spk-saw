@@ -44,9 +44,7 @@
                                     <tr>
                                         <th>NO</th>
                                         <th>NIM</th>
-                                        <th>JENIS PRESTASI</th>
-                                        <th>SKOR</th>
-                                        <th>TOTAL</th>
+                                        <th>TOTAL NILAI PRESTASI</th>
                                         <th>TAHUN USULAN</th>
                                         <th>JENIS BEASISWA</th>
                                         <th>ACTION</th>
@@ -63,8 +61,6 @@
                                     <tr>
                                         <th scope="row"><?= $i ?></th>
                                         <td>{{ $nilai->nim }}</td>
-                                        <td>{{ $nilai->jenisprestasi }}</td>
-                                        <td>{{ $nilai->skor }}</td>
                                         <td>{{ $nilai->total }}</td>
                                         <td>{{ $nilai->tahun }}</td>
                                         <td>{{ $nilai->jenisbeasiswa }}</td>

@@ -16,11 +16,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">NIM</h4>
                                 <p class="card-text"><?= $nilaiprestasi['nim'] ?></p>
-                                <h4 class="card-title">Jenis Prestasi</h4>
-                                <p class="card-text"><?= $nilaiprestasi['jenisprestasi'] ?></p>
-                                <h4 class="card-title">Skor</h4>
-                                <p class="card-text"><?= $nilaiprestasi['skor'] ?></p>
-                                <h4 class="card-title">Total</h4>
+                                <h4 class="card-title">Total Nilai Prestasi</h4>
                                 <p class="card-text"><?= $nilaiprestasi['total'] ?></p>
                                 <h4 class="card-title">Tahun Usulan</h4>
                                 <p class="card-text"><?= $nilaiprestasi['tahun'] ?></p>

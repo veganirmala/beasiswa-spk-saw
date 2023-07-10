@@ -50,11 +50,7 @@
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <form action="" method="POST">
-                        @method('put')
-                        @csrf
-                    </form>
-                    <a class="dropdown-item" href="">
+                    <a class="dropdown-item" href="/user/{id}/edit">
                         <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
                         Edit Profile
                     </a>

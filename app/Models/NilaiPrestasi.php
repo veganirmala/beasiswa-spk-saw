@@ -12,8 +12,7 @@ class NilaiPrestasi extends Model
     protected $table = "nilaiprestasi";
     protected $primaryKey = "nim";
     protected $fillable = [
-        'id', 'nim', 'id_jenis_prestasi',
-        'skor', 'total', 'id_usulan', 'id_jenis_beasiswa'
+        'id', 'nim', 'total', 'id_usulan', 'id_jenis_beasiswa'
     ];
 
     public function mahasiswa()
