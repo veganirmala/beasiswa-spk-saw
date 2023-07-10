@@ -113,7 +113,7 @@
                           </p>
                       </a>
                   </li>
-                  <li class="nav-item">
+                  {{-- <li class="nav-item">
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                           @csrf
                       </form>
@@ -125,7 +125,7 @@
                               Logout
                           </p>
                       </a>
-                  </li>
+                  </li> --}}
 
                   </li>
               </ul>
