@@ -132,6 +132,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/rekapanbeasiswa', [RekapanBeasiswaController::class, 'index']);
     Route::post('/rekapanbeasiswa/sinkron', [RekapanBeasiswaController::class, 'rekap_sinkron']);
+    Route::get('/rekapanbeasiswa/export', [RekapanBeasiswaController::class, 'export'])->name('rekap.export');
 
     Route::get('/berkasmahasiswa', [BerkasMahasiswaController::class, 'index']);
     Route::get('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'create']);
