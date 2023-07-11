@@ -16,7 +16,9 @@ class IPKController extends Controller
     {
         //mengambil semua data dan direlasikan ke tabel jurusan
         //$ipk = Ipk::with('mahasiswa')->latest()->paginate(5);
-        $ipk = DB::table('ipk')
+        $ipk =
+            DB::table('ipk')
+            ->join('mahasiswa', 'ipk.nim', '=', 'mahasiswa.nim')
             ->select('*')
             ->get();
 
@@ -52,10 +54,10 @@ class IPKController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($nim)
     {
         $ipk = Ipk::join('mahasiswa', 'ipk.nim', '=', 'mahasiswa.nim')
-            ->where('ipk.id', $id)
+            ->where('ipk.nim', $nim)
             ->select('ipk.*', 'mahasiswa.*')
             ->first();
 
@@ -65,10 +67,14 @@ class IPKController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($nim)
     {
+        //$ipk = Ipk::find($id);
         $ipk =
-            Ipk::find($id);
+            Ipk::join('mahasiswa', 'ipk.nim', '=', 'mahasiswa.nim')
+            ->where('ipk.nim', $nim)
+            ->select('ipk.*', 'mahasiswa.*')
+            ->first();
         $mhs = mahasiswa::all();
         return view('ipk/update', compact('mhs', 'ipk'));
     }
@@ -76,26 +82,27 @@ class IPKController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $nim)
     {
         //membuat form validasi
         $validatedData = $request->validate([
-            'nim' => 'required',
             'nilai_ipk' => 'required'
         ]);
 
-        $ipk = IPK::find($id);
+        //mengambil data yg akan diupdate
+        $ipk = Ipk::find($nim);
 
         $ipk->update($validatedData);
-        return redirect('/ipk')->with('success', 'Data IPK Berhasil diubah !');
+
+        return redirect('/ipk')->with('success', 'Data IPK Berhasil diedit !');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy($nim)
     {
-        $ipk = Ipk::find($id);
+        $ipk = Ipk::find($nim);
         $ipk->delete();
 
         return redirect('/ipk')->with('success', 'Data IPK Berhasil dihapus !');

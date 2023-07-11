@@ -109,29 +109,30 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
     Route::get('/mahasiswa/create', [MahasiswaController::class, 'create']);
     Route::post('/mahasiswa/create', [MahasiswaController::class, 'store']);
-    Route::get('/mahasiswa/{id}/edit', [MahasiswaController::class, 'edit']);
-    Route::get('/mahasiswa/{id}/show', [MahasiswaController::class, 'show']);
-    Route::put('/mahasiswa/{id}', [MahasiswaController::class, 'update']);
-    Route::delete('/mahasiswa/{id}', [MahasiswaController::class, 'destroy']);
+    Route::get('/mahasiswa/{nim}/edit', [MahasiswaController::class, 'edit']);
+    Route::get('/mahasiswa/{nim}/show', [MahasiswaController::class, 'show']);
+    Route::put('/mahasiswa/{nim}', [MahasiswaController::class, 'update']);
+    Route::delete('/mahasiswa/{nim}', [MahasiswaController::class, 'destroy']);
 
     Route::get('/ipk', [IPKController::class, 'index']);
     Route::get('/ipk/create', [IPKController::class, 'create']);
     Route::post('/ipk/create', [IPKController::class, 'store']);
-    Route::get('/ipk/{id}/edit', [IPKController::class, 'edit']);
-    Route::get('/ipk/{id}/show', [IPKController::class, 'show']);
-    Route::put('/ipk/{id}', [IPKController::class, 'update']);
-    Route::delete('/ipk/{id}', [IPKController::class, 'destroy']);
+    Route::get('/ipk/{nim}/edit', [IPKController::class, 'edit']);
+    Route::get('/ipk/{nim}/show', [IPKController::class, 'show']);
+    Route::put('/ipk/{nim}', [IPKController::class, 'update']);
+    Route::delete('/ipk/{nim}', [IPKController::class, 'destroy']);
 
     Route::get('/nilaiprestasi', [NilaiPrestasiController::class, 'index']);
     Route::get('/nilaiprestasi/create', [NilaiPrestasiController::class, 'create']);
     Route::post('/nilaiprestasi/create', [NilaiPrestasiController::class, 'store']);
-    Route::get('/nilaiprestasi/{id}/edit', [NilaiPrestasiController::class, 'edit']);
-    Route::get('/nilaiprestasi/{id}/show', [NilaiPrestasiController::class, 'show']);
-    Route::put('/nilaiprestasi/{id}', [NilaiPrestasiController::class, 'update']);
-    Route::delete('/nilaiprestasi/{id}', [NilaiPrestasiController::class, 'destroy']);
+    Route::get('/nilaiprestasi/{nim}/edit', [NilaiPrestasiController::class, 'edit']);
+    Route::get('/nilaiprestasi/{nim}/show', [NilaiPrestasiController::class, 'show']);
+    Route::put('/nilaiprestasi/{nim}', [NilaiPrestasiController::class, 'update']);
+    Route::delete('/nilaiprestasi/{nim}', [NilaiPrestasiController::class, 'destroy']);
 
     Route::get('/rekapanbeasiswa', [RekapanBeasiswaController::class, 'index']);
     Route::post('/rekapanbeasiswa/sinkron', [RekapanBeasiswaController::class, 'rekap_sinkron']);
+    Route::get('/rekapanbeasiswa/export', [RekapanBeasiswaController::class, 'export'])->name('rekap.export');
 
     Route::get('/berkasmahasiswa', [BerkasMahasiswaController::class, 'index']);
     Route::get('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'create']);

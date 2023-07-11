@@ -3,7 +3,7 @@
 <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="{{ route('register') }}"><b>SPK</b> Beasiswa</a>
+            <a href="{{ route('register') }}"><b>DSS</b> Beasiswa</a>
         </div>
         <div class="card">
             <div class="card-body register-card-body">

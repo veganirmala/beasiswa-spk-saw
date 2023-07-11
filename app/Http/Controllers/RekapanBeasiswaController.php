@@ -6,6 +6,8 @@ use App\Models\Rekap;
 use App\Models\TahunUsulan;
 use Illuminate\Support\Facades\DB;
 use stdClass;
+use App\Exports\RekapExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RekapanBeasiswaController extends Controller
 {
@@ -20,8 +22,8 @@ class RekapanBeasiswaController extends Controller
     public function index()
     {
         //tampilkan halaman index
-        $thusulan = TahunUsulan::all();
-        $rekapan = Rekap::all();
+        $thusulan = TahunUsulan::all()->where('status', '=', 'Aktif');
+        $rekapan = Rekap::all()->sortByDesc('total');
         return view('rekapanbeasiswa/index', compact('thusulan', 'rekapan'));
     }
 
@@ -125,6 +127,7 @@ class RekapanBeasiswaController extends Controller
     {
 
         $generated_score = [];
+        Rekap::truncate(); // hapus isi kolom, lalu lakukan perhitungan ulang
 
         foreach ($datamahasiswa as $datamhs) {
             //ngambil data mahasiswa
@@ -224,5 +227,10 @@ class RekapanBeasiswaController extends Controller
             //simpan ke tabel rekap
             Rekap::create($payloadRekap);
         }
+    }
+
+    public function export()
+    {
+        return Excel::download(new RekapExport, 'rekap.xlsx');
     }
 }

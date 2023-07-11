@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Userr;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         //mengambil semua data user diurutkan dari yg terbaru DESC
-        $users = Userr::latest()->paginate(5);
+        $users = User::latest()->paginate(5);
 
         //tampilkan halaman index
         return view('user/index', data: compact('users'));
@@ -35,14 +35,16 @@ class UserController extends Controller
         //membuat form validasi
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required|email:dns|unique:userrs',
+            'email' => 'required|email:dns|unique:users,email',
+            'password' => 'required|min:5|max:255',
             'jk' => 'required',
             'telp' => 'required',
             'alamat' => 'required'
         ]);
-        //var_dump ($validatedData);
+        //proses enkripsi password
+        $validatedData['password'] = bcrypt($validatedData['password']);
 
-        Userr::create($validatedData);
+        User::create($validatedData);
 
         return redirect('/user')->with('success', 'Data User Berhasil ditambahkan !');
     }
@@ -52,7 +54,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = Userr::find($id);
+        $user = User::find($id);
         return view('user/show', compact('user'));
     }
 
@@ -61,7 +63,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = Userr::find($id);
+        $user = User::find($id);
         return view('user/update', compact('user'));
     }
 
@@ -74,12 +76,16 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required',
+            'password' => 'required',
             'jk' => 'required',
             'telp' => 'required',
             'alamat' => 'required'
         ]);
+        //proses enkripsi password
+        $validatedData['password'] = bcrypt($validatedData['password']);
+
         //mengambil data yg akan diupdate
-        $user = Userr::find($id);
+        $user = User::find($id);
 
         $user->update($validatedData);
 
@@ -91,7 +97,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = Userr::find($id);
+        $user = User::find($id);
         $user->delete();
 
         return redirect('/user')->with('success', 'Data User Berhasil dihapus !');

@@ -40,23 +40,25 @@
                             <form action="" class="form-inline my-2 my-lg-0" method="post">
                                 <select name="th" class="custom-select mr-1" id="inputGroupSelect04"
                                     aria-label="Example select with button addon">
-                                    <option selected>Pilih Tahun Usulan</option>
+                                    <option value="" selected>Pilih Tahun Usulan</option>
                                     @foreach ($thusulan as $tahunusulan)
-                                        <option value="{{ $tahunusulan->id }}">{{ $tahunusulan->tahun }}</option>
+                                        <option value="{{ $tahunusulan->tahun }}">{{ $tahunusulan->tahun }}</option>
                                     @endforeach
                                 </select>
-                                <div class="input-group">
+                                {{-- <div class="input-group">
                                     <button class="btn btn-secondary" type="submit">Cari</button>
-                                </div>
+                                </div> --}}
                             </form>
                         </div>
-                        <form action="/rekapanbeasiswa/sinkron" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-primary" title="Sinkronisasi Data"><i
-                                    class="fas fa-spinner"></i> Sinkronisasi</button>
-                        </form>
-                        <a href="" class="btn btn-info" title="Cetak Data"><i class="fas fa-file-download"></i>
-                            Cetak</a>
+                        <div class="d-flex">
+                            <form action="/rekapanbeasiswa/sinkron" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary" title="Sinkronisasi Data"><i
+                                        class="fas fa-spinner"></i> Sinkronisasi</button>
+                            </form>
+                            <a class="btn btn-info ml-2" href="{{ route('rekap.export') }}"><i
+                                    class="fas fa-file-download"></i>Cetak Data</a>
+                        </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -126,5 +128,28 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<script>
+    $(document).ready(function() {
+        $('#inputGroupSelect04').on('change', function() {
+            var selectedValue = $(this).val();
+            filterTable(selectedValue);
+        });
+
+        function filterTable(selectedValue) {
+            // Perform filtering based on the selected value
+            $('#example2 tbody tr').each(function() {
+                var rowValue = $(this).find('td:nth-child(3)')
+                    .text(); // Assuming the year is in the third column (index 2)
+
+                if (rowValue === selectedValue || selectedValue === '') {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+    });
+</script>
 
 @include('template.footer')

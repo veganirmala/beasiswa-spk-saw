@@ -15,7 +15,6 @@ class ProdiController extends Controller
     public function index()
     {
         //mengambil semua data dan direlasikan ke tabel jurusan
-        // $prodi = Prodi::with('jurusan')->latest()->paginate(5);
         $prodi = DB::table('prodi')
             ->join('jurusan', 'prodi.idjurusan', '=', 'jurusan.id')
             ->select('*')
@@ -71,7 +70,10 @@ class ProdiController extends Controller
      */
     public function edit($id)
     {
-        $prodi = Prodi::find($id);
+        $prodi = Prodi::join('jurusan', 'prodi.idjurusan', '=', 'jurusan.id')
+            ->where('prodi.id', $id)
+            ->select('prodi.*', 'jurusan.namajurusan')
+            ->first();
         $jur = Jurusan::all();
         return view('prodi/update', compact('prodi', 'jur'));
     }

@@ -10,7 +10,7 @@ class Ipk extends Model
     use HasFactory;
 
     protected $table = "ipk";
-    protected $primaryKey = "id";
+    protected $primaryKey = "nim";
     protected $fillable = ['nim', 'nilai_ipk'];
 
     public function mahasiswa()

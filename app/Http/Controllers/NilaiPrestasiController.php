@@ -20,8 +20,7 @@ class NilaiPrestasiController extends Controller
         //mengambil semua data diurutkan dari yg terbaru DESC
         //$nilaiprestasi = NilaiPrestasi::latest()->paginate(5);
         $nilaiprestasi = DB::table('nilaiprestasi')
-            ->join('mahasiswa', 'nilaiprestasi.nim', '=', 'mahasiswa.id')
-            ->join('jenisprestasi', 'nilaiprestasi.id_jenis_prestasi', '=', 'jenisprestasi.id')
+            ->join('mahasiswa', 'nilaiprestasi.nim', '=', 'mahasiswa.nim')
             ->join('tahunusulan', 'nilaiprestasi.id_usulan', '=', 'tahunusulan.id')
             ->join('jenisbeasiswa', 'nilaiprestasi.id_jenis_beasiswa', '=', 'jenisbeasiswa.id')
             ->select('*')
@@ -37,10 +36,9 @@ class NilaiPrestasiController extends Controller
     public function create()
     {
         $mhs = Mahasiswa::all();
-        $jenisprestasi = JenisPrestasi::all();
         $tahunusulan = TahunUsulan::all();
         $jenisbeasiswa = JenisBeasiswa::all();
-        return view('nilaiprestasi/create', compact('mhs', 'jenisprestasi', 'tahunusulan', 'jenisbeasiswa'));
+        return view('nilaiprestasi/create', compact('mhs', 'tahunusulan', 'jenisbeasiswa'));
     }
 
     /**
@@ -51,8 +49,6 @@ class NilaiPrestasiController extends Controller
         //membuat form validasi
         $validatedData = $request->validate([
             'nim' => 'required',
-            'id_jenis_prestasi' => 'required',
-            'skor' => 'required',
             'total' => 'required',
             'id_usulan' => 'required',
             'id_jenis_beasiswa' => 'required'
@@ -66,43 +62,54 @@ class NilaiPrestasiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($nim)
     {
-        $nilaiprestasi = NilaiPrestasi::find($id);
+        //$nilaiprestasi = NilaiPrestasi::find($id);
+        $nilaiprestasi
+            = NilaiPrestasi::join('jenisbeasiswa', 'nilaiprestasi.id_jenis_beasiswa', '=', 'jenisbeasiswa.id')
+            ->join('tahunusulan', 'nilaiprestasi.id_usulan', '=', 'tahunusulan.id')
+            ->join('mahasiswa', 'nilaiprestasi.nim', '=', 'mahasiswa.nim')
+            ->where('nilaiprestasi.nim', $nim)
+            ->select('nilaiprestasi.*', 'jenisbeasiswa.*', 'tahunusulan.*', 'mahasiswa.*')
+            ->first();
         return view('nilaiprestasi/show', compact('nilaiprestasi'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($nim)
     {
-        $nilaiprestasi = nilaiprestasi::find($id);
+        //$nilaiprestasi = nilaiprestasi::find($id);
+        $nilaiprestasi = NilaiPrestasi::join('jenisbeasiswa', 'nilaiprestasi.id_jenis_beasiswa', '=', 'jenisbeasiswa.id')
+            ->join('tahunusulan', 'nilaiprestasi.id_usulan', '=', 'tahunusulan.id')
+            ->join('mahasiswa', 'nilaiprestasi.nim', '=', 'mahasiswa.nim')
+            ->where('nilaiprestasi.nim', $nim)
+            ->select('nilaiprestasi.*', 'jenisbeasiswa.*',  'tahunusulan.*', 'mahasiswa.*')
+            ->first();
         $mhs = Mahasiswa::all();
-        $jenisprestasi = JenisPrestasi::all();
         $tahunusulan = TahunUsulan::all();
         $jenisbeasiswa = JenisBeasiswa::all();
-        return view('nilaiprestasi/update', compact('nilaiprestasi', 'mhs', 'jenisprestasi', 'tahunusulan', 'jenisbeasiswa'));
+        return view('nilaiprestasi/update', compact('nilaiprestasi', 'mhs',  'tahunusulan', 'jenisbeasiswa'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $nim)
     {
         //membuat form validasi
         $validatedData = $request->validate([
             'nim' => 'required',
-            'id_jenis_prestasi' => 'required',
-            'skor' => 'required',
             'total' => 'required',
             'id_usulan' => 'required',
             'id_jenis_beasiswa' => 'required'
         ]);
 
-        $nilaiprestasi = NilaiPrestasi::find($id);
+        $nilaiprestasi = NilaiPrestasi::find($nim);
 
         $nilaiprestasi->update($validatedData);
+
         return redirect('/nilaiprestasi')->with('success', 'Data Nilai Prestasi Berhasil diubah !');
     }
 

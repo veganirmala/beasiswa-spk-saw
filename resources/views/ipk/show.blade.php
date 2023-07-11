@@ -8,7 +8,7 @@
     <section class="content">
         <div class="container-fluid">
             <h3>Detail Data IPK</h3>
-            <form action="/ipk/{{ $ipk->id }}" method="POST">
+            <form action="/ipk/{{ $ipk->nim }}" method="POST">
                 @csrf
                 <div class="card mb-3 col-lg-8" style="max-width: 540px;">
                     <div class="row no-gutters">

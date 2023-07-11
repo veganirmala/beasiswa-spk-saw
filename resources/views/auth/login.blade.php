@@ -4,7 +4,7 @@
     <div class="toast.container">
         <div class="login-box">
             <div class="login-logo">
-                <a href="{{ route('login') }}"><b>SPK</b> Beasiswa</a>
+                <a href="{{ route('login') }}"><b>DSS</b> Beasiswa</a>
             </div>
             <div class="card">
                 <div class="card-body login-card-body">
