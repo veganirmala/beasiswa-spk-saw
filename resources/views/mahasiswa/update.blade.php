@@ -131,7 +131,7 @@
                                 <label for="penghasilanayah">Penghasilan Ayah<span style="color:red;">*</span></label>
                                 <input type="text" name="penghasilanayah"
                                     class="form-control @error('penghasilanayah') is-invalid @enderror"
-                                    id="penghasilanayah" placeholder="Penghasilan Ayah" required
+                                    id="penghasilanayah" onkeyup="sum();" placeholder="Penghasilan Ayah" required
                                     value="{{ old('penghasilanayah', $mahasiswa->penghasilanayah) }}">
                                 @error('penghasilanayah')
                                     <div class="invalid-feedback">
@@ -173,7 +173,7 @@
                                 <label for="penghasilanibu">Penghasilan Ibu<span style="color:red;">*</span></label>
                                 <input type="text" name="penghasilanibu"
                                     class="form-control @error('penghasilanibu') is-invalid @enderror"
-                                    id="penghasilanibu" placeholder="Penghasilan Ibu" required
+                                    id="penghasilanibu" onkeyup="sum();" placeholder="Penghasilan Ibu" required
                                     value="{{ old('penghasilanibu', $mahasiswa->penghasilanibu) }}">
                                 @error('penghasilanibu')
                                     <div class="invalid-feedback">
@@ -198,7 +198,7 @@
                                         style="color:red;">*</span></label>
                                 <input type="text" name="totalpenghasilan"
                                     class="form-control @error('totalpenghasilan') is-invalid @enderror"
-                                    id="totalpenghasilan" placeholder="Total Penghasilan Orang Tua" required
+                                    id="totalpenghasilan" placeholder="Total Penghasilan Orang Tua" readonly
                                     value="{{ old('totalpenghasilan', $mahasiswa->totalpenghasilan) }}">
                                 @error('totalpenghasilan')
                                     <div class="invalid-feedback">
@@ -288,7 +288,19 @@
     <!-- /.content -->
 </div>
 
-<script type="text/javascript">
+<script>
+    function sum() {
+        var txtFirstNumberValue = document.getElementById('penghasilanayah').value;
+        var txtSecondNumberValue = document.getElementById('penghasilanibu').value;
+        var result = parseInt(txtFirstNumberValue) + parseInt(txtSecondNumberValue);
+        if (!isNaN(result)) {
+            document.getElementById('totalpenghasilan').value = result;
+        }
+    }
+</script>
+
+
+{{-- <script type="text/javascript">
     var rupiah = document.getElementById('totalpenghasilan');
     totalpenghasilan.addEventListener('keyup', function(e) {
         //tambahkan 'Rp.' pada saat form di ketik
@@ -367,6 +379,6 @@
         rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
         return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
     }
-</script>
+</script> --}}
 
 @include('template.footer')

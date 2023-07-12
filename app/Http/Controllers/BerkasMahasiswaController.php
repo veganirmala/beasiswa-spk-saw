@@ -28,9 +28,9 @@ class BerkasMahasiswaController extends Controller
     {
 
         //file yang diupload akan tersimpan di folder post images
-        return $request->file('dokumenkhs')->store('post-images');
-        return $request->file('dokumenpenghasilan')->store('post-images');
-        return $request->file('dokumennilaiprestasi')->store('post-images');
+        $request->file('dokumenkhs')->store('post-images');
+        $request->file('dokumenpenghasilan')->store('post-images');
+        $request->file('dokumennilaiprestasi')->store('post-images');
 
         //membuat form validasi
         $validatedData = $request->validate([

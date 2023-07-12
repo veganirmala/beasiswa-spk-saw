@@ -2,23 +2,6 @@
 @include('template.sidebar')
 @include('template.navbar')
 
-<script>
-    function startCalc() {
-        interval = setInterval(“calc()”, 1);
-    }
-
-    function calc() {
-        one = document.autoSumForm.penghasilanayah.value;
-        two = document.autoSumForm.penghasilanibu.value;
-        document.autoSumForm.totalpenghasilan.value = one + two;
-    }
-
-    function stopCalc() {
-        clearInterval(interval);
-    }
-</script>
-
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Main content -->
@@ -199,7 +182,8 @@
                             <div class="form-group">
                                 <label for="totalpenghasilan">Total Penghasilan Orang Tua<span
                                         style="color:red;">*</span></label>
-                                <input type="text" class="form-control" id="totalpenghasilan">
+                                <input type="text" class="form-control" id="totalpenghasilan"
+                                    name="totalpenghasilan" placeholder="Total Penghasilan Orang Tua" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="namabank">Nama BANK<span style="color:red;">*</span></label>
@@ -274,25 +258,22 @@
             </form>
         </div>
     </section>
-    <script type="text/javascript">
-        function sum() {
-            var penghasilanayah = document.getElementById('penghasilanayah').value;
-            var penghasilanibu = document.getElementById('penghasilanibu').value;
-            totalpenghasilan.addEventListener('keyup', function(e) {
-                var result = parseInt(penghasilanayah) + parseInt(penghasilanibu);
-                if (!isNaN(result)) {
-                    document.getElementById('totalpenghasilan').value = result;
-                }
-            });
-        }
-    </script>
+
     <!-- /.content -->
 </div>
 
+<script>
+    function sum() {
+        var txtFirstNumberValue = document.getElementById('penghasilanayah').value;
+        var txtSecondNumberValue = document.getElementById('penghasilanibu').value;
+        var result = parseInt(txtFirstNumberValue) + parseInt(txtSecondNumberValue);
+        if (!isNaN(result)) {
+            document.getElementById('totalpenghasilan').value = result;
+        }
+    }
+</script>
 
-
-
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     var rupiah = document.getElementById('totalpenghasilan');
     totalpenghasilan.addEventListener('keyup', function(e) {
         //tambahkan 'Rp.' pada saat form di ketik
@@ -371,5 +352,5 @@
         rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
         return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
     }
-</script>
+</script> --}}
 @include('template.footer')
