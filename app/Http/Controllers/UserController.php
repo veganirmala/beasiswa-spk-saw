@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -67,6 +68,13 @@ class UserController extends Controller
         return view('user/update', compact('user'));
     }
 
+    public function editProfile()
+    {
+        $id = Auth::id();
+        $user = User::find($id);
+        return view('user/update', compact('user'));
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -75,8 +83,6 @@ class UserController extends Controller
         //membuat form validasi
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required',
-            'password' => 'required',
             'jk' => 'required',
             'telp' => 'required',
             'alamat' => 'required'
@@ -90,6 +96,27 @@ class UserController extends Controller
         $user->update($validatedData);
 
         return redirect('/user')->with('success', 'Data User Berhasil diedit !');
+    }
+
+    public function updateProfile(Request $request)
+    {
+
+        $id = Auth::id();
+        $user = User::find($id);
+        //membuat form validasi
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'jk' => 'required',
+            'telp' => 'required',
+            'alamat' => 'required'
+        ]);
+        //proses enkripsi password
+        // $validatedData['password'] = bcrypt($validatedData['password']);
+
+        //mengambil data yg akan diupdate
+        $user->update($validatedData);
+
+        return redirect('/dashboard')->with('success', 'Profil Berhasil diedit !');
     }
 
     /**

@@ -43,11 +43,21 @@ Route::group(['middleware' => ['guest']], function () {
     Route::post('/registrasi', [RegisterController::class, 'store'])->name('register-process');
 });
 
-Route::group(['middleware' => ['auth']], function () {
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', [Dashboard::class, 'index']);
+
+    Route::get('edit-profile', [UserController::class, 'editProfile']);
+    Route::put('update-profile', [UserController::class, 'updateProfile']);
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::get('/dashboard', [Dashboard::class, 'index']);
+    Route::get('/berkasmahasiswa', [BerkasMahasiswaController::class, 'index']);
+    Route::get('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'create']);
+    Route::post('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'store']);
+});
+
+// Route::middleware(['auth', 'role:admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::get('/user', [UserController::class, 'index']);
     Route::get('/user/create', [UserController::class, 'create']);
@@ -56,7 +66,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/user/{id}/show', [UserController::class, 'show']);
     Route::put('/user/{id}', [UserController::class, 'update']);
     Route::delete('/user/{id}', [UserController::class, 'destroy']);
-    //Route::resource('/user', UserController::class);
 
     Route::get('/jurusan', [JurusanController::class, 'index']);
     Route::get('/jurusan/create', [JurusanController::class, 'create']);
@@ -133,8 +142,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/rekapanbeasiswa', [RekapanBeasiswaController::class, 'index']);
     Route::post('/rekapanbeasiswa/sinkron', [RekapanBeasiswaController::class, 'rekap_sinkron']);
     Route::get('/rekapanbeasiswa/export', [RekapanBeasiswaController::class, 'export'])->name('rekap.export');
-
-    Route::get('/berkasmahasiswa', [BerkasMahasiswaController::class, 'index']);
-    Route::get('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'create']);
-    Route::post('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'store']);
 });
