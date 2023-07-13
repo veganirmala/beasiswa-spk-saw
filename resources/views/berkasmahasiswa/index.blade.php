@@ -67,6 +67,8 @@
                                         <td>
                                             <a href="" class="btn btn-success" title="Verifikasi Admin"><i
                                                     class="fas fa-info-circle"></i></a>
+                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/show" class="btn btn-danger"
+                                                title="View Data"><i class="fas fa-edit"></i></a>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>

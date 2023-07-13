@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BerkasMahasiswa;
 use Illuminate\Http\Request;
+use PDF;
 
 class BerkasMahasiswaController extends Controller
 {
@@ -66,5 +67,21 @@ class BerkasMahasiswaController extends Controller
         // Perform any other necessary database operations or tasks
 
         return redirect('/berkasmahasiswa')->with('success', 'Data Berkas Mahasiswa Berhasil ditambahkan !');
+    }
+
+    public function show($nim)
+    {
+        $berkasmahasiswa =
+            BerkasMahasiswa::join('mahasiswa', 'berkasmahasiswa.nim', '=', 'mahasiswa.nim')
+            ->where('berkasmahasiswa.nim', $nim)
+            ->select('berkasmahasiswa.*', 'mahasiswa.*')
+            ->first();
+
+        $dokumenkhs = PDF::loadView($nim . '_dokumenkhs.pdf', compact('berkasmahasiswa'));
+        $dokumenkhs->setPaper('A4', 'potrait');
+        $dokumenkhs->stream($nim . '_dokumenkhs.pdf');
+
+
+        return view('berkasmahasiswa/show', compact('dokumenkhs'));
     }
 }
