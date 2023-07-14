@@ -17,8 +17,11 @@
                                 <h4 class="card-title">NIM</h4>
                                 <p class="card-text"><?= $berkasmahasiswa['nim'] ?></p>
                                 <h4 class="card-title">Dokumen KHS</h4>
+                                <img src="{{ $berkasmahasiswa['dokumenkhs'] }}" alt="" height="128">
                                 <h4 class="card-title">Dokumen Penghasilan Orang Tua</h4>
+                                <p class="card-text"><?= $berkasmahasiswa['dokumenpenghasilan'] ?></p>
                                 <h4 class="card-title">Dokumen Nilai Prestasi</h4>
+                                <p class="card-text"><?= $berkasmahasiswa['dokumennilaiprestasi'] ?></p>
                             </div>
                         </div>
                     </div>

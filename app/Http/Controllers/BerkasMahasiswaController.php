@@ -77,11 +77,11 @@ class BerkasMahasiswaController extends Controller
             ->select('berkasmahasiswa.*', 'mahasiswa.*')
             ->first();
 
-        $dokumenkhs = PDF::loadView($nim . '_dokumenkhs.pdf', compact('berkasmahasiswa'));
-        $dokumenkhs->setPaper('A4', 'potrait');
-        $dokumenkhs->stream($nim . '_dokumenkhs.pdf');
+        $file = storage_path('app/public/') . $nim . '_dokumenkhs.pdf';
+        $dokumenkhs = ['Content-Type' => 'dokumenkhs/pdf'];
+        return response()->download($file, 'Test File', $dokumenkhs, 'inline');
 
 
-        return view('berkasmahasiswa/show', compact('dokumenkhs'));
+        return view('berkasmahasiswa/show', data: compact('berkasmahasiswa'));
     }
 }
