@@ -7,7 +7,7 @@
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Home</a>
+                <a href="/dashboard" class="nav-link">Home</a>
             </li>
         </ul>
         <!-- Right navbar links -->
@@ -49,7 +49,7 @@
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href={{ "/edit-profile" }}>
+                    <a class="dropdown-item" href={{ '/edit-profile' }}>
                         <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
                         Edit Profile
                     </a>

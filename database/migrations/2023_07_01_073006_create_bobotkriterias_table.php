@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('bobotkriteria', function (Blueprint $table) {
             $table->id();
-            $table->string('idtahunusulan');
-            $table->string('idjenisbeasiswa');
+            //$table->string('idtahunusulan');
+            $table->unsignedBigInteger('idtahunusulan');
+            $table->foreign('idtahunusulan')->references('id')->on('tahunusulan');
+            //$table->string('idjenisbeasiswa');
+            $table->unsignedBigInteger('idjenisbeasiswa');
+            $table->foreign('idjenisbeasiswa')->references('id')->on('jenisbeasiswa');
             $table->string('bobotkriteriaipk');
             $table->string('bobotkriteriaprestasi');
             $table->string('bobotkriteriapenghasilan');
