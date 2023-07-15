@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('ipk', function (Blueprint $table) {
             $table->id();
             $table->integer('nim');
+            // $table->unsignedBigInteger('nim');
+            // $table->foreign('nim')->references('nim')->on('mahasiswa');
             $table->float('nilai_ipk');
             $table->timestamps();
         });

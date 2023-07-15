@@ -78,7 +78,7 @@
                       </a>
                   </li>
                   <li class="nav-item">
-                      <a href="#" class="nav-link">
+                      <a href="/dashboard" class="nav-link">
                           <i class="nav-icon far fa fa-users"></i>
                           <p>
                               Mahasiswa
@@ -113,20 +113,6 @@
                           </p>
                       </a>
                   </li>
-                  {{-- <li class="nav-item">
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                          @csrf
-                      </form>
-                      <a href="#"
-                          onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                          class="nav-link">
-                          <i class="nav-icon far fa fa-sign-out-alt"></i>
-                          <p>
-                              Logout
-                          </p>
-                      </a>
-                  </li> --}}
-
                   </li>
               </ul>
           </nav>

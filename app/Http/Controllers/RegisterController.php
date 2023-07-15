@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -25,7 +26,13 @@ class RegisterController extends Controller
         $validatedData['password'] = bcrypt($validatedData['password']);
 
         //proses insert ke database
-        User::create($validatedData);
+        $user = User::create($validatedData);
+
+        $defaultRole = Role::where('name', 'mahasiswa')->first();
+
+        if ($defaultRole) {
+            $user->assignRole($defaultRole);
+        }
 
         //pindah ke form login dengan message success
         return redirect('/login')->with('success', 'Registration successfull! Please login');

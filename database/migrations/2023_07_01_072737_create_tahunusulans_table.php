@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('tahunusulan', function (Blueprint $table) {
             $table->id();
-            $table->string('idjenisbeasiswa');
+            //$table->string('idjenisbeasiswa');
+            $table->unsignedBigInteger('idjenisbeasiswa');
+            $table->foreign('idjenisbeasiswa')->references('id')->on('jenisbeasiswa');
             $table->string('tahun');
             $table->string('kuota');
+            $table->string('status');
             $table->timestamps();
         });
     }

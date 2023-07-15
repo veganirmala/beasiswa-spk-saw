@@ -11,11 +11,6 @@
                 <div class="col-sm-6">
                     <h1 class="m-0">Data Berkas Mahasiswa</h1>
                 </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    </ol>
-                </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
@@ -67,6 +62,8 @@
                                         <td>
                                             <a href="" class="btn btn-success" title="Verifikasi Admin"><i
                                                     class="fas fa-info-circle"></i></a>
+                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/show" class="btn btn-danger"
+                                                title="View Data"><i class="fas fa-edit"></i></a>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>

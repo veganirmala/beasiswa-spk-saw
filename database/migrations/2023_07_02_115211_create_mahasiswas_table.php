@@ -16,7 +16,9 @@ return new class extends Migration
             $table->integer('nim');
             $table->string('nama');
             $table->string('jk');
-            $table->integer('idprodi');
+            //$table->integer('idprodi');
+            $table->unsignedBigInteger('idprodi');
+            $table->foreign('idprodi')->references('id')->on('prodi');
             $table->string('email');
             $table->string('notelp');
             $table->string('alamat');
@@ -31,7 +33,9 @@ return new class extends Migration
             $table->string('namabank');
             $table->string('norek');
             $table->integer('semester');
-            $table->integer('idtahunusulan');
+            //$table->integer('idtahunusulan');
+            $table->unsignedBigInteger('idtahunusulan');
+            $table->foreign('idtahunusulan')->references('id')->on('tahunusulan');
             $table->timestamps();
         });
     }

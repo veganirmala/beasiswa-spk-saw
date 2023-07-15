@@ -48,7 +48,7 @@ class IPKController extends Controller
 
         IPK::create($validatedData);
 
-        return redirect('/ipk')->with('success', 'Data ipk Berhasil ditambahkan !');
+        return redirect('/ipk')->with('success', 'Data IPK Berhasil ditambahkan !');
     }
 
     /**

@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('nilaiprestasi', function (Blueprint $table) {
             $table->id();
             $table->integer('nim');
-            $table->integer('id_jenis_prestasi');
-            $table->integer('skor');
-            $table->float('total');  
-            $table->integer('id_usulan');  
-            $table->integer('id_jenis_beasiswa');  
+            // $table->unsignedBigInteger('nim');
+            // $table->foreign('nim')->references('nim')->on('mahasiswa');
+            $table->float('total');
+            $table->unsignedBigInteger('id_usulan');
+            $table->foreign('id_usulan')->references('id')->on('tahunusulan');
+            $table->unsignedBigInteger('id_jenis_beasiswa');
+            $table->foreign('id_jenis_beasiswa')->references('id')->on('jenisbeasiswa');
             $table->timestamps();
         });
     }

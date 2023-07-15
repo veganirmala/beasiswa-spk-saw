@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group">
                     <label for="dokumenkhs">Dokumen KHS<span style="color:red;">*</span></label>
-                    <input class="form-control" name="dokumenkhs" id="dokumenkhs"
+                    <input name="dokumenkhs" id="dokumenkhs"
                         class="form-control @error('dokumenkhs') is-invalid @enderror" type="file" id="formFile">
                     @error('dokumenkhs')
                         <div class="invalid-feedback">
@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <label for="dokumenpenghasilan">Dokumen Penghasilan Orang Tua<span
                             style="color:red;">*</span></label>
-                    <input class="form-control" name="dokumenpenghasilan" id="dokumenpenghasilan"
+                    <input name="dokumenpenghasilan" id="dokumenpenghasilan"
                         class="form-control @error('dokumenpenghasilan') is-invalid @enderror" type="file"
                         id="formFile">
                     @error('dokumenpenghasilan')
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                     <label for="dokumennilaiprestasi">Dokumen Nilai Prestasi<span style="color:red;">*</span></label>
-                    <input class="form-control" name="dokumennilaiprestasi" id="dokumennilaiprestasi"
+                    <input name="dokumennilaiprestasi" id="dokumennilaiprestasi"
                         class="form-control @error('dokumennilaiprestasi') is-invalid @enderror" type="file"
                         id="formFileMultiple">
                     @error('dokumennilaiprestasi')

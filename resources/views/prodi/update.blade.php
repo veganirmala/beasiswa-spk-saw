@@ -28,7 +28,7 @@
                         aria-hidden="true" name="jenjang" id="jenjang" value="{{ old('jenjang') }}">
                         <option value="<?= $prodi['jenjang'] ?>"><?= $prodi['jenjang'] ?></option>
                         <option value="D3">D3</option>
-                        <option value="S1">S1</option>
+                        <option value="D4">D4</option>
                     </select>
                     @error('jenjang')
                         <div class="invalid-feedback">

@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('namaprodi');
             $table->string('jenjang');
-            $table->integer('idjurusan');
+            //$table->bigInteger('idjurusan');
+            $table->unsignedBigInteger('idjurusan');
+            $table->foreign('idjurusan')->references('id')->on('jurusan');
             $table->timestamps();
         });
     }

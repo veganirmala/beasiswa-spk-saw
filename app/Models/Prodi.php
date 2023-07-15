@@ -10,6 +10,8 @@ class Prodi extends Model
     use HasFactory;
 
     protected $table = "prodi";
+    protected $primaryKey = "id";
+    protected $foreignKey = "idjurusan";
     protected $guarded = ['id'];
 
     public function jurusan()
