@@ -9,6 +9,7 @@
         <div class="container-fluid">
             <h3>Detail Data Berkas Mahasiswa</h3>
             <form action="/berkasmahasiswa/{{ $berkasmahasiswa->nim }}" method="POST">
+                @method('put')
                 @csrf
                 <div class="card mb-3 col-lg-8" style="max-width: 540px;">
                     <div class="row no-gutters">
@@ -17,7 +18,8 @@
                                 <h4 class="card-title">NIM</h4>
                                 <p class="card-text"><?= $berkasmahasiswa['nim'] ?></p>
                                 <h4 class="card-title">Dokumen KHS</h4>
-                                <img src="{{ $berkasmahasiswa['dokumenkhs'] }}" alt="" height="128">
+                                {{-- <iframe src="/assets/{{ $berkasmahasiswa->dokumenkhs }}" frameborder="0"></iframe> --}}
+                                <iframe src="public/storage/uploads/1815323055_dokumenkhs.pdf" frameborder="0"></iframe>
                                 <h4 class="card-title">Dokumen Penghasilan Orang Tua</h4>
                                 <p class="card-text"><?= $berkasmahasiswa['dokumenpenghasilan'] ?></p>
                                 <h4 class="card-title">Dokumen Nilai Prestasi</h4>
@@ -27,6 +29,9 @@
                     </div>
                 </div>
             </form>
+            <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
+                Simpan
+            </button>
             <button type="button" value="Kembali" onClick="history.go(-1)" class="btn btn-primary btn-user">
                 Kembali
             </button>

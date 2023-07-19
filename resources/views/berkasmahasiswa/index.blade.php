@@ -42,6 +42,8 @@
                                         <th>DOKUMEN KHS</th>
                                         <th>DOKUMEN PENGHASILAN ORANG TUA</th>
                                         <th>DOKUMEN NILAI PRESTASI</th>
+                                        <th>STATUS</th>
+                                        <th>KETERANGAN</th>
                                         <th>ACTION</th>
                                     </tr>
                                 </thead>
@@ -59,11 +61,11 @@
                                         <td>{{ $berkas->dokumenkhs }}</td>
                                         <td>{{ $berkas->dokumenpenghasilan }}</td>
                                         <td>{{ $berkas->dokumennilaiprestasi }}</td>
+                                        <td>{{ $berkas->status }}</td>
+                                        <td>{{ $berkas->keterangan }}</td>
                                         <td>
-                                            <a href="" class="btn btn-success" title="Verifikasi Admin"><i
-                                                    class="fas fa-info-circle"></i></a>
-                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/show" class="btn btn-danger"
-                                                title="View Data"><i class="fas fa-edit"></i></a>
+                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/show">View</a>
+                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/edit">Edit</a>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>

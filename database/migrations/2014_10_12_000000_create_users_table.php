@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('alamat')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->string('jk')->nullable();
+            $table->string('notelp')->nullable();
+            $table->string('alamat')->nullable();
         });
     }
 
