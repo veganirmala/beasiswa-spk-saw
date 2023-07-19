@@ -13,6 +13,11 @@ class BerkasMahasiswa extends Model
     protected $primaryKey = "id";
     protected $fillable = [
         'id', 'nim', 'dokumenkhs',
-        'dokumenpenghasilan', 'dokumennilaiprestasi'
+        'dokumenpenghasilan', 'dokumennilaiprestasi', 'status', 'keterangan'
     ];
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(Mahasiswa::class);
+    }
 }

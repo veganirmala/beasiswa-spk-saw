@@ -55,6 +55,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'create']);
     Route::post('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'store']);
     Route::get('/berkasmahasiswa/{nim}/show', [BerkasMahasiswaController::class, 'show']);
+    Route::get('/berkasmahasiswa/{nim}/edit', [BerkasMahasiswaController::class, 'edit']);
+    Route::put('/berkasmahasiswa/{nim}', [BerkasMahasiswaController::class, 'update']);
 });
 
 // Route::middleware(['auth', 'role:admin'])->group(function () {
