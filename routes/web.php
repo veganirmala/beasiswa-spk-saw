@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('/berkasmahasiswa', [BerkasMahasiswaController::class, 'index']);
+    Route::get('/berkasmahasiswa/detail', [BerkasMahasiswaController::class, 'detail']);
     Route::get('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'create']);
     Route::post('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'store']);
     Route::get('/berkasmahasiswa/{nim}/show', [BerkasMahasiswaController::class, 'show']);

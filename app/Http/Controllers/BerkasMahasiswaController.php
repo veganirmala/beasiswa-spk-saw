@@ -126,4 +126,13 @@ class BerkasMahasiswaController extends Controller
 
         return redirect('/berkasmahasiswa')->with('success', 'Data Berkas Mahasiswa Berhasil diedit !');
     }
+
+
+    public function detail()
+    {
+        $berkasmahasiswa = BerkasMahasiswa::latest()->paginate(5);
+
+        //tampilkan halaman index
+        return view('berkasmahasiswa/detail', data: compact('berkasmahasiswa'));
+    }
 }
