@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -59,13 +61,55 @@ class UserController extends Controller
         return view('user/show', compact('user'));
     }
 
+    public function assignRole(Request $request, User $user)
+    {
+        if ($user->hasRole($request->role)) {
+            return back()->with('message', 'Role exists.');
+        }
+
+        $user->assignRole($request->role);
+        return back()->with('message', 'Role assigned.');
+    }
+
+    public function removeRole(User $user, Role $role)
+    {
+        if ($user->hasRole($role)) {
+            $user->removeRole($role);
+            return back()->with('message', 'Role removed.');
+        }
+
+        return back()->with('message', 'Role not exists.');
+    }
+
+    public function givePermission(Request $request, User $user)
+    {
+        if ($user->hasPermissionTo($request->permission)) {
+            return back()->with('message', 'Permission exists.');
+        }
+        $user->givePermissionTo($request->permission);
+        return back()->with('message', 'Permission added.');
+    }
+
+    public function revokePermission(User $user, Permission $permission)
+    {
+        if ($user->hasPermissionTo($permission)) {
+            $user->revokePermissionTo($permission);
+            return back()->with('message', 'Permission revoked.');
+        }
+        return back()->with('message', 'Permission does not exists.');
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
         $user = User::find($id);
-        return view('user/update', compact('user'));
+
+        $roles = Role::all();
+        $permissions = Permission::all();
+
+        return view('user/update', compact('user', 'roles', 'permissions'));
     }
 
     public function editProfile()

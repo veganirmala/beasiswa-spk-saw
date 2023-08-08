@@ -18,6 +18,8 @@ use App\Http\Controllers\IPKController;
 use App\Http\Controllers\NilaiPrestasiController;
 use App\Http\Controllers\RekapanBeasiswaController;
 use App\Http\Controllers\BerkasMahasiswaController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,16 +62,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/berkasmahasiswa/{nim}', [BerkasMahasiswaController::class, 'update']);
 });
 
-// Route::middleware(['auth', 'role:admin'])->group(function () {
-Route::middleware(['auth'])->group(function () {
-
-    Route::get('/user', [UserController::class, 'index']);
-    Route::get('/user/create', [UserController::class, 'create']);
-    Route::post('/user/create', [UserController::class, 'store']);
-    Route::get('/user/{id}/edit', [UserController::class, 'edit']);
-    Route::get('/user/{id}/show', [UserController::class, 'show']);
-    Route::put('/user/{id}', [UserController::class, 'update']);
-    Route::delete('/user/{id}', [UserController::class, 'destroy']);
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/rekapanbeasiswa', [RekapanBeasiswaController::class, 'index']);
+    Route::post('/rekapanbeasiswa/sinkron', [RekapanBeasiswaController::class, 'rekap_sinkron']);
+    Route::get('/rekapanbeasiswa/export', [RekapanBeasiswaController::class, 'export'])->name('rekap.export');
 
     Route::get('/jurusan', [JurusanController::class, 'index']);
     Route::get('/jurusan/create', [JurusanController::class, 'create']);
@@ -143,7 +139,37 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/nilaiprestasi/{nim}', [NilaiPrestasiController::class, 'update']);
     Route::delete('/nilaiprestasi/{nim}', [NilaiPrestasiController::class, 'destroy']);
 
-    Route::get('/rekapanbeasiswa', [RekapanBeasiswaController::class, 'index']);
-    Route::post('/rekapanbeasiswa/sinkron', [RekapanBeasiswaController::class, 'rekap_sinkron']);
-    Route::get('/rekapanbeasiswa/export', [RekapanBeasiswaController::class, 'export'])->name('rekap.export');
+    Route::get('/role', [RoleController::class, 'index']);
+    Route::get('/role/create', [RoleController::class, 'create']);
+    Route::post('/role/create', [RoleController::class, 'store']);
+    Route::get('/role/{id}/edit', [RoleController::class, 'edit']);
+    Route::put('/role/{id}', [RoleController::class, 'update']);
+    Route::delete('/role/{id}', [RoleController::class, 'destroy']);
+
+    Route::post('/roles/{role}/permissions', [RoleController::class, 'givePermission'])->name('roles.permissions');
+    Route::delete('/roles/{role}/permissions/{permission}', [RoleController::class, 'revokePermission'])->name('roles.permissions.revoke');
+
+    Route::get('/permission', [PermissionController::class, 'index']);
+    Route::get('/permission/create', [PermissionController::class, 'create']);
+    Route::post('/permission/create', [PermissionController::class, 'store']);
+    Route::get('/permission/{id}/edit', [PermissionController::class, 'edit']);
+    Route::put('/permission/{id}', [PermissionController::class, 'update']);
+    Route::delete('/permission/{id}', [PermissionController::class, 'destroy']);
+
+    Route::post('/permissions/{permission}/roles', [PermissionController::class, 'assignRole'])->name('permissions.roles');
+    Route::delete('/permissions/{permission}/roles/{role}', [PermissionController::class, 'removeRole'])->name('permissions.roles.remove');
+
+    Route::get('/user', [UserController::class, 'index']);
+    Route::get('/user/create', [UserController::class, 'create']);
+    Route::post('/user/create', [UserController::class, 'store']);
+    Route::get('/user/{id}/edit', [UserController::class, 'edit']);
+    Route::get('/user/{id}/show', [UserController::class, 'show']);
+    Route::put('/user/{id}', [UserController::class, 'update']);
+    Route::delete('/user/{id}', [UserController::class, 'destroy']);
+
+    Route::post('/users/{user}/roles', [UserController::class, 'assignRole'])->name('users.roles');
+    Route::delete('/users/{user}/roles/{role}', [UserController::class, 'removeRole'])->name('users.roles.remove');
+
+    Route::post('/users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
+    Route::delete('/users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
 });
