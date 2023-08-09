@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data Berkas Mahasiswa</h1>
+                    <h1 class="m-0">Data Role</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -30,42 +30,39 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <a href="/berkasmahasiswa/create" class="btn btn-primary" title="Tambah Data"><i
-                                class="fas fa-plus"></i> Tambah</a>
+                        <a href="/role/create" class="btn btn-primary" title="Tambah Data"><i class="fas fa-plus"></i>
+                            Tambah</a>
                         <p></p>
                         <div class="table-responsive">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>NIM</th>
-                                        <th>DOKUMEN KHS</th>
-                                        <th>DOKUMEN PENGHASILAN ORANG TUA</th>
-                                        <th>DOKUMEN NILAI PRESTASI</th>
-                                        <th>STATUS</th>
-                                        <th>KETERANGAN</th>
+                                        <th>NAMA</th>
                                         <th>ACTION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if (empty($berkasmahasiswa)) : ?>
+                                    <?php if (empty($roles)) : ?>
                                     <div class="alert alert-danger" role="alert">
-                                        Data Berkas Mahasiswa tidak berhasil ditemukan
+                                        Data role tidak berhasil ditemukan
                                     </div>
                                     <?php endif; ?>
                                     <?php $i = 1; ?>
-                                    <?php foreach ($berkasmahasiswa as $berkas) : ?>
+                                    <?php foreach ($roles as $role) : ?>
                                     <tr>
                                         <th scope="row"><?= $i ?></th>
-                                        <td>{{ $berkas->nim }}</td>
-                                        <td>{{ $berkas->dokumenkhs }}</td>
-                                        <td>{{ $berkas->dokumenpenghasilan }}</td>
-                                        <td>{{ $berkas->dokumennilaiprestasi }}</td>
-                                        <td>{{ $berkas->status }}</td>
-                                        <td>{{ $berkas->keterangan }}</td>
+                                        <td><?= $role['name'] ?></td>
                                         <td>
-                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/show">View</a>
-                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/edit">Edit</a>
+                                            <a href="/role/{{ $role->id }}/edit" class="btn btn-danger"
+                                                title="Edit Data"><i class="fas fa-edit"></i></a>
+                                            <form action="/role/{{ $role->id }}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-warning" title="Delete Data"
+                                                    onclick="return confirm('Apakah anda akan menghapus data ini?');"><i
+                                                        class="fas fa-trash-alt"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>

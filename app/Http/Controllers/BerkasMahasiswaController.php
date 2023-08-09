@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\BerkasMahasiswa;
+//use App\Controller\Storage;
 use Illuminate\Http\Request;
-use PDF;
+use Barryvdh\DomPDF\Facade;
+use Illuminate\Support\Facades\Storage;
 
 class BerkasMahasiswaController extends Controller
 {
@@ -77,11 +79,60 @@ class BerkasMahasiswaController extends Controller
             ->select('berkasmahasiswa.*', 'mahasiswa.*')
             ->first();
 
-        $file = storage_path('app/public/') . $nim . '_dokumenkhs.pdf';
-        $dokumenkhs = ['Content-Type' => 'dokumenkhs/pdf'];
-        return response()->download($file, 'Test File', $dokumenkhs, 'inline');
+        // $file = storage_path('app/public/uploads/') . $nim . '_dokumenkhs.pdf';
+        // $dokumenkhs = ['Content-Type' => 'dokumenkhs/pdf'];
+        // return response()->stream($file, 'Test File', $dokumenkhs);
+
+        //$path = storage_path('app/public/uploads/$nim . _dokumenkhs.pdf');
+        // $path = storage_path('public/storage/uploads/1815323055_dokumenkhs.pdf');
+        // $filePath = storage_path('public/storage/uploads/1815323055_dokumenkhs.pdf');
+
+        // if (!Storage::exists($filePath)) {
+        //     abort(404);
+        // }
+
+        // $headers = [
+        //     'Content-Type' => 'application/pdf',
+        // ];
+
+        // return response()->file($filePath, $headers);
 
 
         return view('berkasmahasiswa/show', data: compact('berkasmahasiswa'));
+    }
+
+    public function edit($nim)
+    {
+        $berkasmahasiswa =
+            BerkasMahasiswa::join('mahasiswa', 'berkasmahasiswa.nim', '=', 'mahasiswa.nim')
+            ->where('berkasmahasiswa.nim', $nim)
+            ->select('berkasmahasiswa.*', 'mahasiswa.*')
+            ->first();;
+
+        return view('berkasmahasiswa/update', data: compact('berkasmahasiswa'));
+    }
+
+    public function update(Request $request, $nim)
+    {
+        //membuat form validasi
+        $validatedData = $request->validate([
+            'status' => 'required',
+            'keterangan' => 'required'
+        ]);
+
+        //mengambil data yg akan diupdate
+        $berkasmahasiswa = BerkasMahasiswa::where('nim', $nim)->first();
+        $berkasmahasiswa->update($validatedData);
+
+        return redirect('/berkasmahasiswa')->with('success', 'Data Berkas Mahasiswa Berhasil diedit !');
+    }
+
+
+    public function detail()
+    {
+        $berkasmahasiswa = BerkasMahasiswa::latest()->paginate(5);
+
+        //tampilkan halaman index
+        return view('berkasmahasiswa/detail', data: compact('berkasmahasiswa'));
     }
 }

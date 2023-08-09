@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('dokumenkhs')->nullable();
             $table->string('dokumenpenghasilan')->nullable();
             $table->string('dokumennilaiprestasi')->nullable();
+            $table->string('keterangan')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

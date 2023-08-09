@@ -1,3 +1,20 @@
+## System Requirements
+- PHP >= 8.1
+- Composer
+- MySQL >= 8.0
+
+## Installation
+1. Clone the repository
+2. Run `composer install`
+3. Create a database
+4. Copy `.env.example` to `.env`
+5. Update the `.env` file with your database credentials
+6. Run `php artisan key:generate`
+7. Run `php artisan migrate`
+8. Run `php artisan db:seed --class=RoleSeeder`
+9. Run `php artisan db:seed --class=UserSeeder`
+10. Run `php artisan serve`
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

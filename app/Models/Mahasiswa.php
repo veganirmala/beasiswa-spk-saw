@@ -37,4 +37,9 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(NilaiPrestasi::class);
     }
+
+    public function berkasmahasiswa()
+    {
+        return $this->hasMany(BerkasMahasiswa::class);
+    }
 }
