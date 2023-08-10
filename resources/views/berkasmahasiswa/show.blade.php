@@ -2,39 +2,56 @@
 @include('template.sidebar')
 @include('template.navbar')
 
+{{-- @dd($file_path) --}}
 <!-- Content Wrapper. Contains page content -->
+
+{{-- @dd($file_path->dokumenkhs) --}}
 <div class="content-wrapper">
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
             <h3>Detail Data Berkas Mahasiswa</h3>
-            <form action="/berkasmahasiswa/{{ $berkasmahasiswa->nim }}" method="POST">
-                @method('put')
-                @csrf
-                <div class="card mb-3 col-lg-8" style="max-width: 540px;">
+            @if ($berkasmahasiswa == null)
+                <p>Data tidak ditemukan. Data mahasiswa tersebut tidak ada.</p>
+            @else
+                <div class="card mb-3 col-lg-12" style="max-width: 768px;">
                     <div class="row no-gutters">
-                        <div class="col-md-8">
-                            <div class="card-body">
+                        <div class="col-md-12">
+                            <div class="m-4">
                                 <h4 class="card-title">NIM</h4>
                                 <p class="card-text"><?= $berkasmahasiswa['nim'] ?></p>
-                                <h4 class="card-title">Dokumen KHS</h4>
-                                {{-- <iframe src="/assets/{{ $berkasmahasiswa->dokumenkhs }}" frameborder="0"></iframe> --}}
-                                <iframe src="public/storage/uploads/1815323055_dokumenkhs.pdf" frameborder="0"></iframe>
-                                <h4 class="card-title">Dokumen Penghasilan Orang Tua</h4>
-                                <p class="card-text"><?= $berkasmahasiswa['dokumenpenghasilan'] ?></p>
-                                <h4 class="card-title">Dokumen Nilai Prestasi</h4>
-                                <p class="card-text"><?= $berkasmahasiswa['dokumennilaiprestasi'] ?></p>
+                            </div>
+                            <div class="card-body" style="display: flex; flex-direction:column; gap:16px;">
+                                <div>
+                                    <div class="d-flex justify-content-between">
+                                        <h4 class="card-title">Dokumen KHS</h4>
+                                        <a href="{{ $file_path->dokumenkhs }}" target="_blank">Open file</a>
+                                    </div>
+                                    <iframe src="{{ $file_path->dokumenkhs }}" frameborder="0" width="100%"
+                                        height="480px"></iframe>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between">
+                                        <h4 class="card-title">Dokumen Penghasilan Orang Tua</h4>
+                                        <a href="{{ $file_path->dokumenpenghasilan }}" target="_blank">Open file</a>
+                                    </div>
+                                    <iframe src="{{ $file_path->dokumenpenghasilan }}" frameborder="0" width="100%"
+                                        height="480px"></iframe>
+                                </div>
+                                <div>
+                                    <div class="d-flex justify-content-between">
+                                        <h4 class="card-title">Dokumen Nilai Prestasi</h4>
+                                        <a href="{{ $file_path->dokumennilaiprestasi }}" target="_blank">Open file</a>
+                                    </div>
+                                    <iframe src="{{ $file_path->dokumennilaiprestasi }}" frameborder="0" width="100%"
+                                        height="480px"></iframe>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
-            <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
-                Simpan
-            </button>
-            <button type="button" value="Kembali" onClick="history.go(-1)" class="btn btn-primary btn-user">
-                Kembali
-            </button>
+                </button>
+            @endif
         </div>
     </section>
     <!-- /.content -->

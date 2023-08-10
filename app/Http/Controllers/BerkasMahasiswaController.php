@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\BerkasMahasiswa;
-//use App\Controller\Storage;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade;
-use Illuminate\Support\Facades\Storage;
+use stdClass;
 
 class BerkasMahasiswaController extends Controller
 {
@@ -29,7 +27,7 @@ class BerkasMahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'nim' => 'required',
             'dokumenkhs' => 'required|file|mimes:pdf',
             'dokumenpenghasilan' => 'required|file|mimes:pdf',
@@ -41,32 +39,27 @@ class BerkasMahasiswaController extends Controller
 
         // Store the files
         if ($request->hasFile('dokumenkhs')) {
-            $dokumenkhs = $request->file('dokumenkhs');
             $dokumenkhsName = $nim . '_dokumenkhs.pdf';
-            $dokumenkhs->storeAs('uploads', $dokumenkhsName);
+            $request->file('dokumenkhs')->storeAs('uploads', $dokumenkhsName, 'public');
         }
 
         if ($request->hasFile('dokumenpenghasilan')) {
-            $dokumenpenghasilan = $request->file('dokumenpenghasilan');
             $dokumenpenghasilanName = $nim . '_dokumenpenghasilan.pdf';
-            $dokumenpenghasilan->storeAs('uploads', $dokumenpenghasilanName);
+            $request->file('dokumenpenghasilan')->storeAs('uploads', $dokumenpenghasilanName, 'public');
         }
 
         if ($request->hasFile('dokumennilaiprestasi')) {
-            $dokumennilaiprestasi = $request->file('dokumennilaiprestasi');
             $dokumennilaiprestasiName = $nim . '_dokumennilaiprestasi.pdf';
-            $dokumennilaiprestasi->storeAs('uploads', $dokumennilaiprestasiName);
+            $request->file('dokumennilaiprestasi')->storeAs('uploads', $dokumennilaiprestasiName, 'public');
         }
 
         // Store the data in the database
-        $berkasmahasiswa = BerkasMahasiswa::create([
+        BerkasMahasiswa::create([
             'nim' => $nim,
             'dokumenkhs' => $dokumenkhsName,
             'dokumenpenghasilan' => $dokumenpenghasilanName,
             'dokumennilaiprestasi' => $dokumennilaiprestasiName,
         ]);
-
-        // Perform any other necessary database operations or tasks
 
         return redirect('/berkasmahasiswa')->with('success', 'Data Berkas Mahasiswa Berhasil ditambahkan !');
     }
@@ -79,26 +72,13 @@ class BerkasMahasiswaController extends Controller
             ->select('berkasmahasiswa.*', 'mahasiswa.*')
             ->first();
 
-        // $file = storage_path('app/public/uploads/') . $nim . '_dokumenkhs.pdf';
-        // $dokumenkhs = ['Content-Type' => 'dokumenkhs/pdf'];
-        // return response()->stream($file, 'Test File', $dokumenkhs);
+        $file_path = new stdClass();
 
-        //$path = storage_path('app/public/uploads/$nim . _dokumenkhs.pdf');
-        // $path = storage_path('public/storage/uploads/1815323055_dokumenkhs.pdf');
-        // $filePath = storage_path('public/storage/uploads/1815323055_dokumenkhs.pdf');
+        $file_path->dokumenkhs = '/storage/uploads/' . $berkasmahasiswa->dokumenkhs;
+        $file_path->dokumenpenghasilan = '/storage/uploads/' . $berkasmahasiswa->dokumenpenghasilan;
+        $file_path->dokumennilaiprestasi = '/storage/uploads/' . $berkasmahasiswa->dokumennilaiprestasi;
 
-        // if (!Storage::exists($filePath)) {
-        //     abort(404);
-        // }
-
-        // $headers = [
-        //     'Content-Type' => 'application/pdf',
-        // ];
-
-        // return response()->file($filePath, $headers);
-
-
-        return view('berkasmahasiswa/show', data: compact('berkasmahasiswa'));
+        return view('berkasmahasiswa/show', data: compact('berkasmahasiswa', 'file_path'));
     }
 
     public function edit($nim)
