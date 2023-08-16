@@ -7,9 +7,9 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <h3>Edit Data Berkas Mahasiswa</h3>
+            <h3>Edit Student File Data</h3>
             @if ($berkasmahasiswa == null)
-                <p>Data tidak ditemukan. Data mahasiswa tersebut tidak ada.</p>
+                <p>Data not found. The student data does not exist.</p>
             @else
                 <form action="/berkasmahasiswa/{{ $berkasmahasiswa->nim }}" method="POST">
                     @method('put')
@@ -26,7 +26,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="status">Status Pengajuan<span style="color:red;">*</span></label>
+                        <label for="status">Submission Status<span style="color:red;">*</span></label>
                         <select class="form-control @error('status') is-invalid @enderror" tabindex="-1"
                             aria-hidden="true" name="status" id="status"
                             value="{{ old('status', $berkasmahasiswa->status) }}">
@@ -40,7 +40,7 @@
                             </div>
                         @enderror
                     </div>
-                    <h4 class="card-title">Keterangan<span style="color:red;">*</span></h4>
+                    <h4 class="card-title">Information<span style="color:red;">*</span></h4>
                     <textarea name="keterangan" id="keterangan" cols="40" rows="10"
                         class="form-control @error('keterangan') is-invalid @enderror"
                         value="{{ old('keterangan', $berkasmahasiswa->keterangan) }}"></textarea>
@@ -50,10 +50,10 @@
                         </div>
                     @enderror
                     <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
-                        Verifikasi
+                        Verification
                     </button>
                     <button type="button" value="Kembali" onClick="history.go(-1)" class="btn btn-primary btn-user">
-                        Kembali
+                        Back
                     </button>
                 </form>
             @endif

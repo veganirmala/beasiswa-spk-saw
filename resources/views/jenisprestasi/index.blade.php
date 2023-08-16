@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data Jenis Prestasi</h1>
+                    <h1 class="m-0">Achievement Type Data</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -30,25 +30,25 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <a href="/jenisprestasi/create" class="btn btn-primary" title="Tambah Data"><i
-                                class="fas fa-plus"></i> Tambah</a>
+                        <a href="/jenisprestasi/create" class="btn btn-primary" title="Add"><i
+                                class="fas fa-plus"></i> Add</a>
                         <p></p>
                         <div class="table-responsive">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>NO</th>
-                                        <th>PERINGKAT</th>
-                                        <th>JENIS PRESTASI</th>
-                                        <th>TINGKAT</th>
-                                        <th>NILAI</th>
+                                        <th>NUMBER</th>
+                                        <th>RATING</th>
+                                        <th>ACHIEVEMENT TYPE</th>
+                                        <th>LEVEL</th>
+                                        <th>VALUE</th>
                                         <th>ACTION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php if (empty($jenis)) : ?>
                                     <div class="alert alert-danger" role="alert">
-                                        Data Jenis Prestasi tidak berhasil ditemukan
+                                        Data Type Achievement was not found
                                     </div>
                                     <?php endif; ?>
                                     <?php $i = 1; ?>
@@ -61,7 +61,7 @@
                                         <td>{{ $jenisprestasii->nilai }}</td>
                                         <td>
                                             <a href="/jenisprestasi/{{ $jenisprestasii->id }}/show"
-                                                class="btn btn-success" title="Detail Data"><i
+                                                class="btn btn-success" title="Data Details"><i
                                                     class="fas fa-info-circle"></i></a>
                                             <a href="/jenisprestasi/{{ $jenisprestasii->id }}/edit"
                                                 class="btn btn-danger" title="Edit Data"><i class="fas fa-edit"></i></a>
@@ -69,7 +69,7 @@
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-warning" title="Delete Data"
-                                                    onclick="return confirm('Apakah anda akan menghapus data ini?');"><i
+                                                    onclick="return confirm('Are you going to delete this data?');"><i
                                                         class="fas fa-trash-alt"></i></button>
                                             </form>
                                         </td>

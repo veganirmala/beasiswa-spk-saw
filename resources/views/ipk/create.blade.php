@@ -7,7 +7,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <h3>Tambah Data IPK</h3>
+            <h3>Add IPK Data</h3>
             <form action="/ipk/create" method="POST">
                 @csrf
                 <div class="form-group">
@@ -24,10 +24,10 @@
                         </div>
                     @enderror
                     <div class="form-group">
-                        <label for="nilai_ipk">Nilai IPK<span style="color:red;">*</span></label>
+                        <label for="nilai_ipk">IPK Value<span style="color:red;">*</span></label>
                         <input type="text" name="nilai_ipk"
                             class="form-control @error('nilai_ipk') is-invalid @enderror" id="nilai_ipk"
-                            placeholder="Nilai IPK" required value="{{ old('nilai_ipk') }}">
+                            placeholder="IPK Value" required value="{{ old('nilai_ipk') }}">
                         @error('nilai_ipk')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -35,10 +35,10 @@
                         @enderror
                     </div>
                     <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
-                        Simpan
+                        Save
                     </button>
                     <button type="button" value="Kembali" onClick="history.go(-1)" class="btn btn-primary btn-user">
-                        Kembali
+                        Back
                     </button>
             </form>
         </div>

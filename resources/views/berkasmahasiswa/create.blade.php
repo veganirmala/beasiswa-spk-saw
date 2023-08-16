@@ -7,7 +7,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <h3>Tambah Data Berkas Mahasiswa</h3>
+            <h3>Add Student File Data</h3>
             <form action="/berkasmahasiswa/create" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
@@ -21,7 +21,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="dokumenkhs">Dokumen KHS<span style="color:red;">*</span></label>
+                    <label for="dokumenkhs">KHS Document<span style="color:red;">*</span></label>
                     <input name="dokumenkhs" id="dokumenkhs"
                         class="form-control @error('dokumenkhs') is-invalid @enderror" type="file" id="formFile">
                     @error('dokumenkhs')
@@ -31,8 +31,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="dokumenpenghasilan">Dokumen Penghasilan Orang Tua<span
-                            style="color:red;">*</span></label>
+                    <label for="dokumenpenghasilan">Parents Income Documents<span style="color:red;">*</span></label>
                     <input name="dokumenpenghasilan" id="dokumenpenghasilan"
                         class="form-control @error('dokumenpenghasilan') is-invalid @enderror" type="file"
                         id="formFile">
@@ -43,7 +42,8 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="dokumennilaiprestasi">Dokumen Nilai Prestasi<span style="color:red;">*</span></label>
+                    <label for="dokumennilaiprestasi">Achievement Score Document<span
+                            style="color:red;">*</span></label>
                     <input name="dokumennilaiprestasi" id="dokumennilaiprestasi"
                         class="form-control @error('dokumennilaiprestasi') is-invalid @enderror" type="file"
                         id="formFileMultiple">
@@ -54,10 +54,10 @@
                     @enderror
                 </div>
                 <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
-                    Simpan
+                    Save
                 </button>
                 <button type="button" value="Kembali" onClick="history.go(-1)" class="btn btn-primary btn-user">
-                    Kembali
+                    Back
                 </button>
             </form>
         </div>

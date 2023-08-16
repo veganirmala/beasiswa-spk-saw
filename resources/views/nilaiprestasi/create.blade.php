@@ -7,7 +7,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <h3>Tambah Data Nilai Prestasi</h3>
+            <h3>Add Achievement Value Data</h3>
             <form action="/nilaiprestasi/create" method="POST">
                 @csrf
                 <div class="form-group">
@@ -35,7 +35,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="id_usulan">Tahun Usulan<span style="color:red;">*</span></label>
+                    <label for="id_usulan">Proposed Year<span style="color:red;">*</span></label>
                     <select class="form-control @error('id_usulan') is-invalid @enderror" tabindex="-1"
                         aria-hidden="true" name="id_usulan" id="id_usulan" value="{{ old('id_usulan') }}">
                         @foreach ($tahunusulan as $tahun)
@@ -49,7 +49,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="id_jenis_beasiswa">Jenis Beasiswa<span style="color:red;">*</span></label>
+                    <label for="id_jenis_beasiswa">Types of Scholarships<span style="color:red;">*</span></label>
                     <select class="form-control @error('id_jenis_beasiswa') is-invalid @enderror" tabindex="-1"
                         aria-hidden="true" name="id_jenis_beasiswa" id="id_jenis_beasiswa"
                         value="{{ old('id_jenis_beasiswa') }}">
@@ -64,10 +64,10 @@
                     @enderror
                 </div>
                 <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
-                    Simpan
+                    Save
                 </button>
                 <button type="button" value="Kembali" onClick="history.go(-1)" class="btn btn-primary btn-user">
-                    Kembali
+                    Back
                 </button>
             </form>
         </div>

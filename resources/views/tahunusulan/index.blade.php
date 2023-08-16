@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data Tahun Usulan</h1>
+                    <h1 class="m-0">Proposed Year Data</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -30,17 +30,17 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <a href="/tahunusulan/create" class="btn btn-primary" title="Tambah Data"><i
-                                class="fas fa-plus"></i> Tambah</a>
+                        <a href="/tahunusulan/create" class="btn btn-primary" title="Add"><i class="fas fa-plus"></i>
+                            Add</a>
                         <p></p>
                         <div class="table-responsive">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>NO</th>
-                                        <th>JENIS BEASISWA</th>
-                                        <th>TAHUN</th>
-                                        <th>KUOTA</th>
+                                        <th>NUMBER</th>
+                                        <th>TYPES OF SCHOLARSHIPS</th>
+                                        <th>YEAR</th>
+                                        <th>QUOTA</th>
                                         <th>STATUS</th>
                                         <th>ACTION</th>
                                     </tr>
@@ -48,7 +48,7 @@
                                 <tbody>
                                     <?php if (empty($tahunusulan)) : ?>
                                     <div class="alert alert-danger" role="alert">
-                                        Data Tahun Usulan tidak berhasil ditemukan
+                                        Data for Proposed Year could not be found
                                     </div>
                                     <?php endif; ?>
                                     <?php $i = 1; ?>
@@ -61,14 +61,14 @@
                                         <td>{{ $thusulan->status }}</td>
                                         <td>
                                             <a href="/tahunusulan/{{ $thusulan->id }}/show" class="btn btn-success"
-                                                title="Detail Data"><i class="fas fa-info-circle"></i></a>
+                                                title="Data Details"><i class="fas fa-info-circle"></i></a>
                                             <a href="/tahunusulan/{{ $thusulan->id }}/edit" class="btn btn-danger"
                                                 title="Edit Data"><i class="fas fa-edit"></i></a>
                                             <form action="/tahunusulan/{{ $thusulan->id }}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-warning" title="Delete Data"
-                                                    onclick="return confirm('Apakah anda akan menghapus data ini?');"><i
+                                                    onclick="return confirm('Are you going to delete this data?');"><i
                                                         class="fas fa-trash-alt"></i></button>
                                             </form>
                                         </td>

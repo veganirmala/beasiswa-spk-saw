@@ -7,14 +7,14 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <h3>Edit Data User</h3>
+            <h3>Edit User Data</h3>
             <form action="/update-profile" method="POST">
                 @method('put')
                 @csrf
                 <div class="form-group">
-                    <label for="name">Nama Lengkap<span style="color:red;">*</span></label>
+                    <label for="name">Full name<span style="color:red;">*</span></label>
                     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                        id="name" placeholder="Nama Lengkap" required value="{{ old('name', $user->name) }}">
+                        id="name" placeholder="Full name" required value="{{ old('name', $user->name) }}">
                     @error('name')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -22,22 +22,22 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="jk">Jenis Kelamin</label>
+                    <label for="jk">Gender</label>
                     <br>
-                    <input type="radio" id="perempuan" value="Perempuan" name="jk" <?php if ($user['jk'] == 'Perempuan') {
+                    <input type="radio" id="Female" value="Female" name="jk" <?php if ($user['jk'] == 'Female') {
                         echo 'checked';
                     } ?>>
-                    <label for="perempuan">Perempuan</label>
-                    <tr><input type="radio" id="laki-laki" value="Laki-laki" name="jk" <?php if ($user['jk'] == 'Laki-laki') {
+                    <label for="Female">Female</label>
+                    <tr><input type="radio" id="Male" value="Male" name="jk" <?php if ($user['jk'] == 'Male') {
                         echo 'checked';
                     } ?>>
-                        <label for="laki-laki">Laki-laki</label>
+                        <label for="Male">Male</label>
                     </tr>
                 </div>
                 <div class="form-group">
-                    <label for="telp">Telepon<span style="color:red;">*</span></label>
+                    <label for="telp">Telephone<span style="color:red;">*</span></label>
                     <input type="text" name="telp" class="form-control @error('telp') is-invalid @enderror"
-                        id="telp" placeholder="Telepon" required value="{{ old('telp', $user->telp) }}">
+                        id="telp" placeholder="Telephone" required value="{{ old('telp', $user->telp) }}">
                     @error('telp')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -45,9 +45,9 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="alamat">Alamat<span style="color:red;">*</span></label>
+                    <label for="alamat">Address<span style="color:red;">*</span></label>
                     <input type="text" name="alamat" class="form-control @error('alamat') is-invalid @enderror"
-                        id="alamat" placeholder="Alamat" required value="{{ old('alamat', $user->alamat) }}">
+                        id="alamat" placeholder="Address" required value="{{ old('alamat', $user->alamat) }}">
                     @error('alamat')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -55,10 +55,10 @@
                     @enderror
                 </div>
                 <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
-                    Simpan
+                    Save
                 </button>
                 <button type="button" value="Kembali" onClick="history.go(-1)" class="btn btn-primary btn-user">
-                    Kembali
+                    Back
                 </button>
             </form>
         </div>

@@ -7,7 +7,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <h3>Detail Data IPK</h3>
+            <h3>IPK Details</h3>
             <form action="/ipk/{{ $ipk->nim }}" method="POST">
                 @csrf
                 <div class="card mb-3 col-lg-8" style="max-width: 540px;">
@@ -16,7 +16,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">NIM</h4>
                                 <p class="card-text"><?= $ipk['nim'] ?></p>
-                                <h4 class="card-title">Nilai IPK</h4>
+                                <h4 class="card-title">IPK Value</h4>
                                 <p class="card-text"><?= $ipk['nilai_ipk'] ?></p>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                 </div>
             </form>
             <button type="button" value="Kembali" onClick="history.go(-1)" class="btn btn-primary btn-user">
-                Kembali
+                Back
             </button>
         </div>
     </section>

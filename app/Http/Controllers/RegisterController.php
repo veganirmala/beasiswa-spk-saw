@@ -27,6 +27,7 @@ class RegisterController extends Controller
 
         //proses insert ke database
         $user = User::create($validatedData);
+        //User::truncate(); // hapus isi kolom, lalu lakukan perhitungan ulang
 
         $defaultRole = Role::where('name', 'mahasiswa')->first();
 

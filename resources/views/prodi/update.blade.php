@@ -7,14 +7,14 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <h3>Edit Data Prodi</h3>
+            <h3>Edit Study Program Data</h3>
             <form action="/prodi/{{ $prodi->id }}" method="POST">
                 @method('put')
                 @csrf
                 <div class="form-group">
-                    <label for="namaprodi">Nama Prodi<span style="color:red;">*</span></label>
+                    <label for="namaprodi">Study Program Name<span style="color:red;">*</span></label>
                     <input type="text" name="namaprodi" class="form-control @error('namaprodi') is-invalid @enderror"
-                        id="namaprodi" placeholder="Nama Prodi" required
+                        id="namaprodi" placeholder="Study Program Name" required
                         value="{{ old('namaprodi', $prodi->namaprodi) }}">
                     @error('namaprodi')
                         <div class="invalid-feedback">
@@ -23,7 +23,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="namajurusan">Jenjang<span style="color:red;">*</span></label>
+                    <label for="namajurusan">Level<span style="color:red;">*</span></label>
                     <select class="form-control @error('jenjang') is-invalid @enderror" tabindex="-1"
                         aria-hidden="true" name="jenjang" id="jenjang" value="{{ old('jenjang') }}">
                         <option value="<?= $prodi['jenjang'] ?>"><?= $prodi['jenjang'] ?></option>
@@ -37,7 +37,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="idjurusan">Nama Jurusan<span style="color:red;">*</span></label>
+                    <label for="idjurusan">Department Name<span style="color:red;">*</span></label>
                     <select class="form-control @error('idjurusan') is-invalid @enderror" tabindex="-1"
                         aria-hidden="true" name="idjurusan" id="idjurusan" value="{{ old('idjurusan') }}">
                         <option value="{{ $prodi->id }}">{{ $prodi->namajurusan }}</option>
@@ -52,10 +52,10 @@
                     @enderror
                 </div>
                 <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
-                    Simpan
+                    Save
                 </button>
                 <button type="button" value="Kembali" onClick="history.go(-1)" class="btn btn-primary btn-user">
-                    Kembali
+                    Back
                 </button>
             </form>
         </div>

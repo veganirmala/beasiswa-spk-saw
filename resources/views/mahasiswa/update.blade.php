@@ -27,10 +27,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="nama">Nama Mahasiswa<span style="color:red;">*</span></label>
+                                <label for="nama">Student Name<span style="color:red;">*</span></label>
                                 <input type="text" name="nama"
                                     class="form-control @error('nama') is-invalid @enderror" id="nama"
-                                    placeholder="Nama Mahasiswa" required value="{{ old('nama', $mahasiswa->nama) }}">
+                                    placeholder="Student Name" required value="{{ old('nama', $mahasiswa->nama) }}">
                                 @error('nama')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -38,22 +38,21 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="jk">Jenis Kelamin</label>
+                                <label for="jk">Gender</label>
                                 <br>
-                                <input type="radio" id="perempuan" value="Perempuan" name="jk"
-                                    <?php if ($mahasiswa['jk'] == 'Perempuan') {
-                                        echo 'checked';
-                                    } ?>>
-                                <label>Perempuan</label>
-                                <tr><input type="radio" id="Laki-laki" value="Laki-laki" name="jk"
-                                        <?php if ($mahasiswa['jk'] == 'Laki-laki') {
+                                <input type="radio" id="Female" value="Female" name="jk" <?php if ($mahasiswa['jk'] == 'Female') {
+                                    echo 'checked';
+                                } ?>>
+                                <label>Female</label>
+                                <tr><input type="radio" id="Male" value="Male" name="jk"
+                                        <?php if ($mahasiswa['jk'] == 'Male') {
                                             echo 'checked';
                                         } ?>>
-                                    <label>Laki-laki</label>
+                                    <label>Male</label>
                                 </tr>
                             </div>
                             <div class="form-group">
-                                <label for="idprodi">Nama Prodi<span style="color:red;">*</span></label>
+                                <label for="idprodi">Study Program Name<span style="color:red;">*</span></label>
                                 <select class="form-control @error('idprodi') is-invalid @enderror" tabindex="-1"
                                     aria-hidden="true" name="idprodi" id="idprodi" value="{{ old('idprodi') }}">
                                     <option value="<?= $mahasiswa['idprodi'] ?>"><?= $mahasiswa['namaprodi'] ?></option>
@@ -68,11 +67,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="email">Email Mahasiswa<span style="color:red;">*</span></label>
+                                <label for="email">E-mail-<span style="color:red;">*</span></label>
                                 <input type="text" name="email"
                                     class="form-control @error('email') is-invalid @enderror" id="email"
-                                    placeholder="Email Mahasiswa" required
-                                    value="{{ old('email', $mahasiswa->email) }}">
+                                    placeholder="E-mail" required value="{{ old('email', $mahasiswa->email) }}">
                                 @error('email')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -80,10 +78,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="notelp">No Telepon Mahasiswa<span style="color:red;">*</span></label>
+                                <label for="notelp">Student Phone Number<span style="color:red;">*</span></label>
                                 <input type="text" name="notelp"
                                     class="form-control @error('notelp') is-invalid @enderror" id="notelp"
-                                    placeholder="No Telepon Mahasiswa" required
+                                    placeholder="Student Phone Number" required
                                     value="{{ old('notelp', $mahasiswa->notelp) }}">
                                 @error('notelp')
                                     <div class="invalid-feedback">
@@ -92,10 +90,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="alamat">Alamat Mahasiswa<span style="color:red;">*</span></label>
+                                <label for="alamat">Student Address<span style="color:red;">*</span></label>
                                 <input type="text" name="alamat"
                                     class="form-control @error('alamat') is-invalid @enderror" id="alamat"
-                                    placeholder="Alamat Mahasiswa" required
+                                    placeholder="Student Address" required
                                     value="{{ old('alamat', $mahasiswa->alamat) }}">
                                 @error('alamat')
                                     <div class="invalid-feedback">
@@ -104,10 +102,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="namaayah">Nama Ayah<span style="color:red;">*</span></label>
+                                <label for="namaayah">Father's Name<span style="color:red;">*</span></label>
                                 <input type="text" name="namaayah"
                                     class="form-control @error('namaayah') is-invalid @enderror" id="namaayah"
-                                    placeholder="Nama Ayah" required
+                                    placeholder="Father's Name" required
                                     value="{{ old('namaayah', $mahasiswa->namaayah) }}">
                                 @error('namaayah')
                                     <div class="invalid-feedback">
@@ -116,10 +114,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="pekerjaanayah">Pekerjaan Ayah<span style="color:red;">*</span></label>
+                                <label for="pekerjaanayah">Father's Occupation<span style="color:red;">*</span></label>
                                 <input type="text" name="pekerjaanayah"
                                     class="form-control @error('pekerjaanayah') is-invalid @enderror" id="pekerjaanayah"
-                                    placeholder="Pekerjaan Ayah" required
+                                    placeholder="Father's Occupation" required
                                     value="{{ old('pekerjaanayah', $mahasiswa->pekerjaanayah) }}">
                                 @error('pekerjaanayah')
                                     <div class="invalid-feedback">
@@ -128,10 +126,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="penghasilanayah">Penghasilan Ayah<span style="color:red;">*</span></label>
+                                <label for="penghasilanayah">Father's Income<span style="color:red;">*</span></label>
                                 <input type="text" name="penghasilanayah"
                                     class="form-control @error('penghasilanayah') is-invalid @enderror"
-                                    id="penghasilanayah" onkeyup="sum();" placeholder="Penghasilan Ayah" required
+                                    id="penghasilanayah" onkeyup="sum();" placeholder="Father's Income" required
                                     value="{{ old('penghasilanayah', $mahasiswa->penghasilanayah) }}">
                                 @error('penghasilanayah')
                                     <div class="invalid-feedback">
@@ -146,10 +144,10 @@
                     <div class="col-md-6">
                         <div class="col">
                             <div class="form-group">
-                                <label for="namaibu">Nama Ibu<span style="color:red;">*</span></label>
+                                <label for="namaibu">Mother's Name<span style="color:red;">*</span></label>
                                 <input type="text" name="namaibu"
                                     class="form-control @error('namaibu') is-invalid @enderror" id="namaibu"
-                                    placeholder="Nama Ibu" required
+                                    placeholder="Mother's Name" required
                                     value="{{ old('namaibu', $mahasiswa->namaibu) }}">
                                 @error('namaibu')
                                     <div class="invalid-feedback">
@@ -158,10 +156,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="pekerjaanibu">Pekerjaan Ibu<span style="color:red;">*</span></label>
+                                <label for="pekerjaanibu">Mother's Occupation<span style="color:red;">*</span></label>
                                 <input type="text" name="pekerjaanibu"
                                     class="form-control @error('pekerjaanibu') is-invalid @enderror"
-                                    id="pekerjaanibu" placeholder="Pekerjaan Ibu" required
+                                    id="pekerjaanibu" placeholder="Mother's Occupation" required
                                     value="{{ old('pekerjaanibu', $mahasiswa->pekerjaanibu) }}">
                                 @error('pekerjaanibu')
                                     <div class="invalid-feedback">
@@ -170,10 +168,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="penghasilanibu">Penghasilan Ibu<span style="color:red;">*</span></label>
+                                <label for="penghasilanibu">Mother's Income<span style="color:red;">*</span></label>
                                 <input type="text" name="penghasilanibu"
                                     class="form-control @error('penghasilanibu') is-invalid @enderror"
-                                    id="penghasilanibu" onkeyup="sum();" placeholder="Penghasilan Ibu" required
+                                    id="penghasilanibu" onkeyup="sum();" placeholder="Mother's Income" required
                                     value="{{ old('penghasilanibu', $mahasiswa->penghasilanibu) }}">
                                 @error('penghasilanibu')
                                     <div class="invalid-feedback">
@@ -182,10 +180,11 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="tanggungan">Tanggungan Orang Tua<span style="color:red;">*</span></label>
+                                <label for="tanggungan">Parental Responsibilities<span
+                                        style="color:red;">*</span></label>
                                 <input type="text" name="tanggungan"
                                     class="form-control @error('tanggungan') is-invalid @enderror" id="tanggungan"
-                                    placeholder="Tanggungan Orang Tua" required
+                                    placeholder="Parental Responsibilities" required
                                     value="{{ old('tanggungan', $mahasiswa->tanggungan) }}">
                                 @error('tanggungan')
                                     <div class="invalid-feedback">
@@ -194,11 +193,11 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="totalpenghasilan">Total Penghasilan Orang Tua<span
+                                <label for="totalpenghasilan">Total Income of Parents<span
                                         style="color:red;">*</span></label>
                                 <input type="text" name="totalpenghasilan"
                                     class="form-control @error('totalpenghasilan') is-invalid @enderror"
-                                    id="totalpenghasilan" placeholder="Total Penghasilan Orang Tua" readonly
+                                    id="totalpenghasilan" placeholder="Total Income of Parents" readonly
                                     value="{{ old('totalpenghasilan', $mahasiswa->totalpenghasilan) }}">
                                 @error('totalpenghasilan')
                                     <div class="invalid-feedback">
@@ -207,10 +206,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="namabank">Nama BANK<span style="color:red;">*</span></label>
+                                <label for="namabank">Bank Name<span style="color:red;">*</span></label>
                                 <input type="text" name="namabank"
                                     class="form-control @error('namabank') is-invalid @enderror" id="namabank"
-                                    placeholder="Nama BANK" required
+                                    placeholder="Bank Name" required
                                     value="{{ old('namabank', $mahasiswa->namabank) }}">
                                 @error('namabank')
                                     <div class="invalid-feedback">
@@ -219,10 +218,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="norek">No Rekening BANK<span style="color:red;">*</span></label>
+                                <label for="norek">Bank Account Number<span style="color:red;">*</span></label>
                                 <input type="text" name="norek"
                                     class="form-control @error('norek') is-invalid @enderror" id="norek"
-                                    placeholder="No Rekening BANK" required
+                                    placeholder="Bank Account Number" required
                                     value="{{ old('norek', $mahasiswa->norek) }}">
                                 @error('norek')
                                     <div class="invalid-feedback">
@@ -254,7 +253,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="idtahunusulan">Tahun Usulan<span style="color:red;">*</span></label>
+                                <label for="idtahunusulan">Proposed Year<span style="color:red;">*</span></label>
                                 <select class="form-control @error('idtahunusulan') is-invalid @enderror"
                                     tabindex="-1" aria-hidden="true" name="idtahunusulan" id="idtahunusulan"
                                     value="{{ old('idtahunusulan') }}">
@@ -277,10 +276,10 @@
 
 
                 <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
-                    Simpan
+                    Save
                 </button>
                 <button type="button" value="Kembali" onClick="history.go(-1)" class="btn btn-primary btn-user">
-                    Kembali
+                    Back
                 </button>
             </form>
         </div>

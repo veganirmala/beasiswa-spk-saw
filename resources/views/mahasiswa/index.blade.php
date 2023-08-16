@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data Mahasiswa</h1>
+                    <h1 class="m-0">Student Data</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -30,24 +30,24 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <a href="/mahasiswa/create" class="btn btn-primary" title="Tambah Data"><i
-                                class="fas fa-plus"></i> Tambah</a>
+                        <a href="/mahasiswa/create" class="btn btn-primary" title="Add"><i class="fas fa-plus"></i>
+                            Add</a>
                         <p></p>
                         <div class="table-responsive">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>NO</th>
+                                        <th>NUMBER</th>
                                         <th>NIM</th>
-                                        <th>NAMA</th>
-                                        <th>PRODI</th>
+                                        <th>NAME</th>
+                                        <th>STUDY PROGRAM</th>
                                         <th>ACTION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php if (empty($mahasiswa)) : ?>
                                     <div class="alert alert-danger" role="alert">
-                                        Data Mahasiswa tidak berhasil ditemukan
+                                        Student Data could not be found
                                     </div>
                                     <?php endif; ?>
                                     <?php $i = 1; ?>
@@ -59,14 +59,14 @@
                                         <td>{{ $mahasiswa->namaprodi }}</td>
                                         <td>
                                             <a href="/mahasiswa/{{ $mahasiswa->nim }}/show" class="btn btn-success"
-                                                title="Detail Data"><i class="fas fa-info-circle"></i></a>
+                                                title="Data Details"><i class="fas fa-info-circle"></i></a>
                                             <a href="/mahasiswa/{{ $mahasiswa->nim }}/edit" class="btn btn-danger"
                                                 title="Edit Data"><i class="fas fa-edit"></i></a>
                                             <form action="/mahasiswa/{{ $mahasiswa->nim }}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-warning" title="Delete Data"
-                                                    onclick="return confirm('Apakah anda akan menghapus data ini?');"><i
+                                                    onclick="return confirm('Are you going to delete this data?');"><i
                                                         class="fas fa-trash-alt"></i></button>
                                             </form>
                                         </td>

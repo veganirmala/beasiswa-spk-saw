@@ -7,12 +7,12 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <h3>Edit Data Tahun Usulan</h3>
+            <h3>Edit Proposed Year Data</h3>
             <form action="/tahunusulan/{{ $tahunusulan->id }}" method="POST">
                 @method('put')
                 @csrf
                 <div class="form-group">
-                    <label for="idjenisbeasiswa">Jenis Beasiswa<span style="color:red;">*</span></label>
+                    <label for="idjenisbeasiswa">Types of Scholarships<span style="color:red;">*</span></label>
                     <select class="form-control @error('idjenisbeasiswa') is-invalid @enderror" tabindex="-1"
                         aria-hidden="true" name="idjenisbeasiswa" id="idjenisbeasiswa"
                         value="{{ old('idjenisbeasiswa') }}">
@@ -28,9 +28,9 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="tahun">Tahun<span style="color:red;">*</span></label>
+                    <label for="tahun">Year<span style="color:red;">*</span></label>
                     <input type="text" name="tahun" class="form-control @error('tahun') is-invalid @enderror"
-                        id="tahun" placeholder="Tahun" required value="{{ old('tahun', $tahunusulan->tahun) }}">
+                        id="tahun" placeholder="Year" required value="{{ old('tahun', $tahunusulan->tahun) }}">
                     @error('tahun')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -38,9 +38,9 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="kuota">Kuota<span style="color:red;">*</span></label>
+                    <label for="kuota">Quota<span style="color:red;">*</span></label>
                     <input type="text" name="kuota" class="form-control @error('kuota') is-invalid @enderror"
-                        id="kuota" placeholder="Kuota" required value="{{ old('kuota', $tahunusulan->kuota) }}">
+                        id="kuota" placeholder="Quota" required value="{{ old('kuota', $tahunusulan->kuota) }}">
                     @error('kuota')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -65,10 +65,10 @@
                     @enderror
                 </div>
                 <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
-                    Simpan
+                    Save
                 </button>
                 <button type="button" value="Kembali" onClick="history.go(-1)" class="btn btn-primary btn-user">
-                    Kembali
+                    Back
                 </button>
             </form>
         </div>

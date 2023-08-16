@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data Rekapan Beasiswa</h1>
+                    <h1 class="m-0">Scholarship Recap Data</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -35,7 +35,7 @@
                             <form action="" class="form-inline my-2 my-lg-0" method="post">
                                 <select name="th" class="custom-select mr-1" id="inputGroupSelect04"
                                     aria-label="Example select with button addon">
-                                    <option value="" selected>Pilih Tahun Usulan</option>
+                                    <option value="" selected>Select Proposed Year</option>
                                     @foreach ($thusulan as $tahunusulan)
                                         <option value="{{ $tahunusulan->tahun }}">{{ $tahunusulan->tahun }}</option>
                                     @endforeach
@@ -49,10 +49,10 @@
                             <form action="/rekapanbeasiswa/sinkron" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-primary" title="Sinkronisasi Data"><i
-                                        class="fas fa-spinner"></i> Sinkronisasi</button>
+                                        class="fas fa-spinner"></i> Synchronization</button>
                             </form>
                             <a class="btn btn-info ml-2" href="{{ route('rekap.export') }}"><i
-                                    class="fas fa-file-download"></i>Cetak Data</a>
+                                    class="fas fa-file-download"></i> Print Data</a>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -62,17 +62,14 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
+                                            <th>NUMBER</th>
                                             <th>NIM</th>
-                                            <th>Tahun Usulan</th>
-                                            <th>Skor IPK</th>
-                                            {{-- <th>Skor Pribadi</th> --}}
-                                            <th>Skor Prestasi</th>
-                                            <th>Skor Ekonomi</th>
-                                            <th>Skor Total</th>
-                                            <th>Status Kelayakan</th>
-                                            {{-- <th>Action</th> --}}
-                                            {{-- <th>Ranking</th> --}}
+                                            <th>PROPOSED YEAR</th>
+                                            <th>IPK SCORE</th>
+                                            <th>PERFORMANCE SCORE</th>
+                                            <th>ECONOMIC SCORE</th>
+                                            <th>TOTAL SCORE</th>
+                                            <th>ELIGIBILITY STATUS</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -92,21 +89,6 @@
                                             <td>{{ $rekapans->skor_ekonomi }}</td>
                                             <td>{{ $rekapans->total }}</td>
                                             <td>{{ $rekapans->status }}</td>
-                                            {{-- <td>
-                                                <a href="/rekapanbeasiswa/{{ $rekapans->id }}/show"
-                                                    class="btn btn-success" title="Detail Data"><i
-                                                        class="fas fa-info-circle"></i></a>
-                                                <a href="/rekapanbeasiswa/{{ $rekapans->id }}/edit"
-                                                    class="btn btn-danger" title="Edit Data"><i
-                                                        class="fas fa-edit"></i></a>
-                                                <form action="/rekapanbeasiswa/{{ $rekapans->id }}" method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-warning" title="Delete Data"
-                                                        onclick="return confirm('Apakah anda akan menghapus data ini?');"><i
-                                                            class="fas fa-trash-alt"></i></button>
-                                                </form>
-                                            </td> --}}
                                         </tr>
                                         <?php $i++; ?>
                                         <?php endforeach; ?>

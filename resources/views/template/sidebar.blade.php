@@ -17,7 +17,7 @@
                       <a href="/berkasmahasiswa" class="nav-link">
                           <i class="far fa fa-users nav-icon"></i>
                           <p>
-                              Data Berkas Mahasiswa
+                              Student File Data
                           </p>
                       </a>
                   </li>
@@ -25,7 +25,7 @@
                       <a href="/berkasmahasiswa/detail" class="nav-link">
                           <i class="far fa fa-users nav-icon"></i>
                           <p>
-                              Pengajuan Berkas Mahasiswa
+                              Submission of Student Files
                           </p>
                       </a>
                   </li>
@@ -50,7 +50,7 @@
                           <a href="/user" class="nav-link">
                               <i class="nav-icon far fa-user"></i>
                               <p>
-                                  Data User
+                                  User Data
                               </p>
                           </a>
                       </li>
@@ -58,7 +58,7 @@
                           <a href="/jurusan" class="nav-link">
                               <i class="nav-icon far fa fa-desktop"></i>
                               <p>
-                                  Data Jurusan
+                                  Department Data
                               </p>
                           </a>
                       </li>
@@ -66,7 +66,7 @@
                           <a href="/prodi" class="nav-link">
                               <i class="nav-icon far fa fa-chalkboard-teacher"></i>
                               <p>
-                                  Data Prodi
+                                  Study Program Data
                               </p>
                           </a>
                       </li>
@@ -74,7 +74,7 @@
                           <a href="/jenisbeasiswa" class="nav-link">
                               <i class="nav-icon far fa fa-book"></i>
                               <p>
-                                  Data Jenis Beasiswa
+                                  Scholarship Type Data
                               </p>
                           </a>
                       </li>
@@ -82,7 +82,7 @@
                           <a href="/jenisprestasi" class="nav-link">
                               <i class="nav-icon far fa fa-book"></i>
                               <p>
-                                  Data Jenis Prestasi
+                                  Achievement Type Data
                               </p>
                           </a>
                       </li>
@@ -90,7 +90,7 @@
                           <a href="/tahunusulan" class="nav-link">
                               <i class="nav-icon far fa fa-calendar"></i>
                               <p>
-                                  Data Tahun Usulan
+                                  Proposed Year Data
                               </p>
                           </a>
                       </li>
@@ -98,7 +98,7 @@
                           <a href="/bobotkriteria" class="nav-link">
                               <i class="nav-icon far fa fa-clipboard-list"></i>
                               <p>
-                                  Data Bobot Kriteria
+                                  Criteria Weight Data
                               </p>
                           </a>
                       </li>
@@ -106,7 +106,7 @@
                           <a href="/dashboard" class="nav-link">
                               <i class="nav-icon far fa fa-users"></i>
                               <p>
-                                  Mahasiswa
+                                  Student
                                   <i class="fas fa-angle-left right"></i>
                               </p>
                           </a>
@@ -114,19 +114,19 @@
                               <li class="nav-item">
                                   <a href="/mahasiswa" class="nav-link">
                                       <i class="far fa fa-users nav-icon"></i>
-                                      <p>Data Mahasiswa</p>
+                                      <p>Student Data</p>
                                   </a>
                               </li>
                               <li class="nav-item">
                                   <a href="/nilaiprestasi" class="nav-link">
                                       <i class="far fa fa-book nav-icon"></i>
-                                      <p>Data Nilai Prestasi</p>
+                                      <p>Achievement Value Data</p>
                                   </a>
                               </li>
                               <li class="nav-item">
                                   <a href="/ipk" class="nav-link">
                                       <i class="far fa fa-award nav-icon"></i>
-                                      <p>Data IPK</p>
+                                      <p>IPK Data</p>
                                   </a>
                               </li>
                           </ul>
@@ -134,7 +134,7 @@
                           <a href="/rekapanbeasiswa" class="nav-link">
                               <i class="nav-icon far fa fa-graduation-cap"></i>
                               <p>
-                                  Data Rekapan
+                                  Scholarship Recap Data
                               </p>
                           </a>
                       </li>

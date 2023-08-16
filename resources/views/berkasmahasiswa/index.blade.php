@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Data Berkas Mahasiswa</h1>
+                    <h1 class="m-0">Student File Data</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -30,27 +30,27 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <a href="/berkasmahasiswa/create" class="btn btn-primary" title="Tambah Data"><i
-                                class="fas fa-plus"></i> Tambah</a>
+                        <a href="/berkasmahasiswa/create" class="btn btn-primary" title="Add"><i
+                                class="fas fa-plus"></i> Add</a>
                         <p></p>
                         <div class="table-responsive">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>NO</th>
+                                        <th>NUMBER</th>
                                         <th>NIM</th>
-                                        <th>DOKUMEN KHS</th>
-                                        <th>DOKUMEN PENGHASILAN ORANG TUA</th>
-                                        <th>DOKUMEN NILAI PRESTASI</th>
+                                        <th>KHS DOCUMENTS</th>
+                                        <th>PARENTS INCOME DOCUMENTS</th>
+                                        <th>ACHIEVEMENT VALUE DOCUMENT</th>
                                         <th>STATUS</th>
-                                        <th>KETERANGAN</th>
+                                        <th>INFORMATION</th>
                                         <th>ACTION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php if (empty($berkasmahasiswa)) : ?>
                                     <div class="alert alert-danger" role="alert">
-                                        Data Berkas Mahasiswa tidak berhasil ditemukan
+                                        Student File Data could not be found
                                     </div>
                                     <?php endif; ?>
                                     <?php $i = 1; ?>
