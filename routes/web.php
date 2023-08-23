@@ -60,6 +60,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/berkasmahasiswa/{nim}/show', [BerkasMahasiswaController::class, 'show']);
     Route::get('/berkasmahasiswa/{nim}/edit', [BerkasMahasiswaController::class, 'edit']);
     Route::put('/berkasmahasiswa/{nim}', [BerkasMahasiswaController::class, 'update']);
+    Route::get('/berkasmahasiswa/{nim}/update', [BerkasMahasiswaController::class, 'editBerkas']);
+    Route::put('/berkasmahasiswa/{nim}', [BerkasMahasiswaController::class, 'updateBerkas']);
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

@@ -5,13 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\BerkasMahasiswa;
 use Illuminate\Http\Request;
 use stdClass;
+use Illuminate\Support\Facades\Auth;
 
 class BerkasMahasiswaController extends Controller
 {
     public function index()
     {
+        $id = Auth::id();
+        if ($id == '1') {
+            $berkasmahasiswa = BerkasMahasiswa::latest()->paginate(5);
+        } else {
+            $berkasmahasiswa = BerkasMahasiswa::where('tb_berkas_mahasiswa.nim', $id);
+        }
+
         //mengambil semua data diurutkan dari yg terbaru DESC
-        $berkasmahasiswa = BerkasMahasiswa::latest()->paginate(5);
+        //$berkasmahasiswa = BerkasMahasiswa::latest()->paginate(5);
 
         //tampilkan halaman index
         return view('berkasmahasiswa/index', data: compact('berkasmahasiswa'));
@@ -96,6 +104,53 @@ class BerkasMahasiswaController extends Controller
     {
         //membuat form validasi
         $validatedData = $request->validate([
+            'nim' => 'required',
+            'dokumenkhs' => 'required|file|mimes:pdf',
+            'dokumenpenghasilan' => 'required|file|mimes:pdf',
+            'dokumennilaiprestasi' => 'required|file|mimes:pdf',
+        ]);
+
+        // Process other form data if needed
+        $nim = $request->input('nim');
+
+        // Store the files
+        if ($request->hasFile('dokumenkhs')) {
+            $dokumenkhsName = $nim . '_dokumenkhs.pdf';
+            $request->file('dokumenkhs')->storeAs('uploads', $dokumenkhsName, 'public');
+        }
+
+        if ($request->hasFile('dokumenpenghasilan')) {
+            $dokumenpenghasilanName = $nim . '_dokumenpenghasilan.pdf';
+            $request->file('dokumenpenghasilan')->storeAs('uploads', $dokumenpenghasilanName, 'public');
+        }
+
+        if ($request->hasFile('dokumennilaiprestasi')) {
+            $dokumennilaiprestasiName = $nim . '_dokumennilaiprestasi.pdf';
+            $request->file('dokumennilaiprestasi')->storeAs('uploads', $dokumennilaiprestasiName, 'public');
+        }
+
+        //mengambil data yg akan diupdate
+        $berkasmahasiswa = BerkasMahasiswa::where('nim', $nim)->first();
+        $berkasmahasiswa->update($validatedData);
+
+        return redirect('/berkasmahasiswa')->with('success', 'Data Berkas Mahasiswa Berhasil diedit !');
+    }
+
+    public function editBerkas($nim)
+    {
+        $berkasmahasiswa =
+            BerkasMahasiswa::join('mahasiswa', 'berkasmahasiswa.nim', '=', 'mahasiswa.nim')
+            ->where('berkasmahasiswa.nim', $nim)
+            ->select('berkasmahasiswa.*', 'mahasiswa.*')
+            ->first();;
+
+        return view('berkasmahasiswa/editdokumen', data: compact('berkasmahasiswa'));
+    }
+
+    public function updateBerkas(Request $request, $nim)
+    {
+        //membuat form validasi
+        $validatedData = $request->validate([
             'status' => 'required',
             'keterangan' => 'required'
         ]);
@@ -106,7 +161,6 @@ class BerkasMahasiswaController extends Controller
 
         return redirect('/berkasmahasiswa')->with('success', 'Data Berkas Mahasiswa Berhasil diedit !');
     }
-
 
     public function detail()
     {

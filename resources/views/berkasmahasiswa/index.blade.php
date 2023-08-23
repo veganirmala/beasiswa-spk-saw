@@ -65,7 +65,8 @@
                                         <td>{{ $berkas->keterangan }}</td>
                                         <td>
                                             <a href="/berkasmahasiswa/{{ $berkas->nim }}/show">View</a>
-                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/edit">Edit</a>
+                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/edit">Verifikasi</a>
+                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/update">Update</a>
                                         </td>
                                     </tr>
                                     <?php $i++; ?>
