@@ -30,9 +30,17 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
+                        @role('mahasiswa')
+                        <?php if (empty($databerkasmahasiswa)) : ?>
                         <a href="/berkasmahasiswa/create" class="btn btn-primary" title="Tambah Data"><i
                                 class="fas fa-plus"></i> Tambah</a>
                         <p></p>
+                        <?php endif; ?>
+                        @else
+                        <a href="/berkasmahasiswa/create" class="btn btn-primary" title="Tambah Data"><i
+                                class="fas fa-plus"></i> Tambah</a>
+                        <p></p>
+                        @endif
                         <div class="table-responsive">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
@@ -64,8 +72,13 @@
                                         <td>{{ $berkas->status }}</td>
                                         <td>{{ $berkas->keterangan }}</td>
                                         <td>
+                                        @role('admin')
                                             <a href="/berkasmahasiswa/{{ $berkas->nim }}/show">View</a>
                                             <a href="/berkasmahasiswa/{{ $berkas->nim }}/edit">Edit</a>
+                                        @else
+                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/show">View</a>
+                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/ubah">edit</a>
+                                        @endrole
                                         </td>
                                     </tr>
                                     <?php $i++; ?>
