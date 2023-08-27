@@ -35,9 +35,9 @@
                     </tr>
                 </div>
                 <div class="form-group">
-                    <label for="telp">Telephone<span style="color:red;">*</span></label>
-                    <input type="text" name="telp" class="form-control @error('telp') is-invalid @enderror"
-                        id="telp" placeholder="Telephone" required value="{{ old('telp', $user->telp) }}">
+                    <label for="notelp">Telephone<span style="color:red;">*</span></label>
+                    <input type="text" name="notelp" class="form-control @error('notelp') is-invalid @enderror"
+                        id="notelp" placeholder="Telephone" required value="{{ old('notelp', $user->notelp) }}">
                     @error('telp')
                         <div class="invalid-feedback">
                             {{ $message }}

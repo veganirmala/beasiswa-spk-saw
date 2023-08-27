@@ -71,7 +71,7 @@
                                         <td><?= $user['name'] ?></td>
                                         <td><?= $user['email'] ?></td>
                                         <td><?= $user['jk'] ?></td>
-                                        <td><?= $user['telp'] ?></td>
+                                        <td><?= $user['notelp'] ?></td>
                                         <td><?= $user['alamat'] ?></td>
                                         <td>
                                             <a href="/user/{{ $user->id }}/show" class="btn btn-success"

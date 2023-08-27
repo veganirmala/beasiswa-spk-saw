@@ -131,7 +131,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'jk' => 'required',
-            'telp' => 'required',
+            'notelp' => 'required',
             'alamat' => 'required'
         ]);
         //proses enkripsi password
@@ -154,7 +154,7 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'jk' => 'required',
-            'telp' => 'required',
+            'notelp' => 'required',
             'alamat' => 'required'
         ]);
         //proses enkripsi password

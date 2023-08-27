@@ -23,7 +23,7 @@
                                 <h4 class="card-title"></h4>Gender</h4>
                                 <p class="card-text">{{ $user->jk }}</p>
                                 <h4 class="card-title">Telephone</h4>
-                                <p class="card-text">{{ $user->telp }}</p>
+                                <p class="card-text">{{ $user->notelp }}</p>
                                 <h4 class="card-title">Address</h4>
                                 <p class="card-text">{{ $user->alamat }}</p>
                             </div>
