@@ -13,23 +13,40 @@
           <nav class="mt-2">
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                   data-accordion="false">
-                  <li class="nav-item">
-                      <a href="/berkasmahasiswa" class="nav-link">
-                          <i class="far fa fa-users nav-icon"></i>
-                          <p>
-                              Student File Data
-                          </p>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="/berkasmahasiswa/detail" class="nav-link">
-                          <i class="far fa fa-users nav-icon"></i>
-                          <p>
-                              Submission of Student Files
-                          </p>
-                      </a>
-                  </li>
-                  @role('admin')
+                  @if (auth()->User()->level == 'Mahasiswa')
+                      <li class="nav-item">
+                          <a href="/berkasmahasiswa" class="nav-link">
+                              <i class="far fa fa-users nav-icon"></i>
+                              <p>
+                                  Student File Data
+                              </p>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="/berkasmahasiswa/detail" class="nav-link">
+                              <i class="far fa fa-users nav-icon"></i>
+                              <p>
+                                  Submission of Student Files
+                              </p>
+                          </a>
+                      </li>
+                  @elseif(auth()->User()->level == 'Admin')
+                      <li class="nav-item">
+                          <a href="/berkasmahasiswa" class="nav-link">
+                              <i class="far fa fa-users nav-icon"></i>
+                              <p>
+                                  Student File Data
+                              </p>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a href="/berkasmahasiswa/detail" class="nav-link">
+                              <i class="far fa fa-users nav-icon"></i>
+                              <p>
+                                  Submission of Student Files
+                              </p>
+                          </a>
+                      </li>
                       <li class="nav-item">
                           <a href="/role" class="nav-link">
                               <i class="nav-icon fa fa-id-card"></i>
@@ -139,7 +156,8 @@
                           </a>
                       </li>
                       </li>
-                  @endrole
+                  @else
+                  @endif
               </ul>
           </nav>
           <!-- /.sidebar-menu -->

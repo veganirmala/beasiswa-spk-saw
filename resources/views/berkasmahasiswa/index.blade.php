@@ -16,9 +16,14 @@
     </div>
     <!-- /.content-header -->
 
+
     @if (session()->has('success'))
         <div class="alert alert-success col-12" role="alert">
             {{ session('success') }}
+        </div>
+    @elseif (session()->has('danger'))
+        <div class="alert alert-danger col-12" role="alert">
+            {{ session('danger') }}
         </div>
     @endif
 
@@ -65,7 +70,9 @@
                                         <td>{{ $berkas->keterangan }}</td>
                                         <td>
                                             <a href="/berkasmahasiswa/{{ $berkas->nim }}/show">View</a>
-                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/edit">Verifikasi</a>
+                                            @if (Session::get('user_level') == 'Admin')
+                                                <a href="/berkasmahasiswa/{{ $berkas->nim }}/edit">Verifikasi</a>
+                                            @endif
                                             <a href="/berkasmahasiswa/{{ $berkas->nim }}/update">Update</a>
                                         </td>
                                     </tr>

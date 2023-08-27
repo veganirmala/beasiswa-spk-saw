@@ -6,20 +6,25 @@ use App\Models\BerkasMahasiswa;
 use Illuminate\Http\Request;
 use stdClass;
 use Illuminate\Support\Facades\Auth;
+use Session;
 
 class BerkasMahasiswaController extends Controller
 {
     public function index()
     {
-        $id = Auth::id();
-        if ($id == '1') {
+        if (Session::get('user_level') == 'Admin') {
+            //if ($request->has('search')) {
+            // $berkasmahasiswa = BerkasMahasiswa::where('nim', 'LIKE', '%' . $request->search . '%')
+            //     ->orwhere('status', 'LIKE', '%' . $request->search . '%')
+            //     ->latest()->paginate(5);
+            //} else {
+            //mengambil semua data diurutkan dari yg terbaru DESC
             $berkasmahasiswa = BerkasMahasiswa::latest()->paginate(5);
+            //}
         } else {
-            $berkasmahasiswa = BerkasMahasiswa::where('tb_berkas_mahasiswa.nim', $id);
+            $nim = Session::get('user_nim');
+            $berkasmahasiswa = BerkasMahasiswa::where('berkasmahasiswa.nim', $nim)->latest()->paginate(5);
         }
-
-        //mengambil semua data diurutkan dari yg terbaru DESC
-        //$berkasmahasiswa = BerkasMahasiswa::latest()->paginate(5);
 
         //tampilkan halaman index
         return view('berkasmahasiswa/index', data: compact('berkasmahasiswa'));
@@ -164,7 +169,13 @@ class BerkasMahasiswaController extends Controller
 
     public function detail()
     {
-        $berkasmahasiswa = BerkasMahasiswa::latest()->paginate(5);
+        if (Session::get('user_level') == 'Admin') {
+            //mengambil semua data diurutkan dari yg terbaru DESC
+            $berkasmahasiswa = BerkasMahasiswa::latest()->paginate(5);
+        } else {
+            $nim = Session::get('user_nim');
+            $berkasmahasiswa = BerkasMahasiswa::where('berkasmahasiswa.nim', $nim)->latest()->paginate(5);
+        }
 
         //tampilkan halaman index
         return view('berkasmahasiswa/detail', data: compact('berkasmahasiswa'));

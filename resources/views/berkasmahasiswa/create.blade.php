@@ -10,16 +10,25 @@
             <h3>Add Student File Data</h3>
             <form action="/berkasmahasiswa/create" method="POST" enctype="multipart/form-data">
                 @csrf
-                <div class="form-group">
-                    <label for="nim">NIM<span style="color:red;">*</span></label>
-                    <input type="text" name="nim" class="form-control @error('nim') is-invalid @enderror"
-                        id="nim" placeholder="NIM Mahasiswa" required autofocus value="{{ old('nim') }}">
-                    @error('nim')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
+                @if (Session::get('user_level') == 'Admin')
+                    <div class="form-group">
+                        <label for="nim">NIM<span style="color:red;">*</span></label>
+                        <input type="text" name="nim" class="form-control @error('nim') is-invalid @enderror"
+                            id="nim" placeholder="NIM Mahasiswa" required autofocus value="{{ old('nim') }}">
+                        @error('nim')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                @else
+                    <div class="form-group">
+                        <label for="nim">NIM<span style="color:red;">*</span></label>
+                        <input type="text" name="nim" class="form-control @error('nim') is-invalid @enderror"
+                            id="nim" placeholder="NIM Mahasiswa" required autofocus
+                            value="{{ Session::get('user_nim') }}" readonly>
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="dokumenkhs">KHS Document<span style="color:red;">*</span></label>
                     <input name="dokumenkhs" id="dokumenkhs"
