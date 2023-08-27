@@ -18,7 +18,6 @@ class NilaiPrestasiController extends Controller
     public function index()
     {
         //mengambil semua data diurutkan dari yg terbaru DESC
-        //$nilaiprestasi = NilaiPrestasi::latest()->paginate(5);
         $nilaiprestasi = DB::table('nilaiprestasi')
             ->join('mahasiswa', 'nilaiprestasi.nim', '=', 'mahasiswa.nim')
             ->join('tahunusulan', 'nilaiprestasi.id_usulan', '=', 'tahunusulan.id')

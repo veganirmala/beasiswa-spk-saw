@@ -16,7 +16,6 @@ class BobotKriteriaController extends Controller
     public function index()
     {
         //mengambil semua data diurutkan dari yg terbaru DESC
-        //$bobotkriteria = BobotKriteria::with('tahunusulan', 'jenisbeasiswa')->latest()->paginate(5);
         $bobotkriteria = DB::table('bobotkriteria')
             ->join('tahunusulan', 'bobotkriteria.idtahunusulan', '=', 'tahunusulan.id')
             ->join('jenisbeasiswa', 'bobotkriteria.idjenisbeasiswa', '=', 'jenisbeasiswa.id')

@@ -15,7 +15,6 @@ class IPKController extends Controller
     public function index()
     {
         //mengambil semua data dan direlasikan ke tabel jurusan
-        //$ipk = Ipk::with('mahasiswa')->latest()->paginate(5);
         $ipk =
             DB::table('ipk')
             ->join('mahasiswa', 'ipk.nim', '=', 'mahasiswa.nim')

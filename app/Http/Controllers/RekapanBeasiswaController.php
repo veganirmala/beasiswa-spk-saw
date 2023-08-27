@@ -109,13 +109,6 @@ class RekapanBeasiswaController extends Controller
             ->select('*')
             ->get();
 
-        //ngambil data tahun usulan aktif
-        // $tahunusulan = DB::table('tahunusulan')
-        //     ->where('status', '=', 'Aktif')
-        //     ->select('*')
-        //     ->get();
-
-
         //panggil function datamahasiswa
         $this->run($datamahasiswa);
 

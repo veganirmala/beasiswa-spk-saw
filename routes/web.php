@@ -59,9 +59,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/berkasmahasiswa/create', [BerkasMahasiswaController::class, 'store']);
     Route::get('/berkasmahasiswa/{nim}/show', [BerkasMahasiswaController::class, 'show']);
     Route::get('/berkasmahasiswa/{nim}/edit', [BerkasMahasiswaController::class, 'edit']);
+    Route::get('/berkasmahasiswa/{nim}/ubah', [BerkasMahasiswaController::class, 'ubah']);
     Route::put('/berkasmahasiswa/{nim}', [BerkasMahasiswaController::class, 'update']);
+
     Route::get('/berkasmahasiswa/{nim}/update', [BerkasMahasiswaController::class, 'editBerkas']);
     Route::put('/berkasmahasiswa/{nim}', [BerkasMahasiswaController::class, 'updateBerkas']);
+    Route::post('/berkasmahasiswa/{nim}/mengubah', [BerkasMahasiswaController::class, 'mengubah']);
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

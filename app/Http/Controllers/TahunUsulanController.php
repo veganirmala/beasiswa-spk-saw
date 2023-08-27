@@ -15,7 +15,6 @@ class TahunUsulanController extends Controller
     public function index()
     {
         //mengambil semua data dan direlasikan ke tabel jurusan
-        //$tahunusulan = TahunUsulan::with('jenisbeasiswa')->latest()->paginate(5);
         $tahunusulan =
             TahunUsulan::join('jenisbeasiswa', 'tahunusulan.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
             ->select('tahunusulan.*', 'jenisbeasiswa.jenisbeasiswa')

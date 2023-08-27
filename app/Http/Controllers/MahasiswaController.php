@@ -16,7 +16,6 @@ class MahasiswaController extends Controller
     public function index()
     {
         //mengambil semua data diurutkan dari yg terbaru DESC
-        //$mahasiswa = Mahasiswa::with('tahunusulan', 'prodi')->latest()->paginate(5);
         $mahasiswa = DB::table('mahasiswa')
             ->join('tahunusulan', 'mahasiswa.idtahunusulan', '=', 'tahunusulan.id')
             ->join('prodi', 'mahasiswa.idprodi', '=', 'prodi.id')

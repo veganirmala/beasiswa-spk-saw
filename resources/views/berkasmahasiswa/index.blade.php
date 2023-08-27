@@ -34,62 +34,75 @@
             <div class="col-12">
                 <div class="card">
                     <!-- /.card-header -->
-                    <div class="card-body">
-                        <a href="/berkasmahasiswa/create" class="btn btn-primary" title="Add"><i
-                                class="fas fa-plus"></i> Add</a>
-                        <p></p>
-                        <div class="table-responsive">
-                            <table id="example2" class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>NUMBER</th>
-                                        <th>NIM</th>
-                                        <th>KHS DOCUMENTS</th>
-                                        <th>PARENTS INCOME DOCUMENTS</th>
-                                        <th>ACHIEVEMENT VALUE DOCUMENT</th>
-                                        <th>STATUS</th>
-                                        <th>INFORMATION</th>
-                                        <th>ACTION</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if (empty($berkasmahasiswa)) : ?>
-                                    <div class="alert alert-danger" role="alert">
-                                        Student File Data could not be found
-                                    </div>
-                                    <?php endif; ?>
-                                    <?php $i = 1; ?>
-                                    <?php foreach ($berkasmahasiswa as $berkas) : ?>
-                                    <tr>
-                                        <th scope="row"><?= $i ?></th>
-                                        <td>{{ $berkas->nim }}</td>
-                                        <td>{{ $berkas->dokumenkhs }}</td>
-                                        <td>{{ $berkas->dokumenpenghasilan }}</td>
-                                        <td>{{ $berkas->dokumennilaiprestasi }}</td>
-                                        <td>{{ $berkas->status }}</td>
-                                        <td>{{ $berkas->keterangan }}</td>
-                                        <td>
-                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/show">View</a>
-                                            @if (Session::get('user_level') == 'Admin')
-                                                <a href="/berkasmahasiswa/{{ $berkas->nim }}/edit">Verifikasi</a>
-                                            @endif
-                                            <a href="/berkasmahasiswa/{{ $berkas->nim }}/update">Update</a>
-                                        </td>
-                                    </tr>
-                                    <?php $i++; ?>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                    <div class="card-body"> @role('mahasiswa')
+                            <?php if (empty($databerkasmahasiswa)) : ?>
+                            <a href="/berkasmahasiswa/create" class="btn btn-primary" title="Add"><i
+                                    class="fas fa-plus"></i> Add</a>
+                            <p></p>
+                            <?php endif; ?>
+                        @else
+                            <a href="/berkasmahasiswa/create" class="btn btn-primary" title="Add"><i
+                                    class="fas fa-plus"></i> Add</a>
+                            <p></p>
+                            @endif
+
+                            <div class="table-responsive">
+                                <table id="example2" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>NUMBER</th>
+                                            <th>NIM</th>
+                                            <th>KHS DOCUMENTS</th>
+                                            <th>PARENTS INCOME DOCUMENTS</th>
+                                            <th>ACHIEVEMENT VALUE DOCUMENT</th>
+                                            <th>STATUS</th>
+                                            <th>INFORMATION</th>
+                                            <th>ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (empty($berkasmahasiswa)) : ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            Student File Data could not be found
+                                        </div>
+                                        <?php endif; ?>
+                                        <?php $i = 1; ?>
+                                        <?php foreach ($berkasmahasiswa as $berkas) : ?>
+                                        <tr>
+                                            <th scope="row"><?= $i ?></th>
+                                            <td>{{ $berkas->nim }}</td>
+                                            <td>{{ $berkas->dokumenkhs }}</td>
+                                            <td>{{ $berkas->dokumenpenghasilan }}</td>
+                                            <td>{{ $berkas->dokumennilaiprestasi }}</td>
+                                            <td>{{ $berkas->status }}</td>
+                                            <td>{{ $berkas->keterangan }}</td>
+                                            <td>
+                                                @role('admin')
+                                                    <a href="/berkasmahasiswa/{{ $berkas->nim }}/show">View</a>
+                                                    @if (Session::get('user_level') == 'Admin')
+                                                        <a href="/berkasmahasiswa/{{ $berkas->nim }}/edit">Verifikasi</a>
+                                                        <a href="/berkasmahasiswa/{{ $berkas->nim }}/ubah">Edit</a>
+                                                    @endif
+                                                @else
+                                                    <a href="/berkasmahasiswa/{{ $berkas->nim }}/show">View</a>
+                                                    <a href="/berkasmahasiswa/{{ $berkas->nim }}/ubah">Edit</a>
+                                                @endrole
+                                            </td>
+                                        </tr>
+                                        <?php $i++; ?>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
             </div>
-        </div>
-        <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
-@include('template.footer')
+    @include('template.footer')

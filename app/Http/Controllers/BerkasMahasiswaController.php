@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\BerkasMahasiswa;
 use Illuminate\Http\Request;
-use stdClass;
 use Illuminate\Support\Facades\Auth;
+use stdClass;
 use Session;
 
 class BerkasMahasiswaController extends Controller
@@ -103,6 +103,57 @@ class BerkasMahasiswaController extends Controller
             ->first();;
 
         return view('berkasmahasiswa/update', data: compact('berkasmahasiswa'));
+    }
+
+    public function ubah($nim)
+    {
+        $berkasmahasiswa =
+            BerkasMahasiswa::join('mahasiswa', 'berkasmahasiswa.nim', '=', 'mahasiswa.nim')
+            ->where('berkasmahasiswa.nim', $nim)
+            ->select('berkasmahasiswa.*', 'mahasiswa.*')
+            ->first();
+
+        return view('berkasmahasiswa/ubahdokumen', data: compact('berkasmahasiswa'));
+    }
+
+    public function mengubah(Request $request)
+    {
+        $request->validate([
+            'nim' => 'required',
+            'dokumenkhs' => 'required|file|mimes:pdf',
+            'dokumenpenghasilan' => 'required|file|mimes:pdf',
+            'dokumennilaiprestasi' => 'required|file|mimes:pdf',
+        ]);
+
+        // Process other form data if needed
+        $nim = $request->input('nim');
+
+        // Store the files
+        if ($request->hasFile('dokumenkhs')) {
+            $dokumenkhsName = $nim . '_dokumenkhs.pdf';
+            $request->file('dokumenkhs')->storeAs('uploads', $dokumenkhsName, 'public');
+        }
+
+        if ($request->hasFile('dokumenpenghasilan')) {
+            $dokumenpenghasilanName = $nim . '_dokumenpenghasilan.pdf';
+            $request->file('dokumenpenghasilan')->storeAs('uploads', $dokumenpenghasilanName, 'public');
+        }
+
+        if ($request->hasFile('dokumennilaiprestasi')) {
+            $dokumennilaiprestasiName = $nim . '_dokumennilaiprestasi.pdf';
+            $request->file('dokumennilaiprestasi')->storeAs('uploads', $dokumennilaiprestasiName, 'public');
+        }
+
+        // Update the data in the database
+        $data = array(
+            'dokumenkhs' => $dokumenkhsName,
+            'dokumenpenghasilan' => $dokumenpenghasilanName,
+            'dokumennilaiprestasi' => $dokumennilaiprestasiName
+        );
+        $berkasmahasiswa = BerkasMahasiswa::where('nim', $nim)->orderby('id', 'desc')->first();
+        $berkasmahasiswa->update($data);
+
+        return redirect('/berkasmahasiswa')->with('success', 'Data Berkas Mahasiswa Berhasil diubah !');
     }
 
     public function update(Request $request, $nim)
