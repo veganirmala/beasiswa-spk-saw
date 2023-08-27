@@ -10,11 +10,13 @@ class JenisBeasiswaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //mengambil semua data diurutkan dari yg terbaru DESC
-        $jenisbeasiswa = JenisBeasiswa::latest()->paginate(5);
-
+        if ($request->has('search')) {
+            $jenisbeasiswa = JenisBeasiswa::where('jenisbeasiswa', 'LIKE', '%' . $request->search . '%')->paginate(5);
+        } else {
+            $jenisbeasiswa = JenisBeasiswa::latest()->paginate(5);
+        }
         //tampilkan halaman index
         return view('jenisbeasiswa/index', data: compact('jenisbeasiswa'));
     }

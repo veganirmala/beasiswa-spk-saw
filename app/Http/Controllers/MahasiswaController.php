@@ -13,14 +13,23 @@ class MahasiswaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //mengambil semua data diurutkan dari yg terbaru DESC
-        $mahasiswa = DB::table('mahasiswa')
-            ->join('tahunusulan', 'mahasiswa.idtahunusulan', '=', 'tahunusulan.id')
-            ->join('prodi', 'mahasiswa.idprodi', '=', 'prodi.id')
-            ->select('*')
-            ->get();
+        if ($request->has('search')) {
+            $mahasiswa = DB::table('mahasiswa')
+                ->join('tahunusulan', 'mahasiswa.idtahunusulan', '=', 'tahunusulan.id')
+                ->join('prodi', 'mahasiswa.idprodi', '=', 'prodi.id')
+                ->select('*')
+                ->where('mahasiswa.nim', 'LIKE', '%' . $request->search . '%')
+                ->get();
+        } else {
+            ///mengambil semua data diurutkan dari yg terbaru DESC
+            $mahasiswa = DB::table('mahasiswa')
+                ->join('tahunusulan', 'mahasiswa.idtahunusulan', '=', 'tahunusulan.id')
+                ->join('prodi', 'mahasiswa.idprodi', '=', 'prodi.id')
+                ->select('*')
+                ->get();
+        }
 
         //tampilkan halaman index
         return view('mahasiswa/index', data: compact('mahasiswa'));

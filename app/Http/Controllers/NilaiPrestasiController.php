@@ -15,16 +15,26 @@ class NilaiPrestasiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //mengambil semua data diurutkan dari yg terbaru DESC
-        $nilaiprestasi = DB::table('nilaiprestasi')
-            ->join('mahasiswa', 'nilaiprestasi.nim', '=', 'mahasiswa.nim')
-            ->join('tahunusulan', 'nilaiprestasi.id_usulan', '=', 'tahunusulan.id')
-            ->join('jenisbeasiswa', 'nilaiprestasi.id_jenis_beasiswa', '=', 'jenisbeasiswa.id')
-            ->select('*')
-            ->get();
-
+        if ($request->has('search')) {
+            //mengambil semua data diurutkan dari yg terbaru DESC
+            $nilaiprestasi = DB::table('nilaiprestasi')
+                ->join('mahasiswa', 'nilaiprestasi.nim', '=', 'mahasiswa.nim')
+                ->join('tahunusulan', 'nilaiprestasi.id_usulan', '=', 'tahunusulan.id')
+                ->join('jenisbeasiswa', 'nilaiprestasi.id_jenis_beasiswa', '=', 'jenisbeasiswa.id')
+                ->select('*')
+                ->where('nilaiprestasi.nim', 'LIKE', '%' . $request->search . '%')
+                ->get();
+        } else {
+            //mengambil semua data diurutkan dari yg terbaru DESC
+            $nilaiprestasi = DB::table('nilaiprestasi')
+                ->join('mahasiswa', 'nilaiprestasi.nim', '=', 'mahasiswa.nim')
+                ->join('tahunusulan', 'nilaiprestasi.id_usulan', '=', 'tahunusulan.id')
+                ->join('jenisbeasiswa', 'nilaiprestasi.id_jenis_beasiswa', '=', 'jenisbeasiswa.id')
+                ->select('*')
+                ->get();
+        }
         //tampilkan halaman index
         return view('nilaiprestasi/index', data: compact('nilaiprestasi'));
     }

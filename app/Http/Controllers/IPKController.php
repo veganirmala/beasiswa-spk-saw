@@ -12,14 +12,22 @@ class IPKController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //mengambil semua data dan direlasikan ke tabel jurusan
-        $ipk =
-            DB::table('ipk')
-            ->join('mahasiswa', 'ipk.nim', '=', 'mahasiswa.nim')
-            ->select('*')
-            ->get();
+        if ($request->has('search')) {
+            $ipk = DB::table('ipk')
+                ->join('mahasiswa', 'ipk.nim', '=', 'mahasiswa.nim')
+                ->select('*')
+                ->where('ipk.nim', 'LIKE', '%' . $request->search . '%')
+                ->get();
+        } else {
+            //mengambil semua data dan direlasikan ke tabel jurusan
+            $ipk =
+                DB::table('ipk')
+                ->join('mahasiswa', 'ipk.nim', '=', 'mahasiswa.nim')
+                ->select('*')
+                ->get();
+        }
 
         //tampilkan halaman index
         return view('ipk/index', data: compact('ipk'));

@@ -13,15 +13,23 @@ class BobotKriteriaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //mengambil semua data diurutkan dari yg terbaru DESC
-        $bobotkriteria = DB::table('bobotkriteria')
-            ->join('tahunusulan', 'bobotkriteria.idtahunusulan', '=', 'tahunusulan.id')
-            ->join('jenisbeasiswa', 'bobotkriteria.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
-            ->select('*')
-            ->get();
-
+        if ($request->has('search')) {
+            $bobotkriteria = DB::table('bobotkriteria')
+                ->join('tahunusulan', 'bobotkriteria.idtahunusulan', '=', 'tahunusulan.id')
+                ->join('jenisbeasiswa', 'bobotkriteria.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
+                ->select('*')
+                ->where('tahun', 'LIKE', '%' . $request->search . '%')
+                ->get();
+        } else {
+            //mengambil semua data
+            $bobotkriteria = DB::table('bobotkriteria')
+                ->join('tahunusulan', 'bobotkriteria.idtahunusulan', '=', 'tahunusulan.id')
+                ->join('jenisbeasiswa', 'bobotkriteria.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
+                ->select('*')
+                ->get();
+        }
         //tampilkan halaman index
         return view('bobotkriteria/index', data: compact('bobotkriteria'));
     }

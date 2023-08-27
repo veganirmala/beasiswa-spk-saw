@@ -30,6 +30,18 @@
                 <div class="card">
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div class="row">
+                            <div class="d-flex justify-content-end">
+                                <form action="/jurusan" method="GET">
+                                    <div class="input-group mb-3">
+                                        <div class="col-auto">
+                                            <input type="search" class="form-control" placeholder="Search"
+                                                name="search" id="search">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         <a href="/jurusan/create" class="btn btn-primary" title="Add"><i class="fas fa-plus"></i>
                             Add</a>
                         <p></p>

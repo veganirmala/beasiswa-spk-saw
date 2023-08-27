@@ -12,13 +12,23 @@ class TahunUsulanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //mengambil semua data dan direlasikan ke tabel jurusan
-        $tahunusulan =
-            TahunUsulan::join('jenisbeasiswa', 'tahunusulan.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
-            ->select('tahunusulan.*', 'jenisbeasiswa.jenisbeasiswa')
-            ->get();
+        if ($request->has('search')) {
+            //mengambil semua data diurutkan dari yg terbaru DESC
+            $tahunusulan = DB::table('tahunusulan')
+                ->join('jenisbeasiswa', 'tahunusulan.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
+                ->select('tahunusulan.*', 'jenisbeasiswa.jenisbeasiswa')
+                ->where('tahun', 'LIKE', '%' . $request->search . '%')
+                ->get();
+        } else {
+            //mengambil semua data dan direlasikan ke tabel jurusan
+            $tahunusulan =
+                TahunUsulan::join('jenisbeasiswa', 'tahunusulan.idjenisbeasiswa', '=', 'jenisbeasiswa.id')
+                ->select('tahunusulan.*', 'jenisbeasiswa.jenisbeasiswa')
+                ->get();
+        }
+
         //tampilkan halaman index
         return view('tahunusulan/index', data: compact('tahunusulan'));
     }

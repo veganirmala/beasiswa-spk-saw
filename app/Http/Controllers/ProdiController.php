@@ -12,14 +12,21 @@ class ProdiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //mengambil semua data dan direlasikan ke tabel jurusan
-        $prodi = DB::table('prodi')
-            ->join('jurusan', 'prodi.idjurusan', '=', 'jurusan.id')
-            ->select('*')
-            ->get();
-
+        if ($request->has('search')) {
+            $prodi = DB::table('prodi')
+                ->join('jurusan', 'prodi.idjurusan', '=', 'jurusan.id')
+                ->select('*')
+                ->where('namaprodi', 'LIKE', '%' . $request->search . '%')
+                ->get();
+        } else {
+            //mengambil semua data dan direlasikan ke tabel jurusan
+            $prodi = DB::table('prodi')
+                ->join('jurusan', 'prodi.idjurusan', '=', 'jurusan.id')
+                ->select('*')
+                ->get();
+        }
         //tampilkan halaman index
         return view('prodi/index', data: compact('prodi'));
     }

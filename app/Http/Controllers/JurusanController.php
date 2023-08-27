@@ -10,11 +10,14 @@ class JurusanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //mengambil semua data diurutkan dari yg terbaru DESC
-        $jurusan = Jurusan::latest()->paginate(5);
-
+        if ($request->has('search')) {
+            $jurusan = Jurusan::where('namajurusan', 'LIKE', '%' . $request->search . '%')->paginate(5);
+        } else {
+            //mengambil semua data diurutkan dari yg terbaru DESC
+            $jurusan = Jurusan::latest()->paginate(5);
+        }
         //tampilkan halaman index
         return view('jurusan/index', data: compact('jurusan'));
     }
