@@ -46,7 +46,7 @@ class JenisPrestasiController extends Controller
 
         JenisPrestasi::create($validatedData);
 
-        return redirect('/jenisprestasi')->with('success', 'Data Jenis Prestasi Berhasil ditambahkan !');
+        return redirect('/jenisprestasi')->with('success', 'Achievement Type Data Successfully added !');
     }
 
     /**
@@ -85,7 +85,7 @@ class JenisPrestasiController extends Controller
 
         $jenisprestasi->update($validatedData);
 
-        return redirect('/jenisprestasi')->with('success', 'Data Jenis Prestasi Berhasil diedit !');
+        return redirect('/jenisprestasi')->with('success', 'Data Type Achievement Successfully edited !');
     }
 
     /**
@@ -96,6 +96,6 @@ class JenisPrestasiController extends Controller
         $jenisprestasi = JenisPrestasi::find($id);
         $jenisprestasi->delete();
 
-        return redirect('/jenisprestasi')->with('success', 'Data Jenis Prestasi Berhasil dihapus !');
+        return redirect('/jenisprestasi')->with('success', 'Achievement Type Data Successfully deleted !');
     }
 }

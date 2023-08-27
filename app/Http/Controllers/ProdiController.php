@@ -54,7 +54,7 @@ class ProdiController extends Controller
 
         Prodi::create($validatedData);
 
-        return redirect('/prodi')->with('success', 'Data Prodi Berhasil ditambahkan !');
+        return redirect('/prodi')->with('success', 'Prodi Data Successfully added !');
     }
 
     /**
@@ -102,7 +102,7 @@ class ProdiController extends Controller
 
         $prodi->update($validatedData);
 
-        return redirect('/prodi')->with('success', 'Data Prodi Berhasil diedit !');
+        return redirect('/prodi')->with('success', 'Prodi Data Successfully edited !');
     }
 
     /**
@@ -113,6 +113,6 @@ class ProdiController extends Controller
         $prodi = Prodi::find($id);
         $prodi->delete();
 
-        return redirect('/prodi')->with('success', 'Data Prodi Berhasil dihapus !');
+        return redirect('/prodi')->with('success', 'Prodi Data Successfully deleted !');
     }
 }

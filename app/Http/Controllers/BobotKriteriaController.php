@@ -60,7 +60,7 @@ class BobotKriteriaController extends Controller
 
         BobotKriteria::create($validatedData);
 
-        return redirect('/bobotkriteria')->with('success', 'Data Bobot Kriteria Berhasil ditambahkan !');
+        return redirect('/bobotkriteria')->with('success', 'Criteria Weight Data Successfully added !');
     }
 
     /**
@@ -113,7 +113,7 @@ class BobotKriteriaController extends Controller
 
         $bobotkriteria->update($validatedData);
 
-        return redirect('/bobotkriteria')->with('success', 'Data Bobot Kriteria Berhasil diedit !');
+        return redirect('/bobotkriteria')->with('success', 'Criteria Weight Data Successfully edited !');
     }
 
     /**
@@ -124,6 +124,6 @@ class BobotKriteriaController extends Controller
         $bobotkriteria = BobotKriteria::find($id);
         $bobotkriteria->delete();
 
-        return redirect('/bobotkriteria')->with('success', 'Data Bobot Kriteria Berhasil dihapus !');
+        return redirect('/bobotkriteria')->with('success', 'Criteria Weight Data Successfully deleted !');
     }
 }

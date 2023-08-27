@@ -14,7 +14,7 @@
                 <div class="form-group">
                     <label for="nim">NIM<span style="color:red;">*</span></label>
                     <select class="form-control @error('nim') is-invalid @enderror" tabindex="-1" aria-hidden="true"
-                        name="nim" id="nim" value="{{ old('nim') }}">
+                        name="nim" id="nim" value="{{ old('nim') }}"readonly>
                         <option value="<?= $nilaiprestasi['nim'] ?>"><?= $nilaiprestasi['nim'] ?></option>
                         @foreach ($mhs as $mahasiswa)
                             <option value="{{ $mahasiswa->id }}">{{ $mahasiswa->nim }}</option>

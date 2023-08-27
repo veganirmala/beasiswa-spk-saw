@@ -57,7 +57,7 @@ class TahunUsulanController extends Controller
 
         TahunUsulan::create($validatedData);
 
-        return redirect('/tahunusulan')->with('success', 'Data Tahun Usulan Berhasil ditambahkan !');
+        return redirect('/tahunusulan')->with('success', 'Proposed Year Data Successfully added !');
     }
 
     /**
@@ -108,7 +108,7 @@ class TahunUsulanController extends Controller
 
         $tahunusulan->update($validatedData);
 
-        return redirect('/tahunusulan')->with('success', 'Data Tahun Usulan Berhasil diedit !');
+        return redirect('/tahunusulan')->with('success', 'Proposed Year Data Successfully edited !');
     }
 
     /**
@@ -119,6 +119,6 @@ class TahunUsulanController extends Controller
         $tahunusulan = TahunUsulan::find($id);
         $tahunusulan->delete();
 
-        return redirect('/tahunusulan')->with('success', 'Data Tahun Usulan Berhasil dihapus !');
+        return redirect('/tahunusulan')->with('success', 'Proposal Year Data Successfully deleted !');
     }
 }

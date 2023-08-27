@@ -65,7 +65,7 @@ class NilaiPrestasiController extends Controller
 
         NilaiPrestasi::create($validatedData);
 
-        return redirect('/nilaiprestasi')->with('success', 'Data Nilai Prestasi Berhasil ditambahkan !');
+        return redirect('/nilaiprestasi')->with('success', 'Achievement Value Data Successfully added !');
     }
 
     /**
@@ -119,7 +119,7 @@ class NilaiPrestasiController extends Controller
 
         $nilaiprestasi->update($validatedData);
 
-        return redirect('/nilaiprestasi')->with('success', 'Data Nilai Prestasi Berhasil diubah !');
+        return redirect('/nilaiprestasi')->with('success', 'Achievement Value Data Successfully modified !');
     }
 
     /**
@@ -130,6 +130,6 @@ class NilaiPrestasiController extends Controller
         $nilaiprestasi = NilaiPrestasi::find($id);
         $nilaiprestasi->delete();
 
-        return redirect('/nilaiprestasi')->with('success', 'Data Nilai Prestasi Berhasil dihapus !');
+        return redirect('/nilaiprestasi')->with('success', 'Achievement Value Data Successfully deleted !');
     }
 }

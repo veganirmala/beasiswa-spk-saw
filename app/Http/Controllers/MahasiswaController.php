@@ -75,7 +75,7 @@ class MahasiswaController extends Controller
 
         Mahasiswa::create($validatedData);
 
-        return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil ditambahkan !');
+        return redirect('/mahasiswa')->with('success', 'Student Data Successfully added !');
     }
 
     /**
@@ -141,7 +141,7 @@ class MahasiswaController extends Controller
 
         $mahasiswa->update($validatedData);
 
-        return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil diedit !');
+        return redirect('/mahasiswa')->with('success', 'Student Data Successfully edited !');
     }
 
     /**
@@ -152,6 +152,6 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::find($nim);
         $mahasiswa->delete();
 
-        return redirect('/mahasiswa')->with('success', 'Data Mahasiswa Berhasil dihapus !');
+        return redirect('/mahasiswa')->with('success', 'Student Data Successfully deleted !');
     }
 }

@@ -55,7 +55,7 @@ class IPKController extends Controller
 
         IPK::create($validatedData);
 
-        return redirect('/ipk')->with('success', 'Data IPK Berhasil ditambahkan !');
+        return redirect('/ipk')->with('success', 'IPK Data Successfully added !');
     }
 
     /**
@@ -101,7 +101,7 @@ class IPKController extends Controller
 
         $ipk->update($validatedData);
 
-        return redirect('/ipk')->with('success', 'Data IPK Berhasil diedit !');
+        return redirect('/ipk')->with('success', 'IPK Data Successfully edited !');
     }
 
     /**
@@ -112,6 +112,6 @@ class IPKController extends Controller
         $ipk = Ipk::find($nim);
         $ipk->delete();
 
-        return redirect('/ipk')->with('success', 'Data IPK Berhasil dihapus !');
+        return redirect('/ipk')->with('success', 'IPK Data Successfully deleted !');
     }
 }

@@ -42,7 +42,7 @@ class JurusanController extends Controller
 
         Jurusan::create($validatedData);
 
-        return redirect('/jurusan')->with('success', 'Data Jurusan Berhasil ditambahkan !');
+        return redirect('/jurusan')->with('success', 'Data Department Successfully added !');
     }
 
     /**
@@ -78,7 +78,7 @@ class JurusanController extends Controller
 
         $jurusan->update($validatedData);
 
-        return redirect('/jurusan')->with('success', 'Data Jurusan Berhasil diedit !');
+        return redirect('/jurusan')->with('success', 'Data Department Edited successfully !');
     }
 
     /**
@@ -89,6 +89,6 @@ class JurusanController extends Controller
         $jurusan = Jurusan::find($id);
         $jurusan->delete();
 
-        return redirect('/jurusan')->with('success', 'Data Jurusan Berhasil dihapus !');
+        return redirect('/jurusan')->with('success', 'Data Department Successfully deleted !');
     }
 }

@@ -10,17 +10,19 @@ use Session;
 
 class BerkasMahasiswaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if (Session::get('user_level') == 'Admin') {
-            //if ($request->has('search')) {
-            // $berkasmahasiswa = BerkasMahasiswa::where('nim', 'LIKE', '%' . $request->search . '%')
-            //     ->orwhere('status', 'LIKE', '%' . $request->search . '%')
-            //     ->latest()->paginate(5);
-            //} else {
-            //mengambil semua data diurutkan dari yg terbaru DESC
-            $berkasmahasiswa = BerkasMahasiswa::latest()->paginate(5);
-            //}
+            if ($request->has('search')) {
+                $berkasmahasiswa = BerkasMahasiswa::where('nim', 'LIKE', '%' . $request->search . '%')
+                    ->orwhere('status', 'LIKE', '%' . $request->search . '%')
+                    ->latest()->paginate(5);
+                $databerkasmahasiswa = false;
+            } else {
+                //mengambil semua data diurutkan dari yg terbaru DESC
+                $berkasmahasiswa = BerkasMahasiswa::latest()->paginate(5);
+                $databerkasmahasiswa = false;
+            }
         } else {
             $nim = Session::get('user_nim');
             $berkasmahasiswa = BerkasMahasiswa::where('berkasmahasiswa.nim', $nim)->latest()->paginate(5);
@@ -74,7 +76,7 @@ class BerkasMahasiswaController extends Controller
             'dokumennilaiprestasi' => $dokumennilaiprestasiName,
         ]);
 
-        return redirect('/berkasmahasiswa')->with('success', 'Data Berkas Mahasiswa Berhasil ditambahkan !');
+        return redirect('/berkasmahasiswa')->with('success', 'Student File Data Successfully added !');
     }
 
     public function show($nim)
@@ -153,7 +155,7 @@ class BerkasMahasiswaController extends Controller
         $berkasmahasiswa = BerkasMahasiswa::where('nim', $nim)->orderby('id', 'desc')->first();
         $berkasmahasiswa->update($data);
 
-        return redirect('/berkasmahasiswa')->with('success', 'Data Berkas Mahasiswa Berhasil diubah !');
+        return redirect('/berkasmahasiswa')->with('success', 'Student File Data Successfully changed !');
     }
 
     public function update(Request $request, $nim)
@@ -189,7 +191,7 @@ class BerkasMahasiswaController extends Controller
         $berkasmahasiswa = BerkasMahasiswa::where('nim', $nim)->first();
         $berkasmahasiswa->update($validatedData);
 
-        return redirect('/berkasmahasiswa')->with('success', 'Data Berkas Mahasiswa Berhasil diedit !');
+        return redirect('/berkasmahasiswa')->with('success', 'Student File Data Successfully changed !');
     }
 
     public function editBerkas($nim)
@@ -215,7 +217,7 @@ class BerkasMahasiswaController extends Controller
         $berkasmahasiswa = BerkasMahasiswa::where('nim', $nim)->first();
         $berkasmahasiswa->update($validatedData);
 
-        return redirect('/berkasmahasiswa')->with('success', 'Data Berkas Mahasiswa Berhasil diedit !');
+        return redirect('/berkasmahasiswa')->with('success', 'Student File Data Successfully changed !');
     }
 
     public function detail()

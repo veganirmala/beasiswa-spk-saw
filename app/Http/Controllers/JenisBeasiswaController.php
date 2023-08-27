@@ -41,7 +41,7 @@ class JenisBeasiswaController extends Controller
 
         JenisBeasiswa::create($validatedData);
 
-        return redirect('/jenisbeasiswa')->with('success', 'Data Jenis Beasiswa Berhasil ditambahkan !');
+        return redirect('/jenisbeasiswa')->with('success', 'Scholarship Type Data Successfully added !');
     }
 
     /**
@@ -77,7 +77,7 @@ class JenisBeasiswaController extends Controller
 
         $jenisbeasiswa->update($validatedData);
 
-        return redirect('/jenisbeasiswa')->with('success', 'Data Jenis Beasiswa Berhasil diedit !');
+        return redirect('/jenisbeasiswa')->with('success', 'Scholarship Type Data Successfully edited !');
     }
 
     /**
@@ -88,6 +88,6 @@ class JenisBeasiswaController extends Controller
         $jenisbeasiswa = JenisBeasiswa::find($id);
         $jenisbeasiswa->delete();
 
-        return redirect('/jenisbeasiswa')->with('success', 'Data Jenis Beasiswa Berhasil dihapus !');
+        return redirect('/jenisbeasiswa')->with('success', 'Scholarship Type Data Successfully deleted !');
     }
 }

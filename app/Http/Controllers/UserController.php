@@ -52,7 +52,7 @@ class UserController extends Controller
 
         User::create($validatedData);
 
-        return redirect('/user')->with('success', 'Data User Berhasil ditambahkan !');
+        return redirect('/user')->with('success', 'User Data Successfully added !');
     }
 
     /**
@@ -142,7 +142,7 @@ class UserController extends Controller
 
         $user->update($validatedData);
 
-        return redirect('/user')->with('success', 'Data User Berhasil diedit !');
+        return redirect('/user')->with('success', 'User Data Successfully edited !');
     }
 
     public function updateProfile(Request $request)
@@ -163,7 +163,7 @@ class UserController extends Controller
         //mengambil data yg akan diupdate
         $user->update($validatedData);
 
-        return redirect('/dashboard')->with('success', 'Profil Berhasil diedit !');
+        return redirect('/dashboard')->with('success', 'Profile Successfully edited !');
     }
 
     /**
@@ -174,6 +174,6 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
 
-        return redirect('/user')->with('success', 'Data User Berhasil dihapus !');
+        return redirect('/user')->with('success', 'User Data Successfully deleted !');
     }
 }
