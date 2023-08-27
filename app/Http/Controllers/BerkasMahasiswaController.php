@@ -17,17 +17,14 @@ class BerkasMahasiswaController extends Controller
                 $berkasmahasiswa = BerkasMahasiswa::where('nim', 'LIKE', '%' . $request->search . '%')
                     ->orwhere('status', 'LIKE', '%' . $request->search . '%')
                     ->latest()->paginate(5);
-                $databerkasmahasiswa = false;
             } else {
                 //mengambil semua data diurutkan dari yg terbaru DESC
                 $berkasmahasiswa = BerkasMahasiswa::latest()->paginate(5);
-                $databerkasmahasiswa = false;
             }
         } else {
             $nim = Session::get('user_nim');
             $berkasmahasiswa = BerkasMahasiswa::where('berkasmahasiswa.nim', $nim)->latest()->paginate(5);
         }
-
         //tampilkan halaman index
         return view('berkasmahasiswa/index', data: compact('berkasmahasiswa'));
     }
