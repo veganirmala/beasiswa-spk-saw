@@ -8,12 +8,14 @@
     <section class="content">
         <div class="container-fluid">
             <h3>Ubah Data Berkas Mahasiswa</h3>
-            <form action="/berkasmahasiswa/{{ $berkasmahasiswa->nim }}/mengubah" method="POST" enctype="multipart/form-data">
+            <form action="/berkasmahasiswa/{{ $berkasmahasiswa->nim }}/mengubah" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="nim">NIM<span style="color:red;">*</span></label>
                     <input type="text" name="nim" class="form-control @error('nim') is-invalid @enderror"
-                        id="nim" placeholder="NIM Mahasiswa" required autofocus value="{{ $berkasmahasiswa->nim }}" readonly>
+                        id="nim" placeholder="NIM Mahasiswa" required autofocus
+                        value="{{ $berkasmahasiswa->nim }}" readonly>
                     @error('nim')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -54,10 +56,10 @@
                     @enderror
                 </div>
                 <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
-                    Simpan
+                    Save
                 </button>
                 <button type="button" value="Kembali" onClick="history.go(-1)" class="btn btn-primary btn-user">
-                    Kembali
+                    Back
                 </button>
             </form>
         </div>
