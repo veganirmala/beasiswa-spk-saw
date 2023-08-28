@@ -49,17 +49,17 @@
                                 </div>
                             </div>
                         @endif
-                        {{-- @role('mahasiswa')
+                        @if (auth()->User()->level == 'Mahasiswa')
                             <?php if (empty($databerkasmahasiswa)) : ?>
-                            <a href="/berkasmahasiswa/create" class="btn btn-primary" title="Tambah Data"><i
+                            <a href="/berkasmahasiswa/create" class="btn btn-primary" title="Add Data"><i
                                     class="fas fa-plus"></i> Add</a>
                             <p></p>
                             <?php endif; ?>
-                        @else --}}
-                        <a href="/berkasmahasiswa/create" class="btn btn-primary" title="Tambah Data"><i
-                                class="fas fa-plus"></i> Add</a>
-                        <p></p>
-                        {{-- @endif --}}
+                        @else
+                            <a href="/berkasmahasiswa/create" class="btn btn-primary" title="Add Data"><i
+                                    class="fas fa-plus"></i> Add</a>
+                            <p></p>
+                        @endif
                         <div class="table-responsive">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>

@@ -40,15 +40,17 @@
                             </div>
                         @enderror
                     </div>
-                    <h4 class="card-title">Information<span style="color:red;">*</span></h4>
-                    <textarea name="keterangan" id="keterangan" cols="40" rows="10"
-                        class="form-control @error('keterangan') is-invalid @enderror"
-                        value="{{ old('keterangan', $berkasmahasiswa->keterangan) }}"></textarea>
-                    @error('keterangan')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                    <div class="form-group">
+                        <h4 class="card-title">Information<span style="color:red;">*</span></h4>
+                        <textarea name="keterangan" id="keterangan" cols="40" rows="10"
+                            class="form-control @error('keterangan') is-invalid @enderror"
+                            value="{{ old('keterangan', $berkasmahasiswa->keterangan) }}"></textarea>
+                        @error('keterangan')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                     <button type="submit" value="Simpan" name="submit" class="btn btn-success btn-user">
                         Verification
                     </button>
