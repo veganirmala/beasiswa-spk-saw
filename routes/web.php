@@ -171,6 +171,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/user/{id}/show', [UserController::class, 'show']);
     Route::put('/user/{id}', [UserController::class, 'update']);
     Route::delete('/user/{id}', [UserController::class, 'destroy']);
+    Route::get('edit-password', [UserController::class, 'editPassword']);
+    Route::put('update-password', [UserController::class, 'updatePassword']);
 
     Route::post('/users/{user}/roles', [UserController::class, 'assignRole'])->name('users.roles');
     Route::delete('/users/{user}/roles/{role}', [UserController::class, 'removeRole'])->name('users.roles.remove');

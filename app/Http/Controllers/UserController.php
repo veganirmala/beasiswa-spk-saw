@@ -102,6 +102,29 @@ class UserController extends Controller
         return back()->with('message', 'Permission does not exists.');
     }
 
+    public function editPassword()
+    {
+        $id = Auth::id();
+        $user = User::find($id);
+        return view('user/ubahpassword', compact('user'));
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $id = Auth::id();
+        $user = User::find($id);
+        //membuat form validasi
+        $validatedData = $request->validate([
+            'password' => 'required'
+        ]);
+        //proses enkripsi password
+        $validatedData['password'] = bcrypt($validatedData['password']);
+
+        //mengambil data yg akan diupdate
+        $user->update($validatedData);
+
+        return redirect('/dashboard')->with('success', 'Password Berhasil diedit !');
+    }
     /**
      * Show the form for editing the specified resource.
      */
